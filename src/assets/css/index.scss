@@ -1,0 +1,78 @@
+$themeColor:#ffc500;
+$colorBlue:blue;
+$colorPink:pink;
+$colorYellow:yellow;
+$colorGreen:green;
+$colorViolet: #c27aff;
+
+;
+
+.colorYellow{
+  background-color:  $colorYellow;
+}
+.colorPink{
+  background-color:  $colorPink;
+}
+.colorBlue{
+  background-color:  $colorBlue;
+}
+.colorGreen{
+  background-color:  $colorGreen;
+}
+.colorViolet{
+  background-color:  $colorViolet;
+}
+
+
+.main{
+  width: 100%;
+  padding:4%;
+}
+.pair{
+  background: url("~@/assets/img/jcc.png")no-repeat 50% 50%;
+  background-size: cover;
+  width: 100%;
+  min-height: 1.4rem;
+  border-radius: 8px;
+  padding: 0 4%;
+}
+.pair-title{
+  font-size: .16rem;
+  font-weight: 600;
+  color: #fff;
+  padding-top: .12rem;
+}
+.btn-pair{
+  border-radius: 20px;
+  color: $themeColor;
+  margin-top: .12rem;
+}
+
+.scrollX{
+  overflow-x: scroll;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  overflow-y: hidden;
+  flex-wrap: nowrap;
+  &::-webkit-scrollbar {
+    /*滚动条整体样式*/
+    width : 0 !important;  /*高宽分别对应横竖滚动条的尺寸*/
+    height: 0 !important;
+  }
+}
+.vip-item{
+  width: 200px;
+  margin-right: 20px;
+  list-style: none;
+  white-space: nowrap;
+  color: #fff;
+}
+
+.vip{
+  margin-top: .2rem;
+  .swiper-slide{
+    height: 100px;
+    margin-right: 4%;
+  }
+}
