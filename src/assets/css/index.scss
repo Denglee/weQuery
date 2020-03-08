@@ -1,17 +1,15 @@
 $themeColor:#ffc500;
-$colorBlue:blue;
-$colorPink:pink;
-$colorYellow:yellow;
-$colorGreen:green;
-$colorViolet: #c27aff;
-
-;
+$colorBlue:#33b5ff;
+$colorOrange:#ff8033;
+$colorGreen:#78cd51;
+$colorViolet: #8033ff;
+$colorGray: rgba(216, 217, 219, 0.45);
 
 .colorYellow{
-  background-color:  $colorYellow;
+  background-color:  $themeColor;
 }
 .colorPink{
-  background-color:  $colorPink;
+  background-color:  $colorOrange;
 }
 .colorBlue{
   background-color:  $colorBlue;
@@ -23,11 +21,57 @@ $colorViolet: #c27aff;
   background-color:  $colorViolet;
 }
 
-
+$fireBordius:6px;
 .main{
   width: 100%;
   padding:4%;
+  background-color: $colorGray;
+  .btn-pair{
+    border-radius: 20px;
+    color: $themeColor;
+    margin-top: .12rem;
+    padding: 4px .2rem;
+    height: auto;
+    line-height: inherit;
+    font-weight: bold;
+    .van-icon{
+      background: $themeColor;
+      color: #fff;
+      /* height: 14px; */
+      /* width: 14px; */
+      border-radius: 50%;
+      margin-left: 4px;
+      text-align: center;
+      /* line-height: 14px; */
+      /* display: inline-block; */
+      padding: 1px;
+    }
+  }
+
+  .btnLook-fire{
+    background-color: $themeColor;
+    width: 100%;
+    border: none;
+    color: #fff;
+    height: auto;
+    border-bottom-left-radius: $fireBordius;
+    border-bottom-right-radius: $fireBordius;
+    padding: 0;
+    font-size: .14rem;
+    margin-top:4px
+  }
+
+  .btnLookMore-fire{
+    width: 100%;
+    padding: 6px 0;
+    border-radius: .2rem;
+    height: auto;
+    font-size: .15rem;
+  }
+
 }
+
+/*立即配对*/
 .pair{
   background: url("~@/assets/img/jcc.png")no-repeat 50% 50%;
   background-size: cover;
@@ -40,14 +84,86 @@ $colorViolet: #c27aff;
   font-size: .16rem;
   font-weight: 600;
   color: #fff;
-  padding-top: .12rem;
-}
-.btn-pair{
-  border-radius: 20px;
-  color: $themeColor;
-  margin-top: .12rem;
+  padding-top: .2rem;
 }
 
+/*swiper 轮播*/
+.swiper-container {
+  width: 100%;
+  height: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.swiper-slide {
+  /* Center slide text vertically */
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+
+.vip{
+  margin-top: .2rem;
+  .swiper-slide{
+    height: 70px;
+    //width: 38%!important;
+    margin-right: 4%;
+    border-radius: 8px;
+    color: #fff;
+  }
+}
+
+.swiper-subtitle{
+
+}
+
+/*热门贷款*/
+.nav-fire{
+  margin: 4% 0;
+  font-weight:600;
+}
+
+.fire-list{
+  background-color: #fff;
+  margin-bottom: .16rem;
+  border-radius:$fireBordius;
+  font-size: .1rem;
+}
+.fire-img{
+  width: 50%;
+}
+.fire-title{
+  font-size: .12rem;
+}
+.fire-month{
+  background-color: #f0f8ff;
+  border-radius: 4px;
+  padding: 4px;
+  width: 90%;
+  margin: 4px auto 0;
+}
+.fire-quoto{
+  color: $themeColor;
+}
+
+.wc-tip{
+  color: rgba(102, 102, 102, 0.65);
+  font-size: .12rem;
+}
+
+
+
+
+
+/*注释大数据*/
 .scrollX{
   overflow-x: scroll;
   width: 100%;
@@ -61,18 +177,10 @@ $colorViolet: #c27aff;
     height: 0 !important;
   }
 }
-.vip-item{
-  width: 200px;
-  margin-right: 20px;
-  list-style: none;
-  white-space: nowrap;
-  color: #fff;
-}
-
-.vip{
-  margin-top: .2rem;
-  .swiper-slide{
-    height: 100px;
-    margin-right: 4%;
-  }
-}
+//.vip-item{
+//  width: 38%!important;
+//  margin-right: 4%;
+//  list-style: none;
+//  white-space: nowrap;
+//  color: #fff;
+//}

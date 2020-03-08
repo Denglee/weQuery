@@ -13,21 +13,13 @@
                 <div class="swiper-slide"  v-for="(item,index) in vipArr" :key="'vip'+index" :class="item.bgColor">
                     <div :data-href="item.url">
                         <div><van-icon :name="item.icon" />{{item.name}}</div>
-                        <div>{{item.subTitle}}</div>
+                        <div class="swiper-subtitle">{{item.subTitle}}</div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!--大数据-->
-       <!-- <ul class="data scrollX">
-            <li v-for="(item,index) in dataArr" :key="'vip'+index" class="vip-item" :class="item.bgColor">
-                <div :data-href="item.url">
-                    <div><van-icon :name="item.icon" />{{item.name}}</div>
-                    <div>{{item.subTitle}}</div>
-                </div>
-            </li>
-        </ul>-->
+
         <div class="swiper-container vip">
             <div class="swiper-wrapper">
                 <div class="swiper-slide"  v-for="(item,index) in dataArr" :key="'vip'+index" :class="item.bgColor">
@@ -41,33 +33,43 @@
 
         <!--热门贷款-->
         <div class="loan">
-            <div class="flex-between">
+            <nav class="flex-between nav-fire">
                 <div><van-icon name="fire-o" />热门贷款</div>
                 <div>更多 》</div>
-            </div>
-<!--            url:'loanArr1',-->
-<!--            img:'/assets/img/jcc.png',-->
-<!--            title:'企业税贷',-->
-<!--            subTitle:'随借随还',-->
-<!--            monthRate:'月利率0.52%',-->
-<!--            maxQuota:'额度最高200万',-->
-            <van-row gutter="20">
+            </nav>
+            <van-row gutter="12">
                 <van-col span="8" v-for="(item,index) in loanArr" :ket="index">
-                    <img :src="item.img" alt="">
-                    <div>{{item.title}}</div>
-                    <div>{{item.subTitle}}</div>
-                    <div>{{item.monthRate}}</div>
-                    <div>{{item.maxQuota}}</div>
-                    <van-button type="default" size="mini">默认按钮</van-button>
+                    <div  class="fire-list">
+                        <van-image :src="item.img" alt="" class="fire-img"></van-image>
+                        <div class="fire-title">{{item.title}}</div>
+                        <div class="fire-month fire-subtitle">{{item.subTitle}}</div>
+                        <div class="fire-month">{{item.monthRate}}</div>
+                        <div class="fire-month fire-quoto">{{item.maxQuota}}</div>
+                        <van-button type="default" size="mini" class="btnLook-fire">查看</van-button>
+                    </div>
                 </van-col>
-
             </van-row>
+            <van-button type="default" size="mini" class="btnLookMore-fire ">查看更多 》</van-button>
         </div>
 
         <!--热门信用卡-->
         <div class="card">
-
+            <nav class="flex-between nav-fire">
+                <div><van-icon name="fire-o" />热门信用卡</div>
+            </nav>
+            <van-row gutter="12">
+                <van-col span="8" v-for="(item,index) in cardArr" :ket="index">
+                    <div  class="fire-list">
+                        <van-image :src="item.img" alt="" class="fire-img"></van-image>
+                        <div class="fire-title">{{item.title}}</div>
+                        <div class="fire-month">{{item.maxQuota}}</div>
+                        <van-button type="default" size="mini" class="btnLook-fire">申请</van-button>
+                    </div>
+                </van-col>
+            </van-row>
         </div>
+
+        <div class="wc-tip">该服务使用微信公众号 ’‘ 提供</div>
 
     </div>
 </template>
@@ -148,34 +150,62 @@
                 loanArr:[
                     {
                         url:'loanArr1',
-                        img:'/assets/img/jcc.png',
+                        img:require('@/assets/img/guangfa.png'),
                         title:'企业税贷',
                         subTitle:'随借随还',
                         monthRate:'月利率0.52%',
                         maxQuota:'额度最高200万',
                     },  {
                         url:'loanArr2',
-                        img:'/assets/img/jcc.png',
+                        img:require('@/assets/img/guangfa.png'),
                         title:'工薪贷',
                         subTitle:'等额本息',
                         monthRate:'月利率0.52%',
                         maxQuota:'额度最高30万',
                     },  {
                         url:'loanArr3',
-                        img:'/assets/img/jcc.png',
+                        img:require('@/assets/img/guangfa.png'),
                         title:'月供贷',
                         subTitle:'随借随还',
                         monthRate:'月利率0.66%',
                         maxQuota:'额度最高50万',
                     },  {
                         url:'loanArr4',
-                        img:'/assets/img/jcc.png',
+                        img:require('@/assets/img/guangfa.png'),
                         title:'企业税贷',
                         subTitle:'等额本息',
                         monthRate:'月利率0.55%',
                         maxQuota:'额度最高300万',
                     },
 
+                ],
+
+                /*热门信用卡*/
+                cardArr:[
+                    {
+                        url:'loanArr1',
+                        img:require('@/assets/img/guangfa.png'),
+                        title:'中信信用卡',
+                        maxQuota:'8倍积分回馈',
+                    },
+                    {
+                        url:'loanArr1',
+                        img:require('@/assets/img/guangfa.png'),
+                        title:'站上信用卡',
+                        maxQuota:'首年免免费',
+                    },
+                    {
+                        url:'loanArr1',
+                        img:require('@/assets/img/guangfa.png'),
+                        title:'中信信用卡',
+                        maxQuota:'8倍积分回馈',
+                    },
+                    {
+                        url:'loanArr1',
+                        img:require('@/assets/img/guangfa.png'),
+                        title:'平安信用卡',
+                        maxQuota:'各种福利卡',
+                    },
                 ]
             }
         },
@@ -196,14 +226,14 @@
         },
         mounted(){
             new Swiper ('.swiper-container', {
-                width:'200',
+                width:'140',
                 height:'100',
                 keyboard : true,
                 virtualTranslate : true,
                 on:{
                     setTranslate: function(){
                         this.$wrapperEl.transition('');
-                        TweenMax.to(this.$wrapperEl, 1.5, {x:this.translate, ease:Power4.easeOut})
+                        TweenMax.to(this.$wrapperEl, 0.1, {x:this.translate, ease:Power4.easeOut})
 
                     }
                 },
@@ -214,38 +244,16 @@
 
 <style lang="scss">
     @import '~@/assets/css/index.scss';
-
-
-    .swiper-container {
-        width: 100%;
-        height: 100%;
-        margin-left: auto;
-        margin-right: auto;
-    }
-    .swiper-slide {
-        /* Center slide text vertically */
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: -webkit-flex;
-        display: flex;
-        -webkit-box-pack: center;
-        -ms-flex-pack: center;
-        -webkit-justify-content: center;
-        justify-content: center;
-        -webkit-box-align: center;
-        -ms-flex-align: center;
-        -webkit-align-items: center;
-        align-items: center;
-    }
-
-    .my-swipe .van-swipe-item {
-        width: 200px;
-        color: #fff;
-        border: solid 1px red;
-        font-size: 20px;
-        line-height: 150px;
-        text-align: center;
-        background-color: #39a9ed;
-        margin-right: 20px;
-    }
 </style>
+
+
+
+<!--大数据-->
+<!-- <ul class="data scrollX">
+     <li v-for="(item,index) in dataArr" :key="'vip'+index" class="vip-item" :class="item.bgColor">
+         <div :data-href="item.url">
+             <div><van-icon :name="item.icon" />{{item.name}}</div>
+             <div>{{item.subTitle}}</div>
+         </div>
+     </li>
+ </ul>-->
