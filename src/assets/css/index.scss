@@ -26,6 +26,7 @@ $fireBordius:6px;
   width: 100%;
   padding:4%;
   background-color: $colorGray;
+  min-height: 100vh;
   .btn-pair{
     border-radius: 20px;
     color: $themeColor;
@@ -184,3 +185,20 @@ $fireBordius:6px;
 //  white-space: nowrap;
 //  color: #fff;
 //}
+
+
+
+//============= l列表页 =========
+.loan-item{
+  padding: 4px 0;
+  background: #fff;
+  margin-bottom: 0.14rem;
+  border-radius: 6px;
+  &:not(:last-child){
+    margin-right: 6px;
+  }
+}
+.loanActive{
+  background-color: $themeColor;
+  color: #fff;
+}

@@ -35,11 +35,11 @@
         <div class="loan">
             <nav class="flex-between nav-fire">
                 <div><van-icon name="fire-o" />热门贷款</div>
-                <div>更多 》</div>
+                <div @click="goLoan()">更多 》</div>
             </nav>
             <van-row gutter="12">
                 <van-col span="8" v-for="(item,index) in loanArr" :ket="index">
-                    <div  class="fire-list">
+                    <div  class="fire-list" @click="goLoanDetails">
                         <van-image :src="item.img" alt="" class="fire-img"></van-image>
                         <div class="fire-title">{{item.title}}</div>
                         <div class="fire-month fire-subtitle">{{item.subTitle}}</div>
@@ -49,7 +49,7 @@
                     </div>
                 </van-col>
             </van-row>
-            <van-button type="default" size="mini" class="btnLookMore-fire ">查看更多 》</van-button>
+            <van-button type="default" size="mini" class="btnLookMore-fire " @click="goLoan()">查看更多 》</van-button>
         </div>
 
         <!--热门信用卡-->
@@ -217,6 +217,20 @@
                 }).catch(res =>{
                     console.log(res);
                 });
+            },
+
+            /*去贷款列表页*/
+            goLoan(){
+                this.$router.push({
+                    path:'/loanList'
+                })
+            },
+
+            /*去贷款详情页*/
+            goLoanDetails(){
+                this.$router.push({
+                    path:'/loanDetails'
+                })
             },
         },
         created() {
