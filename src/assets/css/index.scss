@@ -89,27 +89,27 @@ $fireBordius:6px;
 }
 
 /*swiper 轮播*/
-.swiper-container {
-  width: 100%;
-  height: 100%;
-  margin-left: auto;
-  margin-right: auto;
-}
-.swiper-slide {
-  /* Center slide text vertically */
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  -webkit-justify-content: center;
-  justify-content: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  -webkit-align-items: center;
-  align-items: center;
-}
+//.swiper-container {
+//  width: 100%;
+//  height: 100%;
+//  margin-left: auto;
+//  margin-right: auto;
+//}
+//.swiper-slide {
+//  /* Center slide text vertically */
+//  display: -webkit-box;
+//  display: -ms-flexbox;
+//  display: -webkit-flex;
+//  display: flex;
+//  -webkit-box-pack: center;
+//  -ms-flex-pack: center;
+//  -webkit-justify-content: center;
+//  justify-content: center;
+//  -webkit-box-align: center;
+//  -ms-flex-align: center;
+//  -webkit-align-items: center;
+//  align-items: center;
+//}
 
 .vip{
   margin-top: .2rem;
@@ -201,4 +201,17 @@ $fireBordius:6px;
 .loanActive{
   background-color: $themeColor;
   color: #fff;
+}
+
+
+.item{
+  //width: 200px;
+  //height: 200px;
+  .van-swipe-item{
+    //width: 200px;
+    height: 200px;
+    border: solid 1px red;
+    width: 32%;
+    padding-right: 3%;
+  }
 }

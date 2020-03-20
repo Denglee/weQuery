@@ -3,6 +3,13 @@
 //https://juejin.im/post/5bd02f98e51d457a944b634f
 // 这里只列一部分，具体配置参考文档
 module.exports = {
+
+    // transpileDependencies: [
+    //     "swiper",
+    //     "dom7",
+    //     "ssr-window"
+    // ],
+
     configureWebpack: {
         externals: {
             // 'echarts': 'echarts' // 配置使用CDN

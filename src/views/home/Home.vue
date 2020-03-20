@@ -19,6 +19,23 @@
             </div>
         </div>
 
+        <swiper  :options="swiperOption">
+            <swiper-slide class="swiper-slide" v-for="(item,index) in dataArr" :key="index">
+                <div :data-href="item.url">
+                    <div><van-icon name="" />{{item.name}}</div>
+                    <div>{{item.subTitle}}</div>
+                </div>
+            </swiper-slide>
+        </swiper>
+
+        <van-swipe :loop="false" class="item" :width="100">
+            <van-swipe-item  v-for="(item,index) in dataArr" :key="'vip'+index" :class="item.bgColor">
+                <div :data-href="item.url">
+                    <div><van-icon name="" />{{item.name}}</div>
+                    <div>{{item.subTitle}}</div>
+                </div>
+            </van-swipe-item>
+        </van-swipe>
 
         <div class="swiper-container vip">
             <div class="swiper-wrapper">
@@ -76,7 +93,7 @@
 
 <script>
     import Swiper from 'swiper';
-    import TweenMax from '@/assets/js/TweenMax.min.js';
+    // import TweenMax from '@/assets/js/TweenMax.min.js';
     import {IndexTotal_membership,} from '@/assets/js/api'   /*引用 首页 接口*/
 
     export default {
@@ -206,7 +223,23 @@
                         title:'平安信用卡',
                         maxQuota:'各种福利卡',
                     },
-                ]
+                ],
+
+                swiperOption: {
+                        width:'140',
+                        height:'100',
+                        keyboard : true,
+                        virtualTranslate : true,
+                        observer:true, //修改swiper自己或子元素时，自动初始化swiper
+                        observeParents:true,//修改swiper的父元素时，自动初始化swiper
+                        // on:{
+                        //     setTranslate: function(){
+                        //         this.$wrapperEl.transition('');
+                        //         TweenMax.to(this.$wrapperEl, 0.1, {x:this.translate, ease:Power4.easeOut})
+                        //
+                        //     }
+                        // },
+                },
             }
         },
         methods: {
@@ -239,11 +272,18 @@
             this.getTotal();
         },
         mounted(){
+
+            // new Swiper('.swiper-container', {
+            //     autoplay: true,//可选选项，自动滑动
+            // })
+
             new Swiper ('.swiper-container', {
                 width:'140',
                 height:'100',
                 keyboard : true,
                 virtualTranslate : true,
+                observer:true, //修改swiper自己或子元素时，自动初始化swiper
+                observeParents:true,//修改swiper的父元素时，自动初始化swiper
                 on:{
                     setTranslate: function(){
                         this.$wrapperEl.transition('');
@@ -258,6 +298,15 @@
 
 <style lang="scss">
     @import '~@/assets/css/index.scss';
+
+    .swiper-slide {
+        width: 100%;
+        height: 500px;
+        line-height:500px;
+        font-size: 50px;
+        text-align: center;
+        background-color: rosybrown;
+    }
 </style>
 
 

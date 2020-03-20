@@ -1,8 +1,6 @@
 <template>
     <div class="main">
 
-
-
         <!--银行title-->
         <div class="detail-title">
             <span class="dTitle-tip">{{dTitle.type}}</span>
@@ -97,6 +95,7 @@
 </template>
 
 <script>
+
     export default {
         name: "loanList",
         data() {

@@ -28,8 +28,8 @@
 
 <script>
 
-    import Swiper from 'swiper';
-    import TweenMax from '@/assets/js/TweenMax.min.js';
+    // import Swiper from 'swiper';
+    // import TweenMax from '@/assets/js/TweenMax.min.js';
 
     export default {
         name: "loanList",
@@ -141,19 +141,19 @@
 
         },
         mounted(){
-            new Swiper ('.swiper-container', {
-                width:'90',
-                height:'100',
-                keyboard : true,
-                virtualTranslate : true,
-                on:{
-                    setTranslate: function(){
-                        this.$wrapperEl.transition('');
-                        TweenMax.to(this.$wrapperEl, 0.1, {x:this.translate, ease:Power4.easeOut})
-
-                    }
-                },
-            })
+            // new Swiper ('.swiper-container', {
+            //     width:'90',
+            //     height:'100',
+            //     keyboard : true,
+            //     virtualTranslate : true,
+            //     on:{
+            //         setTranslate: function(){
+            //             this.$wrapperEl.transition('');
+            //             TweenMax.to(this.$wrapperEl, 0.1, {x:this.translate, ease:Power4.easeOut})
+            //
+            //         }
+            //     },
+            // })
         }
     }
 </script>
