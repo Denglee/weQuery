@@ -60,7 +60,8 @@ $navHei:.14rem;
 }
 
 /*分类*/
-.loan-main{
+#loanTabs{
+  padding: .2rem;
   .van-tabs__nav--card{
     margin: 0;
   }
@@ -68,4 +69,37 @@ $navHei:.14rem;
     width: 92%;
     margin: 0 auto;
   }
+  .van-tab--active {
+    color: #fff;
+    background-color: $themeColor;
+  }
+  .van-tab{
+    flex: 0 0 30%!important;
+    //right: 10px;
+    //border-right: solid 10px #ffa300 !important;
+  }
+
+  .fire-list{
+    background-color: #fff;
+    margin-bottom: .16rem;
+    border-radius:4px;
+    font-size: .1rem;
+  }
+  .fire-img{
+    width: 50%;
+  }
+  .fire-title{
+    font-size: .12rem;
+  }
+  .fire-month{
+    background-color: #f0f8ff;
+    border-radius: 4px;
+    padding: 4px;
+    width: 90%;
+    margin: 4px auto 0;
+  }
+  .fire-quoto{
+    color: $themeColor;
+  }
+
 }

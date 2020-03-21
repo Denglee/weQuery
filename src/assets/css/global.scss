@@ -80,20 +80,17 @@ input:-webkit-autofill { box-shadow: 0 0 0 1000px white inset !important;}
     margin: 0 auto;
     padding: 4% 0;
 }
-.index-swiper{
-    margin: .1rem 0;
-    border-radius: 10px;
-    border-right: solid 10px #fff;
-}
-.van-swipe-item{
-    background-color: red;
-    //border-right: solid 10px #fff;
-}
-.activeNav{
-    color: #fff;
-}
-.van-tab{
-    flex: 0 0 30%!important;
-    right: 10px;
-    border-right: solid 10px #ffa300 !important;
+#home{
+    .index-swiper{
+        margin: .1rem 0;
+        border-radius: 10px;
+        border-right: solid 10px #fff;
+    }
+    .van-swipe-item{
+        background-color: red;
+        //border-right: solid 10px #fff;
+    }
+    .activeNav{
+        color: #fff;
+    }
 }

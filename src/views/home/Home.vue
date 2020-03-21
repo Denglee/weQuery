@@ -1,5 +1,5 @@
 <template>
-    <div class="main">
+    <div class="main" id="home">
         <!--地址-->
         <div class="flex-between">
             <div class="address-left">

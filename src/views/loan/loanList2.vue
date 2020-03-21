@@ -32,14 +32,14 @@
         </van-row>-->
 
 
-        <van-tabs  v-model="activeTab"  @click="changeTab" animated swipeable type="card">
+        <van-tabs  v-model="activeTab"  @click="changeTab" animated swipeable type="card" id="loanTabs">
             <van-tab  v-for="(item,index) in navArr" :key="index" :title="item.name"
             class="loan-tab">
                 <van-row  v-if="loanArr.length == 0">
                     <van-col>暂无数据</van-col>
                 </van-row>
                 <van-row gutter="12" v-else>
-                    <van-col span="8" v-for="(item,index) in loanArr" :ket="index">
+                    <van-col span="12" v-for="(item,index) in loanArr" :ket="index">
                         <div  class="fire-list" @click="goLoanDetails">
                             <van-image :src="item.ioc" alt="" class="fire-img"></van-image>
 
