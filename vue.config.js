@@ -82,7 +82,8 @@ module.exports = {
 
     // 它支持webPack-dev-server的所有选项
     devServer: {
-        host: "192.168.0.106",
+        // host: "192.168.0.106",
+        host: "localhost",
         port: 8050, // 端口号
         https: false, // https:{type:Boolean}
         open: false, //配置自动启动浏览器
@@ -91,7 +92,7 @@ module.exports = {
         // 配置多个代理
         proxy: {
             "/api": {
-                target: "http://vikily.f3322.net:20000",// 测试答咔访问的接口域名
+                target: "http://384ycd.natappfree.cc/",// 测试答咔访问的接口域名
                 // target: "http://spt.zmtek.net",// 正式答咔系统访问的接口域名
                 // target: "https://swim.zmtek.net",// 正式游泳馆访问的接口域名
                 ws: true,// 是否启用websockets

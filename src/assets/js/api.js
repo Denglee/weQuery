@@ -15,42 +15,8 @@ import { get, post } from './axios';
  * 最后通过export导出topics。
  */
 
-/*
-* =======================正式
-* */
-/*获取侧边栏 nav*/
-export const ApiLayoutNav = params => get('admin/Web/indexMenu', params);
+/* 1、产品 */
+export const getAllType   = params => post('product/getAll', params);         /* 所有产品*/
 
-/*登录*/
-export const ApiloginIn = params => post('admin/Web/login', params);
-
-/*退出*/
-export const ApiloginOut = params => post('admin/Web/login_out', params);
-
-/*修改密码*/
-export const ApiChangePass = params => post('admin/Web/update_password', params);
-
-
-
-/* ==-- 首页 --== */
-/*1、首页数据*/
-export const IndexTotal_membership = params => post('admin/Web/total_membership', params);      /*现有会员*/
-export const IndexNew_membership   = params => post('admin/Web/new_membership', params);        /*新增会员*/
-export const IndexStatistics       = params => post('admin/Web/statistics', params);            /*客流 在场人数*/
-export const IndexDrawer           = params => post('admin/Web/drawer', params);                /*更衣柜使用*/
-export const IndexCurriculum       = params => post('admin/Web/curriculum', params);            /*预约上课 课程分析*/
-export const IndexPerformance      = params => post('admin/Web/performance', params);           /*营收业绩 收支统计*/
-export const IndexRevenue_trend    = params => post('admin/Web/revenue_trend', params);         /*收支趋势*/
-
-
-/* ==-- 统计 会员总览 --== */
-/*1、会员总览*/
-export const totalMember_number   = params => post('admin/statis/member_number', params);         /* 会员数量*/
-export const totalMember_trend    = params => post('admin/statis/member_trend', params);          /* 新增会员走势*/
-export const totalSub_card_trend  = params => post('admin/statis/sub_card_trend', params);        /* 消耗趋势*/
-export const totalRefund_trend    = params => post('admin/statis/refund_transfer_trend', params); /* 退款,转让走势*/
-export const totalPassenger_trend = params => post('admin/statis/passenger_trend', params);       /* 客流走势*/
-
-
-/* 2、私教 */
-export const PTprivateMember   = params => post('admin/statis/private_member_statis', params);         /* 会员数量*/
+// 1.银行信贷，2.机构信贷，3.小额贷款，4.企业贷款，5.抵押贷款，6.线上急融
+export const getByProdType   = params => post('product/getByProdType', params);         /* 分类*/

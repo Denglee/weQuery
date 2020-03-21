@@ -1,14 +1,14 @@
 <template>
     <div class="main">
         <!--导航-->
-        <div class="swiper-container">
+        <!--<div class="swiper-container">
             <div class="swiper-wrapper">
                 <div class="swiper-slide loan-item"  v-for="(item,index) in vipArr" :key="'vip'+index"
                      @click="tabLoan($event,index)"  :class="loanIndex ==index ? 'loanActive':''">
                         {{item.name}}
                 </div>
             </div>
-        </div>
+        </div>-->
 
         <!--列表-->
         <van-row gutter="12">

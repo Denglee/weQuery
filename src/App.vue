@@ -9,7 +9,5 @@
     font-family: apple-system,  BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB',  'Helvetica Neue', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
 }
 </style>
