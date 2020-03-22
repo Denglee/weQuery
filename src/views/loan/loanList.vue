@@ -1,28 +1,47 @@
 <template>
-    <div class="main">
-        <!--导航-->
-        <!--<div class="swiper-container">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide loan-item"  v-for="(item,index) in vipArr" :key="'vip'+index"
-                     @click="tabLoan($event,index)"  :class="loanIndex ==index ? 'loanActive':''">
-                        {{item.name}}
-                </div>
-            </div>
-        </div>-->
+    <div class="loan-main main">
 
-        <!--列表-->
-        <van-row gutter="12">
-            <van-col span="8" v-for="(item,index) in loanArr" :ket="index">
-                <div  class="fire-list" @click="goLoanDetails">
-                    <van-image :src="item.img" alt="" class="fire-img"></van-image>
-                    <div class="fire-title">{{item.title}}</div>
-                    <div class="fire-month fire-subtitle">{{item.subTitle}}</div>
-                    <div class="fire-month">{{item.monthRate}}</div>
-                    <div class="fire-month fire-quoto">{{item.maxQuota}}</div>
-                    <van-button type="default" size="mini" class="btnLook-fire">查看</van-button>
-                </div>
-            </van-col>
-        </van-row>
+        <van-tabs  v-model="activeTab"  @click="changeTab" animated swipeable type="card" id="loanTabs">
+            <van-tab  v-for="(item,index) in navArr" :key="index" :title="item.name"
+            class="loan-tab">
+
+                <van-row  v-if="loanArr.length == 0">
+                    <van-col>暂无数据</van-col>
+                </van-row>
+                <van-row gutter="12" v-else>
+                    <van-col span="8" v-for="(item,index) in loanArr" :ket="index">
+                        <div  class="fire-list" @click="goLoanDetails">
+                            <van-image :src="item.ioc" alt="" class="fire-img"></van-image>
+
+                            <div class="fire-title">{{item.name}}</div>
+
+                            <div v-for="(item2,index2) in item.labelList" :key="index2">
+                                <div class="fire-month fire-subtitle">{{item2.name}}</div>
+                            </div>
+
+                            <div class="fire-month">{{item.name}}</div>
+                            <!--<div class="fire-month fire-quoto">{{item.maxQuota}}</div>-->
+
+                            <van-button type="default" size="mini" class="btnLook-fire">查看</van-button>
+                        </div>
+                    </van-col>
+                </van-row>
+                <!--列表-->
+                <!--<van-row gutter="12">
+                    <van-col span="8" v-for="(item,index) in loanArr2" :ket="index">
+                        <div  class="fire-list" @click="goLoanDetails">
+                            <van-image :src="item.img" alt="" class="fire-img"></van-image>
+                            <div class="fire-title">{{item.title}}</div>
+                            <div class="fire-month fire-subtitle">{{item.subTitle}}</div>
+                            <div class="fire-month">{{item.monthRate}}</div>
+                            <div class="fire-month fire-quoto">{{item.maxQuota}}</div>
+                            <van-button type="default" size="mini" class="btnLook-fire">查看</van-button>
+                        </div>
+                    </van-col>
+                </van-row>-->
+            </van-tab>
+        </van-tabs>
+
     </div>
 </template>
 
@@ -30,54 +49,42 @@
 
     // import Swiper from 'swiper';
     // import TweenMax from '@/assets/js/TweenMax.min.js';
-
+    import {getAllType , getByProdType} from '@/assets/js/api' /*引用  接口*/
     export default {
         name: "loanList",
         data() {
             return {
-                loanIndex : 0,
+                activeTab:0,
+                loanIndex : 0, //nav选中
+
+                swiper:{
+                    swiperWid:'',
+                    swiperHei:'50',
+                },
+
                 /*导航*/
-                vipArr:[
-                    {
-                        id:'vip1',
-                        name:'提放保',
-                        subTitle:'先放款，后抵押',
-                        url:'url1',
-                        bgColor:'colorGreen',
-                        icon:'like-o',
-                    }, {
-                        id:'vip2',
-                        name:'征信打印',
-                        subTitle:'周边征信打印点',
-                        url:'url2',
-                        bgColor:'colorYellow',
-                        icon:'fire-o',
-                    }, {
-                        id:'vip1',
-                        name:'vip服务',
-                        subTitle:'金牌顾问一对一服务',
-                        url:'url3',
-                        bgColor:'colorBlue',
-                        icon:'star-o',
-                    },{
-                        id:'vip4',
-                        name:'社保查询',
-                        subTitle:'缴费基数，缴费时长',
-                        url:'url4',
-                        bgColor:'colorPink',
-                        icon:'star-o',
-                    },{
-                        id:'vip5',
-                        name:'公积金查询',
-                        subTitle:'缴费基数，缴费时长',
-                        url:'url5',
-                        bgColor:'colorYellow',
-                        icon:'star-o',
-                    }
+                navArr:[
+                    // 1.银行信贷，2.机构信贷，3.小额贷款，4.企业贷款，5.抵押贷款，6.线上急融
+                    {id:'1',name:'银行信贷'},
+                    {id:'2',name:'机构信贷'},
+                    {id:'3',name:'小额贷款'},
+                    {id:'4',name:'企业贷款'},
+                    {id:'5',name:'抵押贷款'},
+                    {id:'6',name:'线上急融'},
                 ],
 
+                /*传详情页值*/
+                prodArr:{
+                    prodType:1,   //分类
+                    prodId:0,     //id
+                },
+
+
                 /*热门贷款*/
-                loanArr:[
+                loanArr:[],
+                loanArr:this.GLOBAL.LoanDetailsArr.data,
+
+                loanArr2:[
                     {
                         url:'loanArr1',
                         img:require('@/assets/img/guangfa.png'),
@@ -109,35 +116,67 @@
                     },
 
                 ],
+
             }
         },
         methods: {
-            /*切换 点击*/
-            tabLoan(e,index){
-                console.log(e);
+
+            /*获取 数据 接口*/
+            getByProdType(){
+                getByProdType({
+                    prodType:this.prodArr.prodType,
+                }).then(res =>{
+                    console.log(res.data);
+                    if(res.status == 'success'){
+                        this.loanArr = res.data;
+                    }else{
+                        this.loanArr= '';
+                    }
+                }).catch(res =>{
+                    console.log(res);
+                })
+            },
+
+            /* 导航 切换 点击*/
+            swiperNav(item,index){
+                console.log(item.id);
                 console.log(index);
-                this.loanIndex =index;
-                this.loanArr=[
-                    {
-                        url:'loanArr1',
-                        img:require('@/assets/img/guangfa.png'),
-                        title:'企业税贷',
-                        subTitle:'随借随还',
-                        monthRate:'月利率0.52%',
-                        maxQuota:'额度最高200万',
-                    },
-                ]
+                this.loanIndex = index;
+                this.prodArr.prodType = item.id;
+                this.getByProdType();
+            },
+
+            /*tab 切换*/
+            changeTab(index,titme){
+                console.log(index);
+                console.log(titme);
+                this.prodArr.prodType = index + 1;
+                this.getByProdType();
+            },
+
+            /*获取屏幕宽度 然后传给swiper*/
+            getClientWidth(){
+                let clientWidth = document.body.clientWidth;
+                let swiperWid = clientWidth /4 + clientWidth / 6;
+                this.swiper.swiperWid = swiperWid;
             },
 
             /*去贷款详情页*/
             goLoanDetails(){
+                // let prodType = this.prodArr.prodType;
+                // let prodId = this.prodArr.prodId;
+                // console.log(prodType);
                 this.$router.push({
-                    path:'/loanDetails'
+                    path:'/loanDetails',
+                    query: {prodArr:this.prodArr}
                 })
             },
         },
 
         created() {
+            this.getClientWidth();
+
+            // this.getByProdType();
 
         },
         mounted(){
@@ -159,5 +198,5 @@
 </script>
 
 <style lang="scss">
-    /*@import '~@/assets/css/index.scss';*/
+    @import '~@/assets/css/home.scss';
 </style>

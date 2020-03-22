@@ -11,9 +11,9 @@
 
         <!--轮播图-->
         <van-swipe :autoplay="3000" :width="swiper.swiperWid" :height="swiper.swiperHei"
-        class="index-swiper">
+        class="index-swiper" :show-indicators="false">
             <van-swipe-item v-for="(image, index) in images" :key="index">
-                <van-image :src="image"/>
+                <van-image :src="image"  fit="cover"/>
             </van-swipe-item>
         </van-swipe>
 
@@ -29,7 +29,11 @@
             <van-row gutter="14" class="index-nav-main">
                 <van-col span="12" v-for="(item,index) in indexNav" :key="index">
                     <div class="index-navItem">
-                        <router-link :to="item.url"> {{item.name}}</router-link>
+                        <router-link :to="item.url">
+                            <h4 class="index-navTitle">{{item.name}}</h4>
+                            <div class="index-navSub">{{item.sunTitle}}</div>
+                            <div class="index-navSub">{{item.sunTitle2}}</div>
+                        </router-link>
                     </div>
                 </van-col>
             </van-row>
@@ -47,9 +51,9 @@
         data() {
             return {
 
-                swiper:{
-                    swiperWid:'',
-                    swiperHei:'150',
+                swiper: {
+                    swiperWid: '',
+                    swiperHei: '150',
                 },
 
                 /*轮播图*/
@@ -59,153 +63,12 @@
                 ],
 
                 /*四大导航*/
-                indexNav:[
-                    {id:'1',url:'/loanList2',name:'快问',icon:'1'},
-                    {id:'2',url:'/index',name:'22',icon:'2'},
-                    {id:'3',url:'/index',name:'333',icon:'3'},
-                    {id:'4',url:'/index',name:'444',icon:'4'},
+                indexNav: [
+                    {id: '1', url: '/loanList', name: '银行产品', icon: '1', sunTitle: '近期最新银行政策', sunTitle2: '让您抢先一步'},
+                    {id: '2', url: '/index', name: '在线急融', icon: '2', sunTitle: '汇集先上银行产品', sunTitle2: '线上申请'},
+                    {id: '3', url: '/index', name: '办卡信用', icon: '3', sunTitle: '高额度当天下午', sunTitle2: ''},
+                    {id: '4', url: '/index', name: '服务中心', icon: '4', sunTitle: '24小时客服在线', sunTitle2: '急速答疑解惑'},
                 ],
-
-                vipArr:[
-                    {
-                        id:'vip1',
-                        name:'提放保',
-                        subTitle:'先放款，后抵押',
-                        url:'url1',
-                        bgColor:'colorGreen',
-                        icon:'like-o',
-                    }, {
-                        id:'vip2',
-                        name:'征信打印',
-                        subTitle:'周边征信打印点',
-                        url:'url2',
-                        bgColor:'colorYellow',
-                        icon:'fire-o',
-                    }, {
-                        id:'vip1',
-                        name:'vip服务',
-                        subTitle:'金牌顾问一对一服务',
-                        url:'url3',
-                        bgColor:'colorBlue',
-                        icon:'star-o',
-                    },{
-                        id:'vip4',
-                        name:'社保查询',
-                        subTitle:'缴费基数，缴费时长',
-                        url:'url4',
-                        bgColor:'colorPink',
-                        icon:'star-o',
-                    },{
-                        id:'vip5',
-                        name:'g公积金查询',
-                        subTitle:'缴费基数，缴费时长',
-                        url:'url5',
-                        bgColor:'colorYellow',
-                        icon:'star-o',
-                    }
-                ],
-                dataArr:[
-                    {
-                        id:'data1',
-                        name:'大数据',
-                        subTitle:'精准权威 信用评分',
-                        url:'data1',
-                        bgColor:'colorBlue',
-                        icon:'like-o',
-                    }, {
-                        id:'data2',
-                        name:'房产评估',
-                        subTitle:'价格评估 可贷金额',
-                        url:'data2',
-                        bgColor:'colorPink',
-                        icon:'fire-o',
-                    }, {
-                        id:'data3',
-                        name:'贷款计算器',
-                        subTitle:'利息、月供清清楚楚',
-                        url:'data3',
-                        bgColor:'colorViolet',
-                        icon:'star-o',
-                    }
-                ],
-
-                /*热门贷款*/
-                loanArr:[
-                    {
-                        url:'loanArr1',
-                        img:require('@/assets/img/guangfa.png'),
-                        title:'企业税贷',
-                        subTitle:'随借随还',
-                        monthRate:'月利率0.52%',
-                        maxQuota:'额度最高200万',
-                    },  {
-                        url:'loanArr2',
-                        img:require('@/assets/img/guangfa.png'),
-                        title:'工薪贷',
-                        subTitle:'等额本息',
-                        monthRate:'月利率0.52%',
-                        maxQuota:'额度最高30万',
-                    },  {
-                        url:'loanArr3',
-                        img:require('@/assets/img/guangfa.png'),
-                        title:'月供贷',
-                        subTitle:'随借随还',
-                        monthRate:'月利率0.66%',
-                        maxQuota:'额度最高50万',
-                    },  {
-                        url:'loanArr4',
-                        img:require('@/assets/img/guangfa.png'),
-                        title:'企业税贷',
-                        subTitle:'等额本息',
-                        monthRate:'月利率0.55%',
-                        maxQuota:'额度最高300万',
-                    },
-
-                ],
-
-                /*热门信用卡*/
-                cardArr:[
-                    {
-                        url:'loanArr1',
-                        img:require('@/assets/img/guangfa.png'),
-                        title:'中信信用卡',
-                        maxQuota:'8倍积分回馈',
-                    },
-                    {
-                        url:'loanArr1',
-                        img:require('@/assets/img/guangfa.png'),
-                        title:'站上信用卡',
-                        maxQuota:'首年免免费',
-                    },
-                    {
-                        url:'loanArr1',
-                        img:require('@/assets/img/guangfa.png'),
-                        title:'中信信用卡',
-                        maxQuota:'8倍积分回馈',
-                    },
-                    {
-                        url:'loanArr1',
-                        img:require('@/assets/img/guangfa.png'),
-                        title:'平安信用卡',
-                        maxQuota:'各种福利卡',
-                    },
-                ],
-
-                swiperOption: {
-                        width:'140',
-                        height:'100',
-                        keyboard : true,
-                        virtualTranslate : true,
-                        observer:true, //修改swiper自己或子元素时，自动初始化swiper
-                        observeParents:true,//修改swiper的父元素时，自动初始化swiper
-                        // on:{
-                        //     setTranslate: function(){
-                        //         this.$wrapperEl.transition('');
-                        //         TweenMax.to(this.$wrapperEl, 0.1, {x:this.translate, ease:Power4.easeOut})
-                        //
-                        //     }
-                        // },
-                },
             }
         },
         methods: {

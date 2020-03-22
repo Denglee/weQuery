@@ -20,3 +20,6 @@ export const getAllType   = params => post('product/getAll', params);         /*
 
 // 1.银行信贷，2.机构信贷，3.小额贷款，4.企业贷款，5.抵押贷款，6.线上急融
 export const getByProdType   = params => post('product/getByProdType', params);         /* 分类*/
+
+// http://hwcshs.natappfree.cc/product/getProdDetail?prodId=1&prodType=1
+export const getProdDetail   = params => post('product/getProdDetail', params);         /* 详情*/

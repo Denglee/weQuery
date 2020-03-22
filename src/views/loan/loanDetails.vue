@@ -1,157 +1,142 @@
 <template>
     <div class="main">
 
-        <!--银行title-->
-        <div class="detail-title">
-            <span class="dTitle-tip">{{dTitle.type}}</span>
-            <van-row>
-                <van-col span="4">
-                    <img :src="dTitle.url" alt="">
-                </van-col>
-                <van-col span="20">
-                    <h4>{{dTitle.name}}</h4>
-                    <div class="dTitle-good">
-                        <span v-for="(index,item) in dTitle.goods" :key="index">
-                            {{item.good}}
-                        </span>
-                    </div>
-                    <div class="dTitle-price">
-                         <span v-for="(index,item) in dTitle.prices" :key="index">
-                            {{item.price}}
-                        </span>
-                    </div>
-                </van-col>
-            </van-row>
+        <!--银行信息-->
+        <div class="detail-item detail-header">
+            <div class="dHeader-img">
+                <span class="dHeader-tip" v-if="detailsArr.id == 1">银行信贷</span>
+                <span class="dHeader-tip" v-else-if="detailsArr.id == 2">机构信贷</span>
+                <span class="dHeader-tip" v-else-if="detailsArr.id == 3">小额贷款</span>
+                <span class="dHeader-tip" v-else-if="detailsArr.id == 4">企业贷款</span>
+                <span class="dHeader-tip" v-else-if="detailsArr.id == 5">抵押贷款</span>
+                <span class="dHeader-tip" v-else>线上急融</span>
+                <van-image src="https://dss0.bdstatic.com/-0U0bnSm1A5BphGlnYG/tam-ogel/029a2245173731f649a7fea19c7ff2f7_121_121.jpg"  fit="cover"/>
+            </div>
+            <div class="dHeader-info">
+                <h4 class="dHeader">{{detailsArr.name}}</h4>
+                <div class="dHeader-good">
+                    <span v-for="(good2,index2) in detailsArr.label2List" :key="index2">
+                        {{good2.name}}
+                    </span>
+                </div>
+                <div class="dHeader-good2">
+                    <span v-for="(good,index) in detailsArr.labelList" :key="index">
+                        {{good.name}}
+                    </span>
+                </div>
+            </div>
         </div>
 
-        <!--图表-->
-        <div class="detail-change">
-            <!--图表-->
+        <!--变换-->
+        <div class="detail-item detail-header">
 
-            <van-row :getter="10">
-                <van-col span="6">
-                    <span class="green"></span>
-                    <div>
-                        <div>{{loanTotal[0].total}}</div>
-                        <div>{{loanTotal[0].name}}</div>
-                    </div>
-                </van-col>
-                <van-col span="6">
-                    <span class="green"></span>
-                    <div>
-                        <div>{{loanTotal[1].month}}</div>
-                        <div>{{loanTotal[1].name}}</div>
-                    </div>
-                </van-col>
-                <van-col span="6">
-                    <span class="green"></span>
-                    <div>
-                        <div>{{loanTotal[2].interest}}</div>
-                        <div>{{loanTotal[2].name}}</div>
-                    </div>
-                </van-col>
-                <van-col span="6">
-                    <span class="green"></span>
-                    <div>
-                        <div>{{loanTotal[3].service}}</div>
-                        <div>{{loanTotal[3].name}}</div>
-                    </div>
-                </van-col>
-            </van-row>
-
-            <!--选择期数-->
-            <van-row :getter="10">
-                <van-col span="6">12期</van-col>
-                <van-col span="6">24期</van-col>
-                <van-col span="6">36期</van-col>
-                <van-col span="6">48期</van-col>
-                <van-col span="6">60期</van-col>
-            </van-row>
-
-            <!--滑动条-->
             <div>
-                <van-slider v-model="loanProess" :step="10" />
-            </div>
-
-            <!--change 优惠-->
-            <div>
-                <span v-for="(index,item) in changeGoods" :key="index">
-                    {{item.good}}
-                </span>
+                 <span v-for="(qsList,index) in detailsArr.qsList" :key="index">
+                        {{qsList.name}}
+                    </span>
             </div>
         </div>
 
         <!--办理条件-->
-        <div class="detail-condition">
-            <h4></h4>
-            <ul>
-                <li>
-                    <b>条件1、</b>
-                </li>
-            </ul>
+        <div class="detail-item" v-show="detailsArr.bltjList.length > 0">
+            <h4 class="Ditem-title">办理条件</h4>
+            <div class="Ditem-info">
+                <b>{{detailsArr.bltjList[0].name}}</b>
+                {{ detailsArr.bltjList[0].nameValue}}
+            </div>
         </div>
 
+        <!--所需资料-->
+        <div class="detail-item" v-show="detailsArr.sxzlList.length > 0">
+            <h4 class="Ditem-title">所需资料</h4>
+            <div class="Ditem-info">
+                {{detailsArr.sxzlList[0].name}}
+            </div>
+        </div>
+
+        <!--办理流程-->
+        <div class="detail-item" v-show="detailsArr.bllcList.length > 0">
+            <h4 class="Ditem-title">办理流程</h4>
+            <div class="Ditem-info">
+                {{detailsArr.bllcList[0].name}}
+            </div>
+        </div>
+
+        <!--其他信息-->
+        <div class="detail-item" v-show="detailsArr.ohterInfoList.length > 0">
+            <h4 class="Ditem-title">其他信息</h4>
+            <div class="Ditem-info">
+                <b>{{detailsArr.ohterInfoList[0].name}}</b>
+                {{detailsArr.ohterInfoList[0].nameValue}}
+            </div>
+        </div>
+
+        <!--征信要求-->
+        <div class="detail-item" v-show="detailsArr.zxyqList.length > 0">
+            <h4 class="Ditem-title">征信要求</h4>
+            <div class="Ditem-info">
+                <b>{{detailsArr.zxyqList[0].name}}</b>
+                {{detailsArr.zxyqList[0].nameValue}}
+            </div>
+        </div>
+
+        <!--免责声明-->
+        <div class="detail-item" v-show="detailsArr.mzsmList.length > 0">
+            <h4 class="Ditem-title">免责声明</h4>
+            <div class="Ditem-info">
+                {{detailsArr.mzsmList[0].name}}
+            </div>
+        </div>
     </div>
 </template>
 
 <script>
-
+    import {getAllType , getByProdType,getProdDetail} from '@/assets/js/api' /*引用 接口*/
     export default {
         name: "loanList",
         data() {
             return {
-               
-                rate:'50',
-
-                loanProess:50,  //进度条
-
-                /*银行信息*/
-                dTitle:{
-                    type:'银行贷款',
-                    img:require('@/assets/img/guangfa.png'),
-                    name:'广州银行-工薪贷',
-                    goods:[
-                        {id:1,good:'征信宽松'},
-                        {id:2,good:'资料简单'},
-                        {id:3,good:'超低利息'},
-                        {id:4,good:'沟通尺度大'},
-                    ],
-                    prices:[
-                        {id:1,price:'利率0.55%'},
-                        {id:2,price:'5-30万'},
-                        {id:3,price:'等额利息'},
-                    ],
+                hide:false,
+                show:true,
+                /*分类*/
+                prodArr:{
+                    prodType:1,   //分类
+                    prodId:1,     //id
                 },
 
-                /*利息总额*/
-                loanTotal:[
-                    {id:1,total:5,name:'贷款总额/万'},
-                    {id:2,month:0.44,name:'月供约/万'},
-                    {id:3,interest:0.33,name:'总利息约/万'},
-                    {id:4,service :0,name:'手续费(万)'},
-                ],
-
-                changeGoods:[
-                    {id:1,good:'征信宽松'},
-                    {id:2,good:'资料简单'},
-                    {id:3,good:'超低利息'},
-                ],
-
-                condition:{
-                    title:'办理条件',
-                    item1:[
-                        {subTitle:'年龄要求',}
-                    ]
-                },
+                // detailsArr:[],
+                detailsArr:this.GLOBAL.LoanBankInfo.data,
             }
         },
-        methods: {},
+        methods: {
+            /*获取 数据 接口*/
+            getProdDetail(){
+                getProdDetail(this.prodArr).then(res =>{
+                    console.log(res.data);
+                    if(res.status == 'success'){
+                        this.detailsArr = res.data;
+                    }else{
+                        this.loanArr= '';
+                    }
+                }).catch(res =>{
+                    console.log(res);
+                })
+            },
+        },
         created() {
+            let prodArr = this.$route.query.prodArr;
+            console.log(prodArr);
+            if(!prodArr){
+                this.prodArr = prodArr;
+            }
 
+            // this.getProdDetail();
+
+            console.log(this.detailsArr);
         },
     }
 </script>
 
 <style lang="scss">
-    /*@import '~@/assets/css/index.scss';*/
+    @import '~@/assets/css/home.scss';
 </style>
