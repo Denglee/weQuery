@@ -13,7 +13,6 @@
                 <van-tab title="标签 1">内容 1</van-tab>
                 <van-tab title="标签 2">内容 2</van-tab>
                 <van-tab title="标签 3">内容 3</van-tab>
-                <van-tab title="标签 4">内容 4</van-tab>
             </van-tabs>
 
         </div>
@@ -28,8 +27,8 @@
         name: "match",
         data() {
             return {
-                active:1;
-                
+                active:1,
+
                 showState:{    //显影状态
                     guideShow:true,   //引导页
                     matchShow:false,  //帅选页
