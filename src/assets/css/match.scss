@@ -1,0 +1,22 @@
+.info-box{
+  display: inline-flex;
+}
+.info-box .van-radio__icon {
+  -webkit-box-flex: 0;
+  -webkit-flex: none;
+  flex: none;
+  height: auto;
+  font-size: 14px;
+  line-height: initial;
+  cursor: pointer;
+}
+.infoRadio{
+  padding: 10px;
+  background-color: #ddd;
+  margin-right: 10px;
+  border-radius: 4px;
+}
+.activeRadio{
+  background-color: #ffa300;
+  color: #fff;
+}

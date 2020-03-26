@@ -4,10 +4,10 @@ let userInfo = {
         {id: 'max_age', name: '75', value: '最小年龄'},
     ],
     hyzk: [   //3、婚姻状况
-        {id: 'hyzk1', name: '1', value: '已婚'},
-        {id: 'hyzk2', name: '2', value: '未婚'},
-        {id: 'hyzk3', name: '3', value: '离异'},
-        {id: 'hyzk4', name: '4', value: '丧偶'},
+        {id: 'hyzk1', name: 1, value: '已婚'},
+        {id: 'hyzk2', name: 2, value: '未婚'},
+        {id: 'hyzk3', name: 3, value: '离异'},
+        {id: 'hyzk4', name: 4, value: '丧偶'},
     ],
     hj: [     //4、户籍
         {id: 'hj1', name: '1', value: '大陆'},

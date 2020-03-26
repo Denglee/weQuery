@@ -33,7 +33,8 @@ if (process.env.NODE_ENV === 'production') {
 
 /*引入自己的全局的css*/
 import '@/assets/css/global.scss'
-import '@/assets/css/animate37.css'
+import '@/assets/css/home.scss'
+
 
 
 /*引用全局js*/

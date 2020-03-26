@@ -47,8 +47,6 @@
 
 <script>
 
-    // import Swiper from 'swiper';
-    // import TweenMax from '@/assets/js/TweenMax.min.js';
     import {getAllType , getByProdType} from '@/assets/js/api' /*引用  接口*/
     export default {
         name: "loanList",
@@ -197,6 +195,3 @@
     }
 </script>
 
-<style lang="scss">
-    @import '~@/assets/css/home.scss';
-</style>
