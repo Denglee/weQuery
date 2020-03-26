@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .box{
+            display: inline-flex; /* //行内元素也可以使用 Flex 布局。*/
+            width: 200px;
+            border: solid 1px red;
+        }
+        .item1{
+            height: 60px;
+            width: 100px;
+        }
+        .item2{
+            /*float:  right; */
+            text-align: right;
+        }
+        *{
+            flex-direction:column;  /* 方向*/
+            flex-wrap: nowrap;  /*换行 */
+           /* flex-flow:是 flex-direction 和flex-wrap的简写*/
+            justify-content: center;  /*//水平上对齐方式*/
+            align-items: center;   /*垂直方向对齐方式*/
+            /*flex-grow属性定义项目的放大比例，默认为0，即如果存在剩余空间，也不放大。*/
+            /*flex-shrink属性定义了项目的缩小比例，默认为1，即如果空间不足，该项目将缩小。*/
+            /*flex-basis属性定义了在分配多余空间之前，*/
+            /*flex属性是flex-grow, flex-shrink 和 flex-basis的简写，默认值为0 1 auto。后两个属性可选*/
+        }
+    </style>
+</head>
+<body>
+
+<div class="box">
+    <div class="item1">天上的太阳</div>
+    <div class="item2">困死</div>
+</div>
+
+</body>
+</html>

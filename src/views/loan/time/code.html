@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui, viewport-fit=cover">
+    <title>扫码付款</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        body{
+            font-size: 14px;
+        }
+
+        .codePay-main{
+            width: 92%;
+            margin: 0 auto;
+        }
+
+        /*头部*/
+        .codePay-Htitle{
+            display: flex;
+            margin: 20px 0 30px;
+        }
+        .codePay-Himg{
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: solid 1px gray;
+            display: block;
+        }
+        .codePay-shop{
+            padding-left: 10px;
+            width: calc(100% - 60px);
+            box-sizing: border-box;
+        }
+        .codePay-name{
+            font-size: 15px;
+            margin-top: 6px;
+        }
+        .codePay-address{
+            color: gray;
+            font-size: 12px;
+            margin-top: 10px;
+        }
+
+        /*表单*/
+        .codePay-form{
+            border-top: solid 1px #ddd;
+            padding-top: 30px;
+        }
+        .codePay-inpItem{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: solid 1px #ddd;
+            border-radius: 4px;
+            margin-bottom: 30px;
+            padding:10px 10px;
+        }
+        .codePay-inp{
+            padding:4px 10px;
+            border: 0;
+            outline: none;
+        }
+        .codePay-text{
+            outline: none;
+            border: solid 1px #ddd;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            padding:10px;
+            width: 100%;
+            box-sizing: border-box;
+            min-height: 70px;
+            resize:none
+        }
+
+        .btn-codePay{
+            outline: none;
+            border:0;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            width: 100%;
+            box-sizing: border-box;
+            height: 40px;
+            line-height: 40px;
+            margin-top: 40px;
+            background-color: blue;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+
+<div class="codePay-main">
+
+    <!--头部-->
+    <div class="codePay-Htitle">
+        <img src="" alt="" class="codePay-Himg">
+        <div class="codePay-shop">
+            <div class="codePay-name">店铺名称店铺名称店铺名称</div>
+            <div class="codePay-address">店铺地址地址地址</div>
+        </div>
+    </div>
+
+    <!--输入-->
+    <form action="" class="codePay-form">
+        <div class="codePay-inpItem">
+            <div>
+                付款金额：
+                <input type="number" class="codePay-inp" placeholder="请输入金额">
+            </div>
+            <div>元</div>
+        </div>
+        <textarea name="" id="" class="codePay-text" placeholder="添加备注"></textarea>
+
+        <button type="button" class="btn-codePay" >立即支付</button>
+    </form>
+</div>
+
+<script src="jquery.min.js"></script>
+<script>
+    $('.btn-codePay').on('click',function(){
+        $(this).attr('disabled',true);  //禁止点击
+        let inpVal = $('.codePay-inp').val();
+        console.log(inpVal);
+        if(inpVal == 0){
+            console.log('a');
+        }
+        setTimeout(()=>{
+            $(this).attr('disabled',false);   //1500毫秒后可以点击
+        },1500)
+
+    })
+</script>
+</body>
+</html>
