@@ -1,5 +1,6 @@
 <template>
     <div>
+
         <button @click="$emit('showMatch')">去匹配</button>
     </div>
 </template>
