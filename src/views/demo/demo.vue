@@ -27,6 +27,11 @@
             {{item.period}}
         </div>
 
+        <van-radio-group v-model="radio" @change="changeRadio">
+            <van-radio name="1">单选框 1</van-radio>
+            <van-radio name="2">单选框 2</van-radio>
+        </van-radio-group>
+
     </div>
 </template>
 
@@ -40,6 +45,8 @@
             return {
                 swiperWid:'',
                 swiperHei:'50',
+
+                radio: '1',
 
                 dataArr:[
                     {
@@ -122,6 +129,11 @@
             }
         },
         methods: {
+
+            changeRadio(value){
+              console.log(value);
+            },
+
             /*获取屏幕宽度 然后传给swiper*/
             getClientWidth(){
                 let clientWidth = document.body.clientWidth;

@@ -14,6 +14,28 @@ let userInfo = {
         {id: 'hj2', name: 2, value: '港澳台'},
         {id: 'hj3', name: 3, value: '外籍'},
     ],
+
+    zylx: [     //5.0、职业类型    新增
+        {id: 'zylx1', name: 1, value: '上班族'},
+        {id: 'zylx2', name: 2, value: '自雇(股东/其它)'},
+    ],
+    sb:[     //5.1、社保    新增
+        {id: 'sb1', name: 1, value: '有社保'},
+        {id: 'sb2', name: 2, value: '无社保'},
+    ],
+    gjj:[     //5.1、公积金    新增
+        {id: 'gjj1', name: 1, value: '有公积金'},
+        {id: 'gjj2', name: 2, value: '无公积金'},
+    ],
+    clgsdq:[     //5.2、车辆归属地区    新增
+        {id: 'gjj1', name: 1, value: '广东省'},
+        {id: 'gjj2', name: 2, value: '其他城市'},
+    ],
+    clzt:[     //5.3、车辆状态    新增
+        {id: 'clzt1', name: 1, value: '按揭中'},
+        {id: 'clzt2', name: 2, value: '全款买车'},
+    ],
+
     dwxz: [  //5、单位性质
         {id: 'dwxz1', name: 1, value: '普通企业'},
         {id: 'dwxz2', name: 2, value: '公务员'},
@@ -88,6 +110,8 @@ let userInfo = {
         {id: 'yyzznx2', name: 2, value: '3个月以内'},
         {id: 'yyzznx3', name: 3, value: '3个月以上'},
         {id: 'yyzznx4', name: 4, value: '6个月以上'},
+        {id: 'yyzznx5', name: 5, value: '一年以上'},
+        {id: 'yyzznx6', name: 6, value: '2年以上'},
     ],
     dwsfkc: [  //16、单位是否考察
         {id: 'dwsfkc1', name: 0, value: '不能考察'},
@@ -385,7 +409,6 @@ let userInfo = {
 
 };
 
-
-export default {
-    userInfo
+export {
+    userInfo,
 }

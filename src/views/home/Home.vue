@@ -22,7 +22,7 @@
             <div class="index-match">
                 <h4 class="index-match-title">一键选贷款</h4>
                 <div class="index-match-info">根据个人资质智能匹配贷款方案</div>
-                <van-button size="mini" class="btn-match">智能匹配</van-button>
+                <van-button size="mini" class="btn-match" @click="goMatch">智能匹配</van-button>
             </div>
 
             <!--四大导航-->
@@ -86,6 +86,13 @@
             goLoan(){
                 this.$router.push({
                     path:'/loanList'
+                })
+            },
+
+            /*去贷款列表页*/
+            goMatch(){
+                this.$router.push({
+                    path:'/match'
                 })
             },
 

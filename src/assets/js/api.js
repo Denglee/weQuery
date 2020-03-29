@@ -23,3 +23,6 @@ export const getByProdType   = params => post('product/getByProdType', params); 
 
 // http://hwcshs.natappfree.cc/product/getProdDetail?prodId=1&prodType=1
 export const getProdDetail   = params => post('product/getProdDetail', params);         /* 详情*/
+
+// 产品匹配接口：http://6wfij9.natappfree.cc/productCondi/getProductList
+export const getCondiProductList   = params => post('productCondi/getProductList', params);         /* 产品匹配接口*/
