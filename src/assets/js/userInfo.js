@@ -15,6 +15,7 @@ let userInfo = {
         {id: 'hj3', name: 3, value: '外籍'},
     ],
 
+
     zylx: [     //5.0、职业类型    新增
         {id: 'zylx1', name: 1, value: '上班族'},
         {id: 'zylx2', name: 2, value: '自雇(股东/其它)'},
@@ -28,13 +29,33 @@ let userInfo = {
         {id: 'gjj2', name: 2, value: '无公积金'},
     ],
     clgsdq:[     //5.2、车辆归属地区    新增
-        {id: 'gjj1', name: 1, value: '广东省'},
-        {id: 'gjj2', name: 2, value: '其他城市'},
+        {id: 'clgsdq1', name: 1, value: '广东省'},
+        {id: 'clgsdq2', name: 2, value: '其他城市'},
     ],
-    clzt:[     //5.3、车辆状态    新增
+    clzt:[     //5.4、车辆状态    新增
         {id: 'clzt1', name: 1, value: '按揭中'},
         {id: 'clzt2', name: 2, value: '全款买车'},
     ],
+    clzt2:[     //5.41、车辆状态2    新增
+        {id: 'clzt21', name: 1, value: '按揭中'},
+        {id: 'clzt22', name: 2, value: '全款买车'},
+        {id: 'clzt23', name: 3, value: '无车'},
+    ],
+    fcxx:[     //5.5、房产信息    新增
+        {id: 'fcxx1', name: 1, value: '深圳房产'},
+        {id: 'fcxx2', name: 2, value: '全国'},
+        {id: 'fcxx3', name: 3, value: '无房产'},
+    ],
+    fczt:[     //5.6、房产状态    新增
+        {id: 'fczt1', name: 1, value: '按揭中'},
+        {id: 'fczt2', name: 2, value: '按揭已结清'},
+        {id: 'fczt3', name: 3, value: '全款房'},
+    ],
+    bxbd:[     //5.7、保险保单    新增
+        {id: 'bxbd1', name: 1, value: '有商业保险'},
+        {id: 'bxbd2', name: 2, value: '无商业保险'},
+    ],
+
 
     dwxz: [  //5、单位性质
         {id: 'dwxz1', name: 1, value: '普通企业'},

@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html class="ios device-pixel-ratio-1 device-desktop device-windows">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#2196f3">
+    <title>WECHAT_EMPTY_TITLE</title>
+    <link rel="stylesheet" href="/css/framework7.bundle.min.css?v=1.1.4">
+    <link rel="stylesheet" href="/css/ionicons.min.css">
+    <link rel="stylesheet" href="/css/jquery-ui-1.10.1.custom.min.css">
+    <link rel="stylesheet" href="/css/style.css?v=1.1.18">
+    <style id="__WXWORK_INNER_SCROLLBAR_CSS">::-webkit-scrollbar {
+        width: 12px !important;
+        height: 12px !important;
+    }
+
+    ::-webkit-scrollbar-track:vertical {
+    }
+
+    ::-webkit-scrollbar-thumb:vertical {
+        background-color: rgba(136, 141, 152, 0.5) !important;
+        border-radius: 10px !important;
+        background-clip: content-box !important;
+        border: 2px solid transparent !important;
+    }
+
+    ::-webkit-scrollbar-track:horizontal {
+    }
+
+    ::-webkit-scrollbar-thumb:horizontal {
+        background-color: rgba(136, 141, 152, 0.5) !important;
+        border-radius: 10px !important;
+        background-clip: content-box !important;
+        border: 2px solid transparent !important;
+    }
+
+    ::-webkit-resizer {
+        display: none !important;
+    }</style>
+</head>
+
+<body>
+<div id="app" class="framework7-root">
+    <div class="view view-main view-init">
+
+        <div class="page no-navbar no-toolbar no-swipeback page-previous" data-page="item_two" aria-hidden="true">
+            <div class="page-content" style="padding-top:0px; position:relative;">
+
+                <div class="items_num">
+                    <div class="items_numslbl">
+                        <a class="items_lbl back" style="background-color:#c7edff">基本信息</a>
+                        <div class="items_lbl  lblactive">资产信息</div>
+                        <div class="items_lbl" style="background-color:#c7edff">征信信息</div>
+                    </div>
+                </div>
+
+                <div class="itemcl">
+
+                    <!--车辆所有权-->
+                    <div class="item_cate_two car_ownership" data-username="car_ownership">
+                        <div class="item_div">
+                            <p>车辆所有权</p>
+                            <div class="item-input">
+                                <ul>
+                                    <li data-num="1">本人</li>
+                                    <li data-num="2">配偶</li>
+                                    <li data-num="3" class="clickon">公司</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--车辆归属地区-->
+                    <div class="item_cate_two car_area" data-username="car_area">
+                        <div class="item_div">
+                            <p>车辆归属地</p>
+                            <div class="item-input">
+                                <ul>
+                                    <li data-num="1">广东省</li>
+                                    <li data-num="2" class="clickon">其它城市</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--车辆归属城市-->
+                    <div class="item_cate_two nones car_area_number" data-username="car_area_number">
+                        <div class="item_div">
+                            <p>车牌城市归属</p>
+                            <div class="item-input">
+                                <ul>
+                                    <li data-num="1">粤A 广州</li>
+                                    <li data-num="2">粤B 深圳</li>
+                                    <li data-num="3">粤C 珠海</li>
+                                    <li data-num="4">粤D 汕头</li>
+                                    <li data-num="5">粤E 佛山</li>
+                                    <li data-num="6">粤F 韶关</li>
+                                    <li data-num="7">粤G 湛江</li>
+                                    <li data-num="8">粤H 肇庆</li>
+                                    <li data-num="9">粤J 江门</li>
+                                    <li data-num="10">粤K 茂名</li>
+                                    <li data-num="11">粤L 惠州</li>
+                                    <li data-num="12">粤M 梅州</li>
+                                    <li data-num="13">粤N 汕尾</li>
+                                    <li data-num="14">粤P 河源</li>
+                                    <li data-num="15">粤Q 阳江</li>
+                                    <li data-num="16">粤R 清远</li>
+                                    <li data-num="17">粤S 东莞</li>
+                                    <li data-num="18">粤T 中山</li>
+                                    <li data-num="19">粤U 潮州</li>
+                                    <li data-num="20">粤V 揭阳</li>
+                                    <li data-num="21">粤W 云浮</li>
+                                    <li data-num="22">粤X 顺德</li>
+                                    <li data-num="23">粤Y 南海</li>
+                                    <li data-num="24">粤Z 港澳</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--车辆归属地区-->
+                    <div class="item_cate_two car_xingzhi" data-username="car_xingzhi">
+                        <div class="item_div">
+                            <p>车辆性质</p>
+                            <div class="item-input">
+                                <ul>
+                                    <li data-num="1">运营</li>
+                                    <li data-num="2" class="clickon">非运营</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!--房产信息-->
+                    <div class="item_cate_two nones house_info" data-username="house_info">
+                        <div class="item_div">
+                            <p>房产信息</p>
+
+                            <div class="item-input">
+                                <ul>
+                                    <li data-num="1">深圳房产</li>
+                                    <li data-num="2">全国</li>
+                                    <li data-num="3" class="wufang">无房产</li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--房产类型-->
+                    <div class="item_cate_two nones  house_type" data-username="house_type">
+                        <div class="item_div">
+                            <p>房产类型</p>
+                            <div class="item-input">
+                                <ul>
+                                    <li data-num="1">住宅</li>
+                                    <li data-num="2">商住两用</li>
+                                    <li data-num="3">公寓</li>
+                                    <li data-num="4">别墅</li>
+                                    <li data-num="5">自建/农民房</li>
+                                    <li data-num="6">商铺(外铺)</li>
+                                    <li data-num="7">商铺(内铺)</li>
+                                    <li data-num="8">写字楼</li>
+                                    <li data-num="9">厂房</li>
+                                    <li data-num="10">福利房</li>
+                                    <li data-num="11">军产房</li>
+                                    <li data-num="12">小产权</li>
+                                    <li data-num="13">公司房</li>
+                                    <li data-num="14">双拼房</li>
+                                    <li data-num="15">综合楼</li>
+                                    <li data-num="16">单身公寓</li>
+                                    <li data-num="17">单身宿舍</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!--年龄-->
+                    <div class="item_cate_two nones house_age" data-username="house_age">
+                        <div class="item_div">
+                            <p>当前房龄</p>
+                            <div class="item-input">
+
+                                <div class="houseage_num"><span id="house_snap-inc-slider-amount"
+                                                                data-num="10">10</span></div>
+                                <div class="houseage_slide">
+                                    <div class="eduslider sliders">
+                                        <div id="house_snap-inc-slider"
+                                             class="slider ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all"
+                                             aria-disabled="false"><a
+                                                class="ui-slider-handle ui-state-default ui-corner-all" href="#"
+                                                style="left: 18.3673%;"></a></div>
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--房产状态-->
+                    <div class="item_cate_two nones  house_status " data-username="house_status">
+                        <div class="item_div">
+                            <p>房产状态</p>
+                            <div class="item-input">
+                                <ul>
+                                    <li data-num="1">按揭中</li>
+                                    <li data-num="2">按揭已结清</li>
+                                    <li data-num="3">全款房</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--按揭时间-->
+                    <div class="item_cate_two nones  house_yuegong_time " data-username="house_yuegong_time">
+                        <div class="item_div">
+                            <p>月供时间</p>
+                            <div class="item-input">
+                                <ul>
+                                    <li data-num="1">3个月内</li>
+                                    <li data-num="2">3个月以上</li>
+                                    <li data-num="3">6个月以上</li>
+                                    <li data-num="4">1年以上</li>
+                                    <li data-num="5">2年以上</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--结清时间-->
+                    <div class="item_cate_two nones house_jieqing_time" data-username="house_jieqing_time">
+                        <div class="item_div">
+                            <p>按揭结清时间</p>
+                            <div class="item-input">
+                                <ul>
+                                    <li data-num="1">3个月内</li>
+                                    <li data-num="2">3个月以上</li>
+                                    <li data-num="3">6个月以上</li>
+                                    <li data-num="4">1年以上</li>
+                                    <li data-num="5">2年以上</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--过户时间-->
+                    <div class="item_cate_two nones house_guohu_time" data-username="house_guohu_time">
+                        <div class="item_div">
+                            <p>过户时间</p>
+                            <div class="item-input">
+                                <ul>
+                                    <li data-num="1">3个月内</li>
+                                    <li data-num="2">3个月以上</li>
+                                    <li data-num="3">6个月以上</li>
+                                    <li data-num="4">1年以上</li>
+                                    <li data-num="5">2年以上</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--车辆信息-->
+                    <div class="item_cate_two car_info" data-username="car_info">
+                        <div class="item_div">
+                            <p>车辆状态</p>
+                            <div class="item-input">
+                                <ul>
+                                    <li data-num="1">按揭中</li>
+                                    <li data-num="2" class="clickon">全款购车</li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--车辆信息-按揭时间-->
+                    <div class="item_cate_two nones car_yuegong_time" data-username="car_yuegong_time">
+                        <div class="item_div">
+                            <p>车辆按揭时间</p>
+                            <div class="item-input">
+                                <ul>
+                                    <li data-num="1">6个月内</li>
+                                    <li data-num="2">6个月以上</li>
+                                    <li data-num="3">12个月以上</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--车辆信息-结清或过户时间-->
+                    <div class="item_cate_two car_guohu_time" data-username="car_guohu_time">
+                        <div class="item_div">
+                            <p>按揭结清或过户时间</p>
+                            <div class="item-input">
+                                <ul>
+                                    <li data-num="1">6个月内</li>
+                                    <li data-num="2">6个月以上</li>
+                                    <li data-num="3" class="clickon">12个月以上</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!--车辆持证时间-->
+                    <div class="item_cate_two car_chizheng_time" data-username="car_chizheng_time">
+                        <div class="item_div">
+                            <p>车辆持证时间</p>
+                            <div class="item-input">
+                                <ul>
+                                    <li data-num="1">3个月内</li>
+                                    <li data-num="2">3-6个月</li>
+                                    <li data-num="3" class="clickon">6个月以上</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!--车龄-->
+                    <div class="item_cate_two car_age" data-username="car_age">
+                        <div class="item_div">
+                            <p>车龄</p>
+                            <div class="item-input">
+                                <ul>
+                                    <li data-num="1" class="">2年内</li>
+                                    <li data-num="2">5年内</li>
+                                    <li data-num="3">8年内</li>
+                                    <li data-num="4">10年内</li>
+                                    <li data-num="5" class="clickon">10年以上</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--行驶公里数-->
+                    <div class="item_cate_two car_gongli" data-username="car_gongli">
+                        <div class="item_div">
+                            <p>行驶公里数</p>
+                            <div class="item-input">
+                                <ul>
+                                    <li data-num="1">5万内</li>
+                                    <li data-num="2">10万内</li>
+                                    <li data-num="3">15万内</li>
+                                    <li data-num="4">20万内</li>
+                                    <li data-num="5" class="clickon">20万以上</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--交强险剩余有效期-->
+                    <div class="item_cate_two car_jiaoqiangxian" data-username="car_jiaoqiangxian">
+                        <div class="item_div">
+                            <p>交强险剩余有效期</p>
+                            <div class="item-input">
+                                <ul>
+                                    <li data-num="1">3个月内</li>
+                                    <li data-num="2">6个月内</li>
+                                    <li data-num="3" class="clickon">12个月内</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--商业险剩余有效期-->
+                    <div class="item_cate_two car_shangyexian" data-username="car_shangyexian">
+                        <div class="item_div">
+                            <p>商业险剩余有效期</p>
+                            <div class="item-input">
+                                <ul>
+                                    <li data-num="1">3个月内</li>
+                                    <li data-num="2">6个月内</li>
+                                    <li data-num="3" class="clickon">12个月内</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!--保险保单-->
+                    <div class="item_cate_two nones  baodan_info" data-username="baodan_info">
+                        <div class="item_div">
+                            <p>保险保单</p>
+                            <div class="item-input">
+                                <ul>
+                                    <li data-num="1">有商业保险</li>
+                                    <li data-num="2">无商业保险</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--保险保单-保险机构-->
+                    <div class="item_cate_two nones  baodan_company" data-username="baodan_company">
+                        <div class="item_div">
+                            <p>保险机构</p>
+                            <div class="item-input">
+                                <ul>
+                                    <li data-num="1">平安保险</li>
+                                    <li data-num="2">人寿保险</li>
+                                    <li data-num="3">新华保险</li>
+                                    <li data-num="4">康泰保险</li>
+                                    <li data-num="5">太平洋保险</li>
+                                    <li data-num="6">友邦保险</li>
+                                    <li data-num="7">阳光保险</li>
+                                    <li data-num="8">富德保险</li>
+                                    <li data-num="9">中美联泰</li>
+                                    <li data-num="10">工银安联</li>
+                                    <li data-num="11">中德安联</li>
+                                    <li data-num="12">民生保险</li>
+                                    <li data-num="13">天安保险</li>
+                                    <li data-num="14">华夏保险</li>
+                                    <li data-num="15">中邮保险</li>
+                                    <li data-num="16">其它</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--保险保单-缴费方式-->
+                    <div class="item_cate_two nones  baodan_pay_type" data-username="baodan_pay_type">
+                        <div class="item_div">
+                            <p>保险缴费方式</p>
+                            <div class="item-input">
+                                <ul>
+                                    <li data-num="1">年缴</li>
+                                    <li data-num="2">季缴</li>
+                                    <li data-num="3">月缴</li>
+                                    <li data-num="4">趸缴</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--保险保单-缴费时长-->
+                    <div class="item_cate_two nones  baodan_pay_time" data-username="baodan_pay_time">
+                        <div class="item_div">
+                            <p>保险缴费时间</p>
+                            <div class="item-input">
+                                <ul>
+                                    <li data-num="1">6个月内</li>
+                                    <li data-num="2">6个月以上</li>
+                                    <li data-num="3">1年以上</li>
+                                    <li data-num="4">2年以上</li>
+                                    <li data-num="5">3年以上</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <a href="/loan_ai/item_three" class="bottomlc bottom_two">下一步</a>
+            </div>
+        </div>
+        <div class="page no-navbar no-toolbar no-swipeback page-current" data-page="item_three">
+            <div class="page-content" style="padding-top:0px; position:relative;">
+
+                <div class="items_num">
+                    <div class="items_numslbl">
+                        <div class="items_lbl" style="background-color:#c7edff">基本信息</div>
+                        <a class="items_lbl back" style="background-color:#c7edff">资产信息</a>
+                        <div class="items_lbl lblactive">征信信息</div>
+                    </div>
+                </div>
+
+                <div class="itemcl">
+                    <!--小额贷款-->
+                    <div class="item_cate_three item_cate_threeitem loan_xiaoe" data-username="loan_xiaoe">
+                        <div class="item_div">
+                            <p class="pop_loan_xiaoe">当前小额贷款笔数<i class="ion ion-md-help-circle"></i></p>
+                            <div class="item-input">
+                                <ul>
+                                    <li data-num="1">无</li>
+                                    <li data-num="2">1笔</li>
+                                    <li data-num="3">2笔</li>
+                                    <li data-num="4">3笔</li>
+                                    <li data-num="5">4笔</li>
+                                    <li data-num="6">更多</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--消费金融贷款-->
+                    <div class="item_cate_three item_cate_threeitem loan_xiaofei" data-username="loan_xiaofei">
+                        <div class="item_div">
+                            <p class="pop_loan_xiaofei">当前消费金融/银行贷款笔数<i class="ion ion-md-help-circle"></i></p>
+                            <div class="item-input">
+                                <ul>
+                                    <li data-num="1">无</li>
+                                    <li data-num="2">1笔</li>
+                                    <li data-num="3">2笔</li>
+                                    <li data-num="4">3笔</li>
+                                    <li data-num="5">4笔</li>
+                                    <li data-num="6">更多</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--冻结-止付-呆账-关注-->
+                    <div class="item_cate_three item_cate_threeitem loan_status" data-username="loan_status">
+                        <div class="item_div">
+                            <p>贷款或信用卡是否存在:</p>
+                            <div class="item-input">
+                                <ul>
+                                    <li data-num="1">无</li>
+                                    <li data-num="2">次级</li>
+                                    <li data-num="3">可疑</li>
+                                    <li data-num="4">损失</li>
+                                    <li data-num="5">冻结</li>
+                                    <li data-num="6">止付</li>
+                                    <li data-num="7">呆账</li>
+                                    <li data-num="8">核销</li>
+                                    <li data-num="9">关注</li>
+                                    <li data-num="10">担保人代偿</li>
+                                    <li data-num="11">以资抵债</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!--当前逾期额度-->
+                    <div class="item_cate_three item_cate_threeitem loan_overdue_now" data-username="loan_overdue_now">
+                        <div class="item_div">
+                            <p class="pop_loan_overdue_now">当前逾期额度<i class="ion ion-md-help-circle"></i></p>
+                            <div class="item-input">
+                                <ul>
+                                    <li data-num="1">无逾期</li>
+                                    <li data-num="2">1千以下</li>
+                                    <li data-num="3">1千以上</li>
+                                    <li data-num="4">3千以上</li>
+                                    <li data-num="5">5千以上</li>
+                                    <li data-num="6">1万以上</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--近6个月内最长逾期时间-->
+                    <div class="item_cate_three" data-username="bannianyq_info">
+                        <div class="item_div">
+                            <p>近半年逾期次数</p>
+                            <div class="item-input">
+                                <ul class="search_stepper">
+                                    <li>
+                                        <div class="search_stepper_title">逾期1个月:<span
+                                                class="overdue_item overdue_num_6_1">0</span></div>
+                                        <div class="search_stepper_btn">
+                                            <span class="stepper_jian" data-class="overdue_num_6_1"><i
+                                                    class="ion ion-ios-remove"></i></span><span class="stepper_jia"
+                                                                                                data-class="overdue_num_6_1"><i
+                                                class="ion ion-ios-add"></i></span>
+                                        </div>
+                                    </li>
+                                    <li class="mgt10">
+                                        <div class="search_stepper_title">连续逾期2个月:<span
+                                                class="overdue_item  overdue_num_6_2">0</span></div>
+                                        <div class="search_stepper_btn">
+                                            <span class="stepper_jian" data-class="overdue_num_6_2"><i
+                                                    class="ion ion-ios-remove"></i></span><span class="stepper_jia"
+                                                                                                data-class="overdue_num_6_2"><i
+                                                class="ion ion-ios-add"></i></span>
+                                        </div>
+                                    </li>
+                                    <li class="mgt10">
+                                        <div class="search_stepper_title">连续逾期3个月:<span
+                                                class="overdue_item  overdue_num_6_3">0</span></div>
+                                        <div class="search_stepper_btn">
+                                            <span class="stepper_jian" data-class="overdue_num_6_3"><i
+                                                    class="ion ion-ios-remove"></i></span><span class="stepper_jia"
+                                                                                                data-class="overdue_num_6_3"><i
+                                                class="ion ion-ios-add"></i></span>
+                                        </div>
+                                    </li>
+                                    <li class="mgt10">
+                                        <div class="search_stepper_title">连续逾期4个月:<span
+                                                class="overdue_item  overdue_num_6_4">0</span></div>
+                                        <div class="search_stepper_btn">
+                                            <span class="stepper_jian" data-class="overdue_num_6_4"><i
+                                                    class="ion ion-ios-remove"></i></span><span class="stepper_jia"
+                                                                                                data-class="overdue_num_6_4"><i
+                                                class="ion ion-ios-add"></i></span>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--近12个月内最长逾期时间-->
+                    <div class="item_cate_three" data-username="yinianyq_info">
+                        <div class="item_div">
+                            <p>近1年逾期次数</p>
+                            <div class="item-input">
+                                <ul class="search_stepper">
+                                    <li>
+                                        <div class="search_stepper_title">逾期1个月:<span
+                                                class="overdue_item overdue_num_12_1">0</span></div>
+                                        <div class="search_stepper_btn">
+                                            <span class="stepper_jian" data-class="overdue_num_12_1"><i
+                                                    class="ion ion-ios-remove"></i></span><span class="stepper_jia"
+                                                                                                data-class="overdue_num_12_1"><i
+                                                class="ion ion-ios-add"></i></span>
+                                        </div>
+                                    </li>
+                                    <li class="mgt10">
+                                        <div class="search_stepper_title">连续逾期2个月:<span
+                                                class="overdue_item  overdue_num_12_2">0</span></div>
+                                        <div class="search_stepper_btn">
+                                            <span class="stepper_jian" data-class="overdue_num_12_2"><i
+                                                    class="ion ion-ios-remove"></i></span><span class="stepper_jia"
+                                                                                                data-class="overdue_num_12_2"><i
+                                                class="ion ion-ios-add"></i></span>
+                                        </div>
+                                    </li>
+                                    <li class="mgt10">
+                                        <div class="search_stepper_title">连续逾期3个月:<span
+                                                class="overdue_item  overdue_num_12_3">0</span></div>
+                                        <div class="search_stepper_btn">
+                                            <span class="stepper_jian" data-class="overdue_num_12_3"><i
+                                                    class="ion ion-ios-remove"></i></span><span class="stepper_jia"
+                                                                                                data-class="overdue_num_12_3"><i
+                                                class="ion ion-ios-add"></i></span>
+                                        </div>
+                                    </li>
+                                    <li class="mgt10">
+                                        <div class="search_stepper_title">连续逾期4个月:<span
+                                                class="overdue_item  overdue_num_12_4">0</span></div>
+                                        <div class="search_stepper_btn">
+                                            <span class="stepper_jian" data-class="overdue_num_12_4"><i
+                                                    class="ion ion-ios-remove"></i></span><span class="stepper_jia"
+                                                                                                data-class="overdue_num_12_4"><i
+                                                class="ion ion-ios-add"></i></span>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--近24个月内最长逾期时间-->
+                    <div class="item_cate_three" data-username="liangnianyq_info">
+                        <div class="item_div">
+                            <p>近2年逾期次数</p>
+                            <div class="item-input">
+                                <ul class="search_stepper">
+                                    <li>
+                                        <div class="search_stepper_title">逾期1个月:<span
+                                                class="overdue_item overdue_num_24_1">0</span></div>
+                                        <div class="search_stepper_btn">
+                                            <span class="stepper_jian" data-class="overdue_num_24_1"><i
+                                                    class="ion ion-ios-remove"></i></span><span class="stepper_jia"
+                                                                                                data-class="overdue_num_24_1"><i
+                                                class="ion ion-ios-add"></i></span>
+                                        </div>
+                                    </li>
+                                    <li class="mgt10">
+                                        <div class="search_stepper_title">连续逾期2个月:<span
+                                                class="overdue_item  overdue_num_24_2">0</span></div>
+                                        <div class="search_stepper_btn">
+                                            <span class="stepper_jian" data-class="overdue_num_24_2"><i
+                                                    class="ion ion-ios-remove"></i></span><span class="stepper_jia"
+                                                                                                data-class="overdue_num_24_2"><i
+                                                class="ion ion-ios-add"></i></span>
+                                        </div>
+                                    </li>
+                                    <li class="mgt10">
+                                        <div class="search_stepper_title">连续逾期3个月:<span
+                                                class="overdue_item  overdue_num_24_3">0</span></div>
+                                        <div class="search_stepper_btn">
+                                            <span class="stepper_jian" data-class="overdue_num_24_3"><i
+                                                    class="ion ion-ios-remove"></i></span><span class="stepper_jia"
+                                                                                                data-class="overdue_num_24_3"><i
+                                                class="ion ion-ios-add"></i></span>
+                                        </div>
+                                    </li>
+                                    <li class="mgt10">
+                                        <div class="search_stepper_title">连续逾期4个月:<span
+                                                class="overdue_item  overdue_num_24_4">0</span></div>
+                                        <div class="search_stepper_btn">
+                                            <span class="stepper_jian" data-class="overdue_num_24_4"><i
+                                                    class="ion ion-ios-remove"></i></span><span class="stepper_jia"
+                                                                                                data-class="overdue_num_24_4"><i
+                                                class="ion ion-ios-add"></i></span>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--查询次数-->
+                    <div class="item_cate_three loan_search" data-username="loan_search">
+                        <div class="item_div">
+                            <p>征信查询次数(信用卡审批/贷款审批):</p>
+                            <div class="item-input">
+                                <ul class="search_stepper">
+                                    <li>
+                                        <div class="search_stepper_title">1个月内查询:<span
+                                                class="search_num search_num_1">0</span></div>
+                                        <div class="search_stepper_btn">
+                                            <span class="stepper_jian" data-class="search_num_1"><i
+                                                    class="ion ion-ios-remove"></i></span><span class="stepper_jia"
+                                                                                                data-class="search_num_1"><i
+                                                class="ion ion-ios-add"></i></span>
+                                        </div>
+                                    </li>
+                                    <li class="mgt10">
+                                        <div class="search_stepper_title">2个月内查询:<span
+                                                class="search_num search_num_2">0</span></div>
+                                        <div class="search_stepper_btn">
+                                            <span class="stepper_jian" data-class="search_num_2"><i
+                                                    class="ion ion-ios-remove"></i></span><span class="stepper_jia"
+                                                                                                data-class="search_num_2"><i
+                                                class="ion ion-ios-add"></i></span>
+                                        </div>
+                                    </li>
+                                    <li class="mgt10">
+                                        <div class="search_stepper_title">3个月内查询:<span
+                                                class="search_num search_num_3">0</span></div>
+                                        <div class="search_stepper_btn">
+                                            <span class="stepper_jian" data-class="search_num_3"><i
+                                                    class="ion ion-ios-remove"></i></span><span class="stepper_jia"
+                                                                                                data-class="search_num_3"><i
+                                                class="ion ion-ios-add"></i></span>
+                                        </div>
+                                    </li>
+                                    <li class="mgt10">
+                                        <div class="search_stepper_title">6个月内查询:<span
+                                                class="search_num search_num_4">0</span></div>
+                                        <div class="search_stepper_btn">
+                                            <span class="stepper_jian" data-class="search_num_4"><i
+                                                    class="ion ion-ios-remove"></i></span><span class="stepper_jia"
+                                                                                                data-class="search_num_4"><i
+                                                class="ion ion-ios-add"></i></span>
+                                        </div>
+                                    </li>
+                                    <li class="mgt10">
+                                        <div class="search_stepper_title">12个月内查询:<span class="search_num search_num_5">0</span>
+                                        </div>
+                                        <div class="search_stepper_btn">
+                                            <span class="stepper_jian" data-class="search_num_5"><i
+                                                    class="ion ion-ios-remove"></i></span><span class="stepper_jia"
+                                                                                                data-class="search_num_5"><i
+                                                class="ion ion-ios-add"></i></span>
+                                        </div>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--是否有微粒贷使用记录-->
+                    <div class="item_cate_three item_cate_threeitem nones weilidai_info" data-username="weilidai_info">
+                        <div class="item_div">
+                            <p class="pop_weilidai_info">微粒贷是否有额度<i class="ion ion-md-help-circle"></i></p>
+                            <div class="item-input">
+                                <ul>
+                                    <li data-num="1">有</li>
+                                    <li data-num="2">没</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="item_cate_three item_cate_threeitem nones weilidai_edu" data-username="weilidai_edu">
+                        <div class="item_div">
+                            <p>微粒贷总额度</p>
+                            <div class="item-input">
+                                <ul>
+                                    <li data-num="1">5千以下</li>
+                                    <li data-num="2">5千以上</li>
+                                    <li data-num="3">1万以上</li>
+                                    <li data-num="4">2万以上</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+                <a class="bottomlc bottom_three nones" onclick="bottom_three()">下一步</a>
+            </div>
+        </div>
+    </div>
+    <div class="popup-backdrop"></div>
+</div>
+<div class="popup popup-about">
+    <div class="block">
+        <div class="block-title talign" style="font-size:16px; margin-top:20px;">您的匹配方案已生成</div>
+        <p class="popup-desinfo" style="font-size:12px; text-align:center;">付款后或分享朋友圈可免费查看</p>
+
+        <ul class="payorshare">
+            <li data-num="0" class="paynumber"><a>青铜会员付款：</a><span>￥19.90</span><i
+                    class="ion ion-md-radio-button-on"></i>
+                <p>付款后,可查看本次匹配方案</p></li>
+            <li data-num="1" class="paynumber"><a>开通铂金会员：</a><span>￥298.00</span><i
+                    class="ion ion-md-radio-button-on"></i>
+                <p>开通后,一年内无限次数贷款匹配,拿返佣</p></li>
+            <li data-num="2" class="paynumber onpaynumber"><a>开通钻石会员：</a><span>￥699.00</span><i
+                    class="ion ion-md-radio-button-on"></i>
+                <p>开通后,一年内无限次数贷款匹配,拿高额返佣</p></li>
+            <li>
+                <button class="btn btn-success wechat_pay" type="button">微信支付</button>
+            </li>
+            <li style="margin-top:10px;">
+                <button class="btn btn-primary share_pay" type="button">分享朋友圈/免费查看</button>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="popup popup-noresult">
+    <div class="block">
+        <div class="block-title talign" style="font-size:16px; margin-top:20px;">没有符合您的匹配结果</div>
+        <ul class="payorshare">
+            <li>
+                <button onclick="window.location.replace('/loan_ai')" class="btn btn-success goinpipei" type="button">
+                    重新匹配
+                </button>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="popup popup-pyq">
+    <img src="/img/pyq.png" style="width:100%;">
+</div>
+
+<script type="text/javascript" src="/js/framework7.bundle.min.js?v=1.1.1"></script>
+<script src="/js/jquery.js?v=90"></script>
+<script src="/js/jquery-ui-1.10.1.custom.min.js?v=1"></script>
+<script src="/js/jquery.ui.touch-punch.min.js"></script>
+<script type="text/javascript" src="/js/app.js?v=1.3.5"></script>
+<script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.4.0.js"></script>
+<script src="http://res2.wx.qq.com/open/js/jweixin-1.4.0.js"></script>
+<script src="/js/hidemenu.js"></script>
+<script src="/js/popover.js"></script>
+<script>
+
+    $(".paynumber").click(function () {
+        $(".paynumber").removeClass("onpaynumber");
+        $(this).addClass("onpaynumber");
+    })
+
+    wx.config({
+        debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+        appId: 'wx62c5c21f25099d09', // 必填，公众号的唯一标识
+        timestamp: '1585537615', // 必填，生成签名的时间戳
+        nonceStr: 'B9228E0962A78B84F3D5D92F4FAA000B', // 必填，生成签名的随机串
+        signature: 'b8fdc2dfad0101529968c502e293738ff515e64e',
+        jsApiList: ['onMenuShareTimeline'] // 必填，需要使用的JS接口列表
+    });
+
+</script>
+
+
+</body>
+</html>
