@@ -365,7 +365,6 @@
                             </van-radio>
                         </van-radio-group>
                     </li>
-
                 </ul>
 
                 <!--房抵贷款-->
@@ -589,43 +588,6 @@
 
                 /*所有单选 数组*/
                 userInfo:userInfo,
-
-                /*userInfo: {
-                    hyzk: [   //婚姻状况
-                        {id: 'hyzk1', name: '1', value: '单选'},
-                        {id: 'hyzk2', name: '2', value: '单选单选'},
-                        {id: 'hyzk3', name: '3', value: '单选单'},
-                        {id: 'hyzk4', name: '4', value: '单选(单选/多选)'},
-                    ],
-                    hyzk2: [   //婚姻状况
-                        {id: 'hyzk1', name: '1', value: '单选2'},
-                        {id: 'hyzk2', name: '2', value: '单选单选2'},
-                        {id: 'hyzk3', name: '3', value: '单选单2'},
-                    ],
-                    hyzk3: [   //婚姻状况
-                        {id: 'hyzk1', name: '1', value: '单选3'},
-                        {id: 'hyzk2', name: '2', value: '单选单选3'},
-                        {id: 'hyzk3', name: '3', value: '单选单3'},
-                    ],
-                    hyzk4: [   //婚姻状况
-                        {id: 'hyzk1', name: '1', value: '单选4'},
-                        {id: 'hyzk2', name: '2', value: '单选单选4'},
-                        {id: 'hyzk3', name: '3', value: '单选单4'},
-                    ],
-                    /!* hyzk: [   //婚姻状况
-                         {id: 'hyzk1', name: '1', value: '已婚'},
-                         {id: 'hyzk2', name: '2', value: '未婚'},
-                         {id: 'hyzk3', name: '3', value: '离异'},
-                         {id: 'hyzk4', name: '4', value: '丧偶'},
-                     ],*!/
-
-                    /!*   hj: [     //户籍
-                           {id: 'hj1', name: '1', value: '大陆'},
-                           {id: 'hj2', name: '2', value: '港澳台'},
-                           {id: 'hj3', name: '3', value: '外籍'},
-                       ],*!/
-
-                },*/
 
             }
         },
