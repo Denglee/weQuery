@@ -267,8 +267,8 @@
                     </div>
                 </ul>
 
-                <van-button @click="btnNext('assetsInfo')" v-show="showNextBtn.basicNext">下一步</van-button>
-                <van-button @click="btnNext('submit')"  >提交</van-button>
+                <van-button class='btn-next' @click="btnNext('assetsInfo')" v-show="showNextBtn.basicNext">下一步</van-button>
+
             </div>
 
             <!--二、 资产信息 -->
@@ -279,11 +279,11 @@
 
                 <!--信用贷款-->
                 <ul v-show="this.tabBasicIndex == 1 ">
-                    <!--信用房产 + 房抵 -->
+                    <!--信用房产 -->
                     <li class="info-item">
-                        <h4 class="info-title">房产信息1</h4>
+                        <h4 class="info-title">房产信息</h4>
                         <van-radio-group v-model="userChecked2.fcxx" class="info-box">
-                            <van-radio :name="item.name" v-for="(item,index) in userInfo.fcxx" :key="item.id">
+                            <van-radio :name="item.name" v-for="(item,index) in userInfo.fcxx" :key="item.id" @click="radioNo(item)">
                                 <template #icon="props">
                                     <div class="infoRadio" :class="props.checked ? activeRadio : ' ' ">{{item.value}}</div>
                                 </template>
@@ -300,16 +300,6 @@
                                 </template>
                             </van-radio>
                         </van-radio-group>
-                    </li>
-
-                    <li class="info-item" v-show="userChecked2.fcxx != 3 && userChecked2.fcxx != -1">
-                        <h4 class="info-title">房龄</h4>
-                        <div class="flex-between info-age">
-                            <div class="match-age">{{userChecked.fl}}</div>
-                            <div class="match-ageSlider" >
-                                <van-slider  v-model="userChecked.fl" @change="changeAge" min="18" max="75"/>
-                            </div>
-                        </div>
                     </li>
 
                     <li class="info-item" v-show="userChecked.fclx != -1">
@@ -352,10 +342,7 @@
                             </van-radio>
                         </van-radio-group>
                     </li>
-                </ul>
 
-
-                <ul v-show="this.tabBasicIndex == 1">
                     <!--信用  车辆-->
                     <li class="info-item">
                         <h4 class="info-title">车辆状态</h4>
@@ -367,16 +354,6 @@
                             </van-radio>
                         </van-radio-group>
                     </li>
-                 <!--   <li class="info-item" v-show="userChecked2.clzt2 == 1">
-                        <h4 class="info-title">车辆状态</h4>
-                        <van-radio-group v-model="userChecked2.clzt2" class="info-box">
-                            <van-radio :name="item.name" v-for="(item,index) in userInfo.clzt2" :key="item.id">
-                                <template #icon="props">
-                                    <div class="infoRadio" :class="props.checked ? activeRadio : ' ' ">{{item.value}}</div>
-                                </template>
-                            </van-radio>
-                        </van-radio-group>
-                    </li>-->
                     <li class="info-item" v-show="userChecked2.clzt2 == 1">
                         <h4 class="info-title">车辆按揭时间</h4>
                         <van-radio-group v-model="userChecked.ajc" class="info-box">
@@ -441,6 +418,84 @@
                     </li>
                 </ul>
 
+                <!--房抵贷款-->
+                <ul v-show="this.tabBasicIndex == 2 ">
+                    <li class="info-item">
+                        <h4 class="info-title">房产信息</h4>
+                        <van-radio-group v-model="userChecked2.fcxx" class="info-box">
+                            <van-radio :name="item.name" v-for="(item,index) in userInfo.fcxx" :key="item.id">
+                                <template #icon="props">
+                                    <div v-if="item.name == 3"></div>
+                                    <div v-else class="infoRadio" :class="props.checked ? activeRadio : ' ' "
+                                    >{{item.value}}</div>
+                                </template>
+                            </van-radio>
+                        </van-radio-group>
+                    </li>
+
+                    <li class="info-item" v-show="userChecked2.fcxx != 3 && userChecked2.fcxx != -1">
+                        <h4 class="info-title">房产类型</h4>
+                        <van-radio-group v-model="userChecked.fclx" class="info-box">
+                            <van-radio :name="item.name" v-for="(item,index) in userInfo.fclx" :key="item.id">
+                                <template #icon="props">
+                                    <div class="infoRadio" :class="props.checked ? activeRadio : ' ' ">{{item.value}}</div>
+                                </template>
+                            </van-radio>
+                        </van-radio-group>
+                    </li>
+
+                    <li class="info-item" v-show="userChecked.fclx != -1">
+                        <h4 class="info-title">房龄</h4>
+                        <div class="flex-between info-age">
+                            <div class="match-age">{{userChecked.fl}}</div>
+                            <div class="match-ageSlider" >
+                                <van-slider  v-model="userChecked.fl" @change="changeFl" min="18" max="75"/>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="info-item">
+                        <h4 class="info-title">房产状态</h4>
+                        <van-radio-group v-model="userChecked2.fczt" class="info-box">
+                            <van-radio :name="item.name" v-for="(item,index) in userInfo.fczt" :key="item.id">
+                                <template #icon="props">
+                                    <div class="infoRadio" :class="props.checked ? activeRadio : ' ' ">{{item.value}}</div>
+                                </template>
+                            </van-radio>
+                        </van-radio-group>
+                    </li>
+                    <li class="info-item" v-show="userChecked2.fczt == 1">
+                        <h4 class="info-title">月供时间</h4>
+                        <van-radio-group v-model="userChecked.ajz" class="info-box">
+                            <van-radio :name="item.name" v-for="(item,index) in userInfo.ajz" :key="item.id">
+                                <template #icon="props">
+                                    <div class="infoRadio" :class="props.checked ? activeRadio : ' ' ">{{item.value}}</div>
+                                </template>
+                            </van-radio>
+                        </van-radio-group>
+                    </li>
+                    <li class="info-item" v-show="userChecked2.fczt == 2">
+                        <h4 class="info-title">按揭结清时间</h4>
+                        <van-radio-group v-model="userChecked.ajjq" class="info-box">
+                            <van-radio :name="item.name" v-for="(item,index) in userInfo.ajjq" :key="item.id">
+                                <template #icon="props">
+                                    <div class="infoRadio" :class="props.checked ? activeRadio : ' ' ">{{item.value}}</div>
+                                </template>
+                            </van-radio>
+                        </van-radio-group>
+                    </li>
+                    <li class="info-item" v-show="userChecked2.fczt == 3">
+                        <h4 class="info-title">过户时间</h4>
+                        <van-radio-group v-model="userChecked.qkf" class="info-box">
+                            <van-radio :name="item.name" v-for="(item,index) in userInfo.qkf" :key="item.id">
+                                <template #icon="props">
+                                    <div class="infoRadio" :class="props.checked ? activeRadio : ' ' ">{{item.value}}</div>
+                                </template>
+                            </van-radio>
+                        </van-radio-group>
+                    </li>
+                </ul>
+
                 <!--车抵贷款-->
                 <ul v-show="this.tabBasicIndex == 3">
                     <li class="info-item">
@@ -494,6 +549,26 @@
                             </van-radio>
                         </van-radio-group>
                     </li>
+                    <li class="info-item" v-show="userChecked.clzt  == 1">
+                        <h4 class="info-title">车辆按揭时间</h4>
+                        <van-radio-group v-model="userChecked.ajc" class="info-box">
+                            <van-radio :name="item.name" v-for="(item,index) in userInfo.ajc" :key="item.id">
+                                <template #icon="props">
+                                    <div class="infoRadio" :class="props.checked ? activeRadio : ' ' ">{{item.value}}</div>
+                                </template>
+                            </van-radio>
+                        </van-radio-group>
+                    </li>
+                    <li class="info-item" v-show="userChecked.clzt  == 2">
+                        <h4 class="info-title">按揭结清或过户时间</h4>
+                        <van-radio-group v-model="userChecked.qkc" class="info-box">
+                            <van-radio :name="item.name" v-for="(item,index) in userInfo.qkc" :key="item.id">
+                                <template #icon="props">
+                                    <div class="infoRadio" :class="props.checked ? activeRadio : ' ' ">{{item.value}}</div>
+                                </template>
+                            </van-radio>
+                        </van-radio-group>
+                    </li>
                     <li class="info-item">
                         <h4 class="info-title">车辆持证时间</h4>
                         <van-radio-group v-model="userChecked.clczsj" class="info-box">
@@ -504,19 +579,40 @@
                             </van-radio>
                         </van-radio-group>
                     </li>
-                </ul>
-
-                <van-button @click="btnNext('creditInfo')" v-show="showNextBtn.assetsNext">下一步</van-button>
-
-            </div>
-
-            <!--三、征信信息-->
-            <div v-else>
-                <ul>
                     <li class="info-item">
-                        <h4 class="info-title">当前小额贷款笔数</h4>
-                        <van-radio-group v-model="userChecked.sb_xdwjnsc" class="info-box">
-                            <van-radio :name="item.name" v-for="(item,index) in userInfo.sb_xdwjnsc" :key="item.id">
+                        <h4 class="info-title">车龄</h4>
+                        <van-radio-group v-model="userChecked.cl" class="info-box">
+                            <van-radio :name="item.name" v-for="(item,index) in userInfo.cl" :key="item.id">
+                                <template #icon="props">
+                                    <div class="infoRadio" :class="props.checked ? activeRadio : ' ' ">{{item.value}}</div>
+                                </template>
+                            </van-radio>
+                        </van-radio-group>
+                    </li>
+                    <li class="info-item">
+                        <h4 class="info-title">行驶公里数</h4>
+                        <van-radio-group v-model="userChecked.xsgls" class="info-box">
+                            <van-radio :name="item.name" v-for="(item,index) in userInfo.xsgls" :key="item.id">
+                                <template #icon="props">
+                                    <div class="infoRadio" :class="props.checked ? activeRadio : ' ' ">{{item.value}}</div>
+                                </template>
+                            </van-radio>
+                        </van-radio-group>
+                    </li>
+                    <li class="info-item">
+                        <h4 class="info-title">交强险剩余有效期</h4>
+                        <van-radio-group v-model="userChecked.jqxsyyxq" class="info-box">
+                            <van-radio :name="item.name" v-for="(item,index) in userInfo.jqxsyyxq" :key="item.id">
+                                <template #icon="props">
+                                    <div class="infoRadio" :class="props.checked ? activeRadio : ' ' ">{{item.value}}</div>
+                                </template>
+                            </van-radio>
+                        </van-radio-group>
+                    </li>
+                    <li class="info-item">
+                        <h4 class="info-title">商业险剩余有效期</h4>
+                        <van-radio-group v-model="userChecked.syxsyyxq" class="info-box">
+                            <van-radio :name="item.name" v-for="(item,index) in userInfo.syxsyyxq" :key="item.id">
                                 <template #icon="props">
                                     <div class="infoRadio" :class="props.checked ? activeRadio : ' ' ">{{item.value}}</div>
                                 </template>
@@ -525,7 +621,93 @@
                     </li>
                 </ul>
 
-                <van-button @click="btnNext('submit')" v-show="showNextBtn.creditNext">提交</van-button>
+                <van-button class='btn-next' @click="btnNext('creditInfo')" v-show="showNextBtn.assetsNext">下一步</van-button>
+
+            </div>
+
+            <!--三、征信信息-->
+            <div v-else>
+                <ul>
+                    <li class="info-item">
+                        <h4 class="info-title">当前小额贷款笔数</h4>
+                        <van-radio-group v-model="userChecked.dqxebs" class="info-box">
+                            <van-radio :name="item.name" v-for="(item,index) in userInfo.dqxebs" :key="item.id">
+                                <template #icon="props">
+                                    <div class="infoRadio" :class="props.checked ? activeRadio : ' ' ">{{item.value}}</div>
+                                </template>
+                            </van-radio>
+                        </van-radio-group>
+                    </li>
+                    <li class="info-item">
+                        <h4 class="info-title">当前消费金融笔数</h4>
+                        <van-radio-group v-model="userChecked.dqxfjrbs" class="info-box">
+                            <van-radio :name="item.name" v-for="(item,index) in userInfo.dqxfjrbs" :key="item.id">
+                                <template #icon="props">
+                                    <div class="infoRadio" :class="props.checked ? activeRadio : ' ' ">{{item.value}}</div>
+                                </template>
+                            </van-radio>
+                        </van-radio-group>
+                    </li>
+                    <li class="info-item">
+                        <h4 class="info-title">贷款/信用卡是否存在止付</h4>
+                        <van-radio-group v-model="userChecked.sfczyc" class="info-box">
+                            <van-radio :name="item.name" v-for="(item,index) in userInfo.sfczyc" :key="item.id">
+                                <template #icon="props">
+                                    <div class="infoRadio" :class="props.checked ? activeRadio : ' ' ">{{item.value}}</div>
+                                </template>
+                            </van-radio>
+                        </van-radio-group>
+                    </li>
+                    <li class="info-item">
+                        <h4 class="info-title">当前逾期额度</h4>
+                        <van-radio-group v-model="userChecked.dqyqed" class="info-box">
+                            <van-radio :name="item.name" v-for="(item,index) in userInfo.dqyqed" :key="item.id">
+                                <template #icon="props">
+                                    <div class="infoRadio" :class="props.checked ? activeRadio : ' ' ">{{item.value}}</div>
+                                </template>
+                            </van-radio>
+                        </van-radio-group>
+                    </li>
+                    <li class="info-item">
+                        <h4 class="info-title">近半年内有无逾期</h4>
+                        <van-radio-group v-model="userChecked.bnn_wyq" class="info-box">
+                            <van-radio :name="item.name" v-for="(item,index) in userInfo.bnn_wyq" :key="item.id">
+                                <template #icon="props">
+                                    <div class="infoRadio" :class="props.checked ? activeRadio : ' ' ">{{item.value}}</div>
+                                </template>
+                            </van-radio>
+                        </van-radio-group>
+                    </li>
+                    <li class="info-item">
+                        <div class="flex-between">
+                            <h4>近半年内逾期1个月次数 {{userChecked.bnn_yqygycs}}</h4>
+                            <div>
+                                <van-stepper v-model="userChecked.bnn_yqygycs" step="1" min="0" disable-input />
+                            </div>
+                        </div>
+                        <div class="flex-between">
+                            <h4>近半年内逾期2个月次数 {{userChecked.bnn_yqlgycs}}</h4>
+                            <div>
+                                <van-stepper v-model="userChecked.bnn_yqlgycs" step="1" min="0" disable-input />
+                            </div>
+                        </div>
+                        <div class="flex-between">
+                            <h4>近半年内逾期3个月次数 {{userChecked.bnn_yqsgycs}}</h4>
+                            <div>
+                                <van-stepper v-model="userChecked.bnn_yqsgycs" step="1" min="0" disable-input />
+                            </div>
+                        </div>
+                        <div class="flex-between">
+                            <h4>近半年内逾期4个月次数 {{userChecked.bnn_yqsigycs}}</h4>
+                            <div>
+                                <van-stepper v-model="userChecked.bnn_yqsigycs" step="1" min="0" disable-input />
+                            </div>
+                        </div>
+                    </li>
+
+                </ul>
+
+                <van-button class='btn-next' @click="btnNext('submit')" v-show="showNextBtn.creditNext">提交</van-button>
             </div>
 
 
@@ -547,7 +729,7 @@
                 },
 
                 loadingShow:false,
-                headerInfoIndex: 2,  //头部 当前
+                headerInfoIndex: 1,  //头部 当前
                 // basicTabActive: 0, //第一部分 tab显隐
                 tabBasicIndex: 1, //基本信息 三大导航  tab显隐
                 activeRadio: 'activeRadio',  //选中的radio样式
@@ -561,8 +743,8 @@
 
                 /*三大步骤导航页面 对应显隐*/
                 showStatePage: {
-                    basicShow: false,
-                    assetsShow: true,
+                    basicShow: true,
+                    assetsShow: false,
                     creditShow: false,
                 },
 
@@ -654,6 +836,7 @@
                     lnn_yqsgycs: -1,  // 60、近两年内逾期三个月次数
                     lnn_yqsigycs: -1, // 61、近两年内逾期四个月次数
                     sfsygwld: -1,     // 62、是否使用过微粒贷
+                    loan_type:1,
                 },
 
                 /*所有单选 数组*/
@@ -674,6 +857,15 @@
 
             },
 
+            changeFl(){
+
+            },
+
+            radioNo(item){
+                console.log(item);
+                this.userChecked.fclx= -1;
+            },
+
 
             /*三大信用状态 点击显隐*/
             btnShowCredit(val) {
@@ -687,6 +879,8 @@
             btnTabBasic(val){
                 console.log(val);
                 this.tabBasicIndex = val.id;
+
+                this.userChecked.loan_type =  val.id;
             },
 
             /*下一步*/
@@ -753,31 +947,31 @@
                     console.log(newVal);
 
                     /*第一部分 基本信息 是否显示 下一步按钮*/
-                    if (newVal.hyzk) {
+
                         this.showNextBtn = {
                             basicNext: true,
                             assetsNext: false,
                             creditNext: false,
                         };
-                    }
+
 
                     /*第二部分 资产信息 是否显示 下一步按钮*/
-                    if (newVal.hyzk2) {
+
                         this.showNextBtn = {
                             basicNext: true,
                             assetsNext: true,
                             creditNext: false,
                         };
-                    }
+
 
                     /*第三部分 征信信息 是否显示 提交按钮*/
-                    if (newVal.hyzk3) {
+
                         this.showNextBtn = {
                             basicNext: true,
                             assetsNext: true,
                             creditNext: true,
                         };
-                    }
+
                 },
                 deep: true,  //深度监听，可以监听到对象里面的值的变化
                 // immediate: true,   //默认为false，初始化就开始监听
