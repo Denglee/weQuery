@@ -90,7 +90,7 @@
 
                     <!-- 平均工资 选择上班族 只有在信用和房抵 显示 -->
                     <li class="info-item" v-show="userChecked2.zylx ==1 && this.tabBasicIndex != 3">
-                        <h4 class="info-title">平均工资{{tabBasicIndex}}</h4>
+                        <h4 class="info-title">平均工资</h4>
                         <van-radio-group v-model="userChecked.pjgz" class="info-box">
                             <van-radio :name="item.name" v-for="(item,index) in userInfo.pjgz" :key="item.id">
                                 <template #icon="props">
@@ -668,6 +668,8 @@
                             </van-radio>
                         </van-radio-group>
                     </li>
+
+                    <!--近半年内有无逾期-->
                     <li class="info-item">
                         <h4 class="info-title">近半年内有无逾期</h4>
                         <van-radio-group v-model="userChecked.bnn_wyq" class="info-box">
@@ -682,27 +684,142 @@
                         <div class="flex-between">
                             <h4>近半年内逾期1个月次数 {{userChecked.bnn_yqygycs}}</h4>
                             <div>
-                                <van-stepper v-model="userChecked.bnn_yqygycs" step="1" min="0" disable-input />
+                                <van-stepper v-model="userChecked.bnn_yqygycs" step="1" :min="minNum" disable-input />
                             </div>
                         </div>
                         <div class="flex-between">
                             <h4>近半年内逾期2个月次数 {{userChecked.bnn_yqlgycs}}</h4>
                             <div>
-                                <van-stepper v-model="userChecked.bnn_yqlgycs" step="1" min="0" disable-input />
+                                <van-stepper v-model="userChecked.bnn_yqlgycs" step="1" :min="minNum" disable-input />
                             </div>
                         </div>
                         <div class="flex-between">
                             <h4>近半年内逾期3个月次数 {{userChecked.bnn_yqsgycs}}</h4>
                             <div>
-                                <van-stepper v-model="userChecked.bnn_yqsgycs" step="1" min="0" disable-input />
+                                <van-stepper v-model="userChecked.bnn_yqsgycs" step="1" :min="minNum" disable-input />
                             </div>
                         </div>
                         <div class="flex-between">
                             <h4>近半年内逾期4个月次数 {{userChecked.bnn_yqsigycs}}</h4>
                             <div>
-                                <van-stepper v-model="userChecked.bnn_yqsigycs" step="1" min="0" disable-input />
+                                <van-stepper v-model="userChecked.bnn_yqsigycs" step="1" :min="minNum" disable-input />
                             </div>
                         </div>
+                    </li>
+
+                    <!--近一年预期次数-->
+                    <li class="info-item">
+                        <h4 class="info-title">近1年内有无逾期</h4>
+                        <van-radio-group v-model="userChecked.ynn_wyq" class="info-box">
+                            <van-radio :name="item.name" v-for="(item,index) in userInfo.ynn_wyq" :key="item.id">
+                                <template #icon="props">
+                                    <div class="infoRadio" :class="props.checked ? activeRadio : ' ' ">{{item.value}}</div>
+                                </template>
+                            </van-radio>
+                        </van-radio-group>
+                    </li>
+                    <li class="info-item">
+                        <div class="flex-between">
+                            <h4>近1年内逾期1个月次数 {{userChecked.ynn_yqygycs}}</h4>
+                            <div>
+                                <van-stepper v-model="userChecked.ynn_yqygycs" step="1" :min="minNum" disable-input />
+                            </div>
+                        </div>
+                        <div class="flex-between">
+                            <h4>近1年内逾期2个月次数 {{userChecked.ynn_yqlgycs}}</h4>
+                            <div>
+                                <van-stepper v-model="userChecked.ynn_yqlgycs" step="1" :min="minNum" disable-input />
+                            </div>
+                        </div>
+                        <div class="flex-between">
+                            <h4>近1年内逾期3个月次数 {{userChecked.ynn_yqsgycs}}</h4>
+                            <div>
+                                <van-stepper v-model="userChecked.ynn_yqsgycs" step="1" :min="minNum" disable-input />
+                            </div>
+                        </div>
+                        <div class="flex-between">
+                            <h4>近1年内逾期4个月次数 {{userChecked.ynn_yqsigycs}}</h4>
+                            <div>
+                                <van-stepper v-model="userChecked.ynn_yqsigycs" step="1" :min="minNum" disable-input />
+                            </div>
+                        </div>
+                    </li>
+
+                    <!--近2年预期次数-->
+                    <li class="info-item">
+                        <h4 class="info-title">近2年内有无逾期</h4>
+                        <van-radio-group v-model="userChecked.lnn_wyq" class="info-box">
+                            <van-radio :name="item.name" v-for="(item,index) in userInfo.lnn_wyq" :key="item.id">
+                                <template #icon="props">
+                                    <div class="infoRadio" :class="props.checked ? activeRadio : ' ' ">{{item.value}}</div>
+                                </template>
+                            </van-radio>
+                        </van-radio-group>
+                    </li>
+
+                    <div class="info-item">
+                        <div class="flex-between">
+                            <h4>近2年内逾期1个月次数 {{userChecked.lnn_yqygycs}}</h4>
+                            <div>
+                                <van-stepper v-model="userChecked.lnn_yqygycs" step="1" :min="minNum" disable-input />
+                            </div>
+                        </div>
+                        <div class="flex-between">
+                            <h4>近2年内逾期2个月次数 {{userChecked.lnn_yqlgycs}}</h4>
+                            <div>
+                                <van-stepper v-model="userChecked.lnn_yqlgycs" step="1" :min="minNum" disable-input />
+                            </div>
+                        </div>
+                        <div class="flex-between">
+                            <h4>近2年内逾期3个月次数 {{userChecked.lnn_yqsgycs}}</h4>
+                            <div>
+                                <van-stepper v-model="userChecked.lnn_yqsgycs" step="1" :min="minNum" disable-input />
+                            </div>
+                        </div>
+                        <div class="flex-between">
+                            <h4>近2年内逾期4个月次数 {{userChecked.lnn_yqsigycs}}</h4>
+                            <div>
+                                <van-stepper v-model="userChecked.lnn_yqsigycs" step="1" :min="minNum" disable-input />
+                            </div>
+                        </div>
+                    </div>
+
+                    <li class="info-item">
+                        <h4>征信查询次数</h4>
+                        <div>
+                            <div class="flex-between">
+                                <h4>一个月内查询次数</h4>
+                                <van-stepper v-model="userChecked.ygyncxcs" step="1" :min="minNum" disable-input />
+                            </div>
+                            <div class="flex-between">
+                                <h4>两个月内查询次数</h4>
+                                <van-stepper v-model="userChecked.lgyncxcs" step="1" :min="minNum" disable-input />
+                            </div>
+                            <div class="flex-between">
+                                <h4>三个月内查询次数</h4>
+                                <van-stepper v-model="userChecked.sgyncxcs" step="1" :min="minNum" disable-input />
+                            </div>
+                            <div class="flex-between">
+                                <h4>六个月内查询次数</h4>
+                                <van-stepper v-model="userChecked.liugyncxcs" step="1" :min="minNum" disable-input />
+                            </div>
+                            <div class="flex-between">
+                                <h4>十二个月内查询次数</h4>
+                                <van-stepper v-model="userChecked.segyncxcs" step="1" :min="minNum" disable-input />
+                            </div>
+                        </div>
+                    </li>
+
+                    <!--信用贷款-->
+                    <li class="info-item" v-show="this.tabBasicIndex == 1">
+                        <h4 class="info-title">是否使用过微粒贷</h4>
+                        <van-radio-group v-model="userChecked.sfsygwld" class="info-box">
+                            <van-radio :name="item.name" v-for="(item,index) in userInfo.sfsygwld" :key="item.id">
+                                <template #icon="props">
+                                    <div class="infoRadio" :class="props.checked ? activeRadio : ' ' ">{{item.value}}</div>
+                                </template>
+                            </van-radio>
+                        </van-radio-group>
                     </li>
 
                 </ul>
@@ -718,6 +835,8 @@
 <script>
     import {userInfo} from '@/assets/js/userInfo' /*引用 用户信息 */
 
+    import { getCondiProductList } from '@/assets/js/api' /*引用 接口*/
+
     import matchGuide from '@/components/matchGuide/matchGuide'
     export default {
         name: "match",
@@ -728,6 +847,7 @@
                     matchShow:true,  //筛选页
                 },
 
+                minNum:"1",
                 loadingShow:false,
                 headerInfoIndex: 1,  //头部 当前
                 // basicTabActive: 0, //第一部分 tab显隐
@@ -757,7 +877,7 @@
 
                 /*三大 next 导航 按钮 对应显影*/
                 showNextBtn: {
-                    basicNext: false,
+                    basicNext: true,
                     assetsNext: false,
                     creditNext: false,
                 },
@@ -775,8 +895,8 @@
 
                 /*用户选中*/
                 userChecked: {
-                    age: 0,          // 1、年龄
-                    hyzk: -1,         // 3、婚姻状况
+                    age: 18,          // 1、年龄
+                    hyzk: 1,         // 3、婚姻状况
                     hj: -1,           // 4、户籍
                     dwxz: -1,         // 5、单位性质
                     gzffxs: -1,       // 6、工资发放形式
@@ -811,8 +931,8 @@
                     bxlx: -1,         // 35、保险类型
                     bxjnfs: -1,       // 36、保险缴纳方式
                     bxjfsj: -1,       // 37、保险缴费时间
-                    ygyncxcs: '0',     // 38、一个月内查询次数
-                    lgyncxcs: '0',     // 39、两个月内查询次数
+                    ygyncxcs: -1,     // 38、一个月内查询次数
+                    lgyncxcs: -1,     // 39、两个月内查询次数
                     sgyncxcs: -1,     // 40、三个月内查询次数
                     liugyncxcs: -1,   // 41、六个月内查询次数
                     segyncxcs: -1,    // 42、十二个月内查询次数
@@ -836,7 +956,7 @@
                     lnn_yqsgycs: -1,  // 60、近两年内逾期三个月次数
                     lnn_yqsigycs: -1, // 61、近两年内逾期四个月次数
                     sfsygwld: -1,     // 62、是否使用过微粒贷
-                    loan_type:1,
+                    loan_type:-1,      //63、信用三大分裂
                 },
 
                 /*所有单选 数组*/
@@ -866,6 +986,15 @@
                 this.userChecked.fclx= -1;
             },
 
+            /*获取 数据 接口*/
+            getCondiProductList(){
+                getCondiProductList(this.userChecked).then(res =>{
+                    console.log(res.data);
+                }).catch(res =>{
+                    console.log(res);
+                })
+            },
+
 
             /*三大信用状态 点击显隐*/
             btnShowCredit(val) {
@@ -890,10 +1019,10 @@
                 this.changeShowState(type);
             },
 
-            /*显隐状态*/
+            /*顶部 导航  显隐状态*/
             changeShowState(type) {
                 // basicInfo,assetsInfo,creditInfo
-                if (type == 'basicInfo') {
+                if (type == 'basicInfo') {   //基本信息
                     this.showStatePage = {
                         basicShow: true,
                         assetsShow: false,
@@ -901,10 +1030,9 @@
                     };
                     this.headerInfoIndex = 1;
                     this.btnCreditArr[0].disabled = true;
-
                 }
 
-                if (type == 'assetsInfo') {
+                if (type == 'assetsInfo') {   //资产信息
                     this.showStatePage = {
                         basicShow: false,
                         assetsShow: true,
@@ -917,7 +1045,7 @@
 
                 }
 
-                if (type == 'creditInfo') {
+                if (type == 'creditInfo') {   /*征信信息*/
                     this.showStatePage = {
                         basicShow: false,
                         assetsShow: false,
@@ -935,6 +1063,8 @@
                     console.log('提交ing');
 
                     console.log(this.userChecked);
+
+                    this.getCondiProductList();
                 }
 
             },
@@ -944,33 +1074,42 @@
         watch: {
             userChecked: {
                 handler(newVal, oldVal) {
-                    console.log(newVal);
+
+
+                    if(this.tabBasicIndex ==1){
+                        /*console.log(newVal);*/
+                        if(this.userChecked.hyzk != -1 && this.userChecked.hj != -1 && this.userChecked.hj != -1
+                          /*&& this.userChecked.hj != -1 && this.userChecked.hj != -1 && this.userChecked.hj != -1
+                          && this.userChecked.hj != -1 && this.userChecked.hj != -1 && this.userChecked.hj != -1*/
+                        ){
+
+                        }
+                    }
+
 
                     /*第一部分 基本信息 是否显示 下一步按钮*/
-
-                        this.showNextBtn = {
-                            basicNext: true,
-                            assetsNext: false,
-                            creditNext: false,
-                        };
+                    /*this.showNextBtn = {
+                        basicNext: true,
+                        assetsNext: false,
+                        creditNext: false,
+                    };*/
 
 
                     /*第二部分 资产信息 是否显示 下一步按钮*/
-
-                        this.showNextBtn = {
-                            basicNext: true,
-                            assetsNext: true,
-                            creditNext: false,
-                        };
+                   /* this.showNextBtn = {
+                        basicNext: true,
+                        assetsNext: true,
+                        creditNext: false,
+                    };*/
 
 
                     /*第三部分 征信信息 是否显示 提交按钮*/
 
-                        this.showNextBtn = {
-                            basicNext: true,
-                            assetsNext: true,
-                            creditNext: true,
-                        };
+                    this.showNextBtn = {
+                        basicNext: true,
+                        assetsNext: true,
+                        creditNext: true,
+                    };
 
                 },
                 deep: true,  //深度监听，可以监听到对象里面的值的变化

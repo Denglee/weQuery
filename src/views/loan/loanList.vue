@@ -136,13 +136,13 @@
             },
 
             /* 导航 切换 点击*/
-            swiperNav(item,index){
+            /*swiperNav(item,index){
                 console.log(item.id);
                 console.log(index);
                 this.loanIndex = index;
                 this.prodArr.prodType = item.id;
                 this.getByProdType();
-            },
+            },*/
 
             /*tab 切换*/
             changeTab(index,titme){
