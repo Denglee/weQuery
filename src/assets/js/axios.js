@@ -11,7 +11,8 @@ this.$qs.stringify*/
 axios.defaults.timeout = 5000;
 
 // 设置post请求头
-axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
+// axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
+axios.defaults.headers.post['Content-Type'] = 'application/json;charset=UTF-8';
 
 // 请求拦截
 axios.interceptors.request.use(config => {
@@ -84,7 +85,9 @@ export function get(url, params) {
  */
 export function post(url, params) {
     return new Promise((resolve, reject) => {
-        axios.post(url, Qs.stringify(params))
+        // axios.post(url, Qs.stringify(params))
+        // axios.post(url, Qs.stringify(params))
+        axios.post(url, params)
             .then(res => {
                 resolve(res.data);
                 // Loading.service(true).close();

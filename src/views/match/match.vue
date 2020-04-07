@@ -26,6 +26,10 @@
                 <basicInfo :userChecked="userChecked" :userChecked2="userChecked2"
                            @faMethods="faMethods(arguments)"
                            :tabBasicIndex="tabBasicIndex"></basicInfo>
+
+                <van-button class='btn-next' @click="btnNext('assetsInfo')" v-show="showNextBtn.basicNext">下一步</van-button>
+
+
             </div>
 
             <!--二、 资产信息 -->
@@ -39,6 +43,7 @@
             <div v-else>
 
                 <creditInfo :userChecked="userChecked" @faMethods="faMethods"></creditInfo>
+
 
                 <van-button class='btn-next' @click="btnNext('submit')" v-show="showNextBtn.creditNext">提交</van-button>
 
@@ -55,6 +60,8 @@
 
     import {userInfo} from '@/assets/js/userInfo' /*引用 用户信息 */
 
+    import { getCondiProductList } from '@/assets/js/api' /*引用 接口*/
+
     import matchGuide from '@/components/matchGuide/matchGuide'
     import basicInfo from '@/views/match/basicInfo'    //基本信息
     import assetsInfo from '@/views/match/assetsInfo'  //资产信息
@@ -70,6 +77,7 @@
                     matchShow:true,  //筛选页
                 },
 
+                minNum:"1",
                 loadingShow:false,
                 headerInfoIndex: 1,  //头部 当前
                 // basicTabActive: 0, //第一部分 tab显隐
@@ -99,7 +107,7 @@
 
                 /*三大 next 下一步 导航 按钮 对应显影*/
                 showNextBtn: {
-                    basicNext: false,
+                    basicNext: true,
                     assetsNext: false,
                     creditNext: false,
                 },
@@ -120,8 +128,8 @@
 
                 /*用户选中*/
                 userChecked: {
-                    age: 0,          // 1、年龄
-                    hyzk: -1,         // 3、婚姻状况
+                    age: 18,          // 1、年龄
+                    hyzk: 1,         // 3、婚姻状况
                     hj: -1,           // 4、户籍
                     dwxz: -1,         // 5、单位性质
                     gzffxs: -1,       // 6、工资发放形式
@@ -181,7 +189,7 @@
                     lnn_yqsgycs: -1,  // 60、近两年内逾期三个月次数
                     lnn_yqsigycs: -1, // 61、近两年内逾期四个月次数
                     sfsygwld: -1,     // 62、是否使用过微粒贷
-                    loan_type:1,
+                    loan_type:-1,      //63、信用三大分裂
                 },
             }
         },
@@ -208,6 +216,15 @@
                 this.userChecked.fclx= -1;
             },
 
+            /*获取 数据 接口*/
+            getCondiProductList(){
+                getCondiProductList(this.userChecked).then(res =>{
+                    console.log(res.data);
+                }).catch(res =>{
+                    console.log(res);
+                })
+            },
+
 
             /*三大信用状态 点击显隐*/
             btnShowCredit(val) {
@@ -232,10 +249,10 @@
                 this.changeShowState(type);
             },
 
-            /*显隐状态*/
+            /*顶部 导航  显隐状态*/
             changeShowState(type) {
                 // basicInfo,assetsInfo,creditInfo
-                if (type == 'basicInfo') {
+                if (type == 'basicInfo') {   //基本信息
                     this.showStatePage = {
                         basicShow: true,
                         assetsShow: false,
@@ -243,10 +260,9 @@
                     };
                     this.headerInfoIndex = 1;
                     this.btnCreditArr[0].disabled = true;
-
                 }
 
-                if (type == 'assetsInfo') {
+                if (type == 'assetsInfo') {   //资产信息
                     this.showStatePage = {
                         basicShow: false,
                         assetsShow: true,
@@ -259,7 +275,7 @@
 
                 }
 
-                if (type == 'creditInfo') {
+                if (type == 'creditInfo') {   /*征信信息*/
                     this.showStatePage = {
                         basicShow: false,
                         assetsShow: false,
@@ -277,16 +293,60 @@
                     console.log('提交ing');
 
                     console.log(this.userChecked);
+
+                    this.getCondiProductList();
                 }
 
             },
 
         },
 
+<<<<<<< HEAD
         created() {
             /*console.log(this.userInfo);*/
             //1、选中后又取消 怎么清空
             //2、没选与选 怎么下一步按钮
+=======
+        watch: {
+            userChecked: {
+                handler(newVal, oldVal) {
+
+
+                    if(this.tabBasicIndex ==1){
+                        /*console.log(newVal);*/
+                        if(this.userChecked.hyzk != -1 && this.userChecked.hj != -1 && this.userChecked.hj != -1
+                          /*&& this.userChecked.hj != -1 && this.userChecked.hj != -1 && this.userChecked.hj != -1
+                          && this.userChecked.hj != -1 && this.userChecked.hj != -1 && this.userChecked.hj != -1*/
+                        ){
+
+                        }
+                    }
+
+
+                    /*第一部分 基本信息 是否显示 下一步按钮*/
+                    /*this.showNextBtn = {
+                        basicNext: true,
+                        assetsNext: false,
+                        creditNext: false,
+                    };*/
+
+
+                    /*第二部分 资产信息 是否显示 下一步按钮*/
+                   /* this.showNextBtn = {
+                        basicNext: true,
+                        assetsNext: true,
+                        creditNext: false,
+                    };*/
+
+
+                    /*第三部分 征信信息 是否显示 提交按钮*/
+
+                    this.showNextBtn = {
+                        basicNext: true,
+                        assetsNext: true,
+                        creditNext: true,
+                    };
+>>>>>>> f5e6639a179284b88a38c8dc7d56e51f8ac8fc07
 
 
         },

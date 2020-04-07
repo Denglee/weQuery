@@ -247,7 +247,7 @@ let userInfo = {
         {id: 'clgsd21', name: '21', value: '粤W云浮'},
         {id: 'clgsd22', name: '22', value: '粤X顺德'},
         {id: 'clgsd23', name: '23', value: '粤Y南海'},
-        {id: 'clgsd24', name: '24', value: '粤Z港澳'},
+        {id: 'clgsd24', name: '24', value: '粤Z  港澳'},
     ],
     cl: [  //31、车龄
         {id: 'cl1', name: 1, value: '2年'},
@@ -338,6 +338,7 @@ let userInfo = {
         {id: 'bnn_wyq2', name: 1, value: '有逾期'},
     ],
 
+
     ynn_wyq: [  //52、近一年内有无逾期 ynn_wyq:  0：无逾期；1：后台默认是有逾期
         {id: 'ynn_wyq1', name: 0, value: '无逾期'},
         {id: 'ynn_wyq2', name: 1, value: '有逾期'},
@@ -387,9 +388,10 @@ let userInfo = {
 
 
 
-/*    1. 最小年龄 min_age：
+/*
+1. 最小年龄 min_age：
 2. 最大年龄 max_age:
-    3. 婚姻状况 hyzk：1、已婚；2、未婚；3、离异；4、丧偶
+3. 婚姻状况 hyzk：1、已婚；2、未婚；3、离异；4、丧偶
 4. 户籍 hj: 1、大陆；2、港澳台；3、外籍
 5. 单位性质 dwxz: 1、普通企业；2、公务员；3、500强；4、上市公司；5、事业单位；6、国企
 6. 工资发放形式 gzffxs: 1、银行代发；2、固定转账；3、其它
