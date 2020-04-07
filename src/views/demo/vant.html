@@ -104,7 +104,8 @@
 
 
         <div>
-            <van-button @click="btnTabBasic(item)" v-for="(item,index) in BasicTabArr" :key="item.id"
+            <van-button @click="btnTabBasic(item)"
+                        v-for="(item,index) in BasicTabArr" :key="item.id"
                         :class="item.id == tabBasicIndex ? 'activeTabBasic' : ' ' ">{{item.name}}
             </van-button>
         </div>

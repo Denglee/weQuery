@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui, viewport-fit=cover">
+    <title>vant</title>
+    <!-- 引入样式文件 -->
+    <link rel="stylesheet" href="./index.css">
+
+    <!-- 引入 Vue 和 Vant 的 JS 文件 -->
+    <script src="./vue.min.js"></script>
+    <script src="./vant.min.js"></script>
+
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            font-size: 14px;
+        }
+
+        #app {
+            width: 378px;
+            margin: 0 auto;
+            border: solid 1px red;
+            background-color: #ddd;
+        }
+
+        .info-box {
+            display: inline-flex;
+        }
+
+        .info-box .van-radio__icon {
+            -webkit-box-flex: 0;
+            -webkit-flex: none;
+            flex: none;
+            height: auto;
+            font-size: 14px;
+            line-height: initial;
+            cursor: pointer;
+        }
+
+        .infoRadio {
+            padding: 10px;
+            background-color: #ddd;
+            margin: 10px 10px 0 0;
+            border-radius: 4px;
+        }
+
+        .activeRadio {
+            background-color: #ffa300;
+            color: #fff;
+        }
+
+        .activeInfoNav {
+            color: #ffa300;
+        }
+        .activeTabBasic{
+            color: #ffa300;
+        }
+        .headerInfo-nav{
+
+        }
+
+        .info-item{
+            width: 94%;
+            margin: 10px auto 0;
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 10px;
+        }
+
+        .box{
+            width: calc(100% + 50px);
+            margin-left: -25px;
+            margin-top: -100px;
+            height: 280px;
+            background: #8705f0;
+            background: linear-gradient(to bottom right, #4dbef2, #4dbef2);
+            -moz-border-radius: 100% / 50%;
+            -webkit-border-radius: 100% / 50%;
+            border-radius: 100% / 50%;
+        }
+    </style>
+</head>
+<body>
+
+<div id="app">
+
+
+    <van-radio-group v-model="userChecked.hyzk" class="info-box">
+        <van-radio :name="item.name" v-for="(item,index) in userInfo.hyzk" :key="item.id">
+            <template #icon="props">
+                <div class="infoRadio" :class="props.checked ? activeRadio : ' ' ">{{item.value}}</div>
+            </template>
+        </van-radio>
+    </van-radio-group>
+
+    <van-radio-group v-model="userChecked.yxdcb" class="info-box">
+        <van-radio :name="item.name" v-for="(item,index) in userInfo.yxdcb" :key="item.id">
+            <template #icon="props">
+                <div class="infoRadio" :class="props.checked ? activeRadio : ' ' ">{{item.value}}</div>
+            </template>
+        </van-radio>
+    </van-radio-group>
+
+    <van-radio-group v-model="userChecked.qsjxb" class="info-box" v-show ="userChecked.yxdcb != -1 && userChecked.yxdcb != 4">
+        <van-radio :name="item.name" v-for="(item,index) in userInfo.qsjxb" :key="item.id">
+            <template #icon="props">
+                <div class="infoRadio" :class="props.checked ? activeRadio : ' ' ">{{item.value}}</div>
+            </template>
+        </van-radio>
+    </van-radio-group>
+
+    <van-radio-group v-model="userChecked.bgzyd" class="info-box">
+        <van-radio :name="item.name" v-for="(item,index) in userInfo.bgzyd" :key="item.id">
+            <template #icon="props">
+                <div class="infoRadio" :class="props.checked ? activeRadio : ' ' ">{{item.value}}</div>
+            </template>
+        </van-radio>
+    </van-radio-group>
+
+
+    <van-button v-show="btnState">按钮</van-button>
+
+</div>
+<script>
+    // 在 #app 标签下渲染一个按钮组件  
+    new Vue({
+        el: '#app',
+        data() {
+            return {
+                activeRadio: 'activeRadio',  //选中的radio样式
+                btnState:false,
+
+                userChecked:{
+                    hyzk:-1,
+                    yxdcb:-1,
+                    qsjxb:-1,
+                    bgzyd:-1,
+                },
+
+
+                /*所有单选 数组*/
+                userInfo: {
+                    hyzk: [   //婚姻状况
+                        {id: 'hyzk1', name: 1, value: '单选1'},
+                        {id: 'hyzk2', name: 2, value: '单选2'},
+                        {id: 'hyzk3', name: 3, value: '单选3'},
+                        {id: 'hyzk4', name: 4, value: '单选(单选/多选)'},
+                    ],
+                    yxdcb: [   //隐形的翅膀
+                        {id: 'yxdcb1', name: 1, value: '隐形的翅膀1'},
+                        {id: 'yxdcb2', name: 2, value: '隐形的翅膀2'},
+                        {id: 'yxdcb3', name: 3, value: '隐形的翅膀3'},
+                        {id: 'yxdcb4', name: 4, value: '隐形的翅膀4'},
+                    ],
+                    qsjxb: [   //全世界宣布
+                        {id: 'qsjxb1', name: 1, value: '全世界宣布1'},
+                        {id: 'qsjxb2', name: 2, value: '全世界宣布2'},
+                        {id: 'qsjxb3', name: 3, value: '全世界宣布3'},
+                        {id: 'qsjxb4', name: 4, value: '全世界宣布4'},
+                    ],
+                    bgzyd: [   //不该这样的
+                        {id: 'bgzyd1', name: 1, value: '不该这样的1'},
+                        {id: 'bgzyd2', name: 2, value: '不该这样的2'},
+                        {id: 'bgzyd3', name: 3, value: '不该这样的3'},
+                        {id: 'bgzyd4', name: 4, value: '不该这样的4'},
+                    ],
+                },
+            }
+        },
+        methods: {
+
+
+        },
+        watch: {
+            userChecked: {
+                handler(newVal, objVal) {
+                    console.log(newVal);
+
+                    if(newVal.yxdcb == 4){
+                        this.userChecked.qsjxb = -1;
+                    }
+
+                    if(newVal.yxdcb != 4 && newVal.yxdcb != -1){
+                        this.userChecked.qsjxb = -1;
+                    }
+
+                  /*  if(newVal.qsjxb == -1){
+                        this.userChecked.qsjxb = -2;
+                    }*/
+
+                    if(newVal.hyzk != -1 && newVal.yxdcb != -1  && newVal.bgzyd != -1){
+                        this.btnState = true;
+                    }else{
+                        this.btnState = false;
+                    }
+
+                },
+                deep: true,  //深度监听，可以监听到对象里面的值的变化
+                // immediate: true,   //默认为false，初始化就开始监听
+            }
+        },
+
+        created() {
+
+        },
+
+    });
+
+
+</script>
+
+</body>
+</html>
