@@ -26,3 +26,10 @@ export const getProdDetail   = params => get('product/getProdDetail', params);  
 
 // 产品匹配接口：http://6wfij9.natappfree.cc/productCondi/getProductList
 export const getCondiProductList   = params => post('productCondi/getProductList', params);         /* 产品匹配接口*/
+
+
+// 获取历史匹配列表接口：http://xkgfjp.natappfree.cc/productCondi/getHistoryList?staffNo=11&staffName=姚明
+export const getHistoryList   = params => post('productCondi/getHistoryList', params);         /* 历史匹配列表*/
+
+// 获取历史匹配产品列表接口：http://xkgfjp.natappfree.cc/productCondi/getHistoryProductList?historyId=55
+export const getHistoryProductList   = params => post('productCondi/getHistoryProductList', params);         /* 历史匹配产品列表*/

@@ -27,7 +27,8 @@
                            @faMethods="faMethods(arguments)"
                            :tabBasicIndex="tabBasicIndex"></basicInfo>
 
-                <van-button class='btn-next' @click="btnNext('assetsInfo')" v-show="showNextBtn.basicNext">下一步</van-button>
+                <van-button class='btn-next' @click="btnNext('assetsInfo')" v-show="showNextBtn.basicNext">下一步
+                </van-button>
 
 
             </div>
@@ -35,8 +36,8 @@
             <!--二、 资产信息 -->
             <div v-else-if="showStatePage.assetsShow">
                 <assetsInfo :userChecked="userChecked" :userChecked2="userChecked2"
-                @faMethods="faMethods"
-                :tabBasicIndex="tabBasicIndex"></assetsInfo>
+                            @faMethods="faMethods"
+                            :tabBasicIndex="tabBasicIndex"></assetsInfo>
             </div>
 
             <!--三、征信信息-->
@@ -59,26 +60,24 @@
 <script>
 
     import {userInfo} from '@/assets/js/userInfo' /*引用 用户信息 */
-
-    import { getCondiProductList } from '@/assets/js/api' /*引用 接口*/
-
+    import {getCondiProductList} from '@/assets/js/api' /*引用 接口*/
     import matchGuide from '@/components/matchGuide/matchGuide'
-    import basicInfo from '@/views/match/basicInfo'    //基本信息
-    import assetsInfo from '@/views/match/assetsInfo'  //资产信息
-    import creditInfo from '@/views/match/creditInfo'  //征信信息
+    import basicInfo from '@/views/match/basicInfo' //基本信息
+    import assetsInfo from '@/views/match/assetsInfo' //资产信息
+    import creditInfo from '@/views/match/creditInfo' //征信信息
     import matchSon from '@/views/match/matchSon'
 
     export default {
         name: "match",
         data() {
             return {
-                showState:{    //显影状态
-                    guideShow:false,   //引导页
-                    matchShow:true,  //筛选页
+                showState: {    //显影状态
+                    guideShow: false,   //引导页
+                    matchShow: true,  //筛选页
                 },
 
-                minNum:"1",
-                loadingShow:false,
+                minNum: "1",
+                loadingShow: false,
                 headerInfoIndex: 1,  //头部 当前
                 // basicTabActive: 0, //第一部分 tab显隐
                 tabBasicIndex: 1, //基本信息 三大导航  tab显隐
@@ -99,7 +98,7 @@
                 },
 
                 /*基本信息 tab*/
-                BasicTabArr:[
+                BasicTabArr: [
                     {id: 1, name: '信用贷款', type: 'tabCredit'},
                     {id: 2, name: '房抵贷款', type: 'tabHouse'},
                     {id: 3, name: '车抵贷款', type: 'tabCar'},
@@ -113,17 +112,17 @@
                 },
 
                 /*所有单选 数组*/
-                userInfo:userInfo,
+                userInfo: userInfo,
 
-                userChecked2:{
-                    zylx:-1,  //职业类型
-                    sb:-1,  //有无社保
-                    gjj:-1,  //有无公积金
-                    clgsdq:-1,  //车辆归属地区
-                    fcxx:-1,  //房产信息
-                    fczt:-1,  //房产状态
-                    clzt:-1,  //车辆状态
-                    bxbd:-1,  //保险保单
+                userChecked2: {
+                    zylx: -1,  //职业类型
+                    sb: -1,  //有无社保
+                    gjj: -1,  //有无公积金
+                    clgsdq: -1,  //车辆归属地区
+                    fcxx: -1,  //房产信息
+                    fczt: -1,  //房产状态
+                    clzt: -1,  //车辆状态
+                    bxbd: -1,  //保险保单
                 },
 
                 /*用户选中*/
@@ -189,12 +188,12 @@
                     lnn_yqsgycs: -1,  // 60、近两年内逾期三个月次数
                     lnn_yqsigycs: -1, // 61、近两年内逾期四个月次数
                     sfsygwld: -1,     // 62、是否使用过微粒贷
-                    loan_type:-1,      //63、信用三大分裂
+                    loan_type: -1,      //63、信用三大分裂
                 },
             }
         },
         methods: {
-            faMethods(val){
+            faMethods(val) {
                 console.log(val);
                 console.log(val[1]);
 
@@ -203,24 +202,24 @@
             },
 
             /*显影*/
-            showMatch(){
+            showMatch() {
                 this.showState = {    //显影状态
-                    guideShow:false,   //引导页
-                    matchShow:true,  //帅选页
+                    guideShow: false,   //引导页
+                    matchShow: true,  //帅选页
                 }
             },
 
 
-            radioNo(item){
+            radioNo(item) {
                 console.log(item);
-                this.userChecked.fclx= -1;
+                this.userChecked.fclx = -1;
             },
 
             /*获取 数据 接口*/
-            getCondiProductList(){
-                getCondiProductList(this.userChecked).then(res =>{
+            getCondiProductList() {
+                getCondiProductList(this.userChecked).then(res => {
                     console.log(res.data);
-                }).catch(res =>{
+                }).catch(res => {
                     console.log(res);
                 })
             },
@@ -235,11 +234,11 @@
             },
 
             /* 基本信息 三大导航 tab */
-            btnTabBasic(val){
+            btnTabBasic(val) {
                 console.log(val);
                 this.tabBasicIndex = val.id;
 
-                this.userChecked.loan_type =  val.id;
+                this.userChecked.loan_type = val.id;
             },
 
             /*下一步*/
@@ -301,23 +300,23 @@
 
         },
 
-<<<<<<< HEAD
+
         created() {
             /*console.log(this.userInfo);*/
             //1、选中后又取消 怎么清空
             //2、没选与选 怎么下一步按钮
-=======
+        },
         watch: {
             userChecked: {
                 handler(newVal, oldVal) {
 
 
-                    if(this.tabBasicIndex ==1){
+                    if (this.tabBasicIndex == 1) {
                         /*console.log(newVal);*/
-                        if(this.userChecked.hyzk != -1 && this.userChecked.hj != -1 && this.userChecked.hj != -1
-                          /*&& this.userChecked.hj != -1 && this.userChecked.hj != -1 && this.userChecked.hj != -1
+                        if (this.userChecked.hyzk != -1 && this.userChecked.hj != -1 && this.userChecked.hj != -1
+                            /*&& this.userChecked.hj != -1 && this.userChecked.hj != -1 && this.userChecked.hj != -1
                           && this.userChecked.hj != -1 && this.userChecked.hj != -1 && this.userChecked.hj != -1*/
-                        ){
+                        ) {
 
                         }
                     }
@@ -332,7 +331,7 @@
 
 
                     /*第二部分 资产信息 是否显示 下一步按钮*/
-                   /* this.showNextBtn = {
+                    /* this.showNextBtn = {
                         basicNext: true,
                         assetsNext: true,
                         creditNext: false,
@@ -346,11 +345,12 @@
                         assetsNext: true,
                         creditNext: true,
                     };
->>>>>>> f5e6639a179284b88a38c8dc7d56e51f8ac8fc07
 
 
+                },
+            }
         },
-        components:{
+        components: {
             matchGuide,
             assetsInfo,
             creditInfo,
