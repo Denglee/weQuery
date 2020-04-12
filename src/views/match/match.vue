@@ -26,28 +26,20 @@
                 <basicInfo :userChecked="userChecked" :userChecked2="userChecked2"
                            @faMethods="faMethods(arguments)"
                            :tabBasicIndex="tabBasicIndex"></basicInfo>
-
-                <van-button class='btn-next' @click="btnNext('assetsInfo')" v-show="showNextBtn.basicNext">下一步
-                </van-button>
-
-
             </div>
 
             <!--二、 资产信息 -->
             <div v-else-if="showStatePage.assetsShow">
                 <assetsInfo :userChecked="userChecked" :userChecked2="userChecked2"
-                            @faMethods="faMethods"
+                            @faMethods="faMethods(arguments)"
                             :tabBasicIndex="tabBasicIndex"></assetsInfo>
             </div>
 
             <!--三、征信信息-->
             <div v-else>
-
-                <creditInfo :userChecked="userChecked" @faMethods="faMethods"></creditInfo>
-
-
-                <van-button class='btn-next' @click="btnNext('submit')" v-show="showNextBtn.creditNext">提交</van-button>
-
+                <creditInfo :userChecked="userChecked" :userChecked2="userChecked2"
+                            @faMethods="faMethods(arguments)"
+                            :tabBasicIndex="tabBasicIndex"></creditInfo>
             </div>
 
         </div>
@@ -75,26 +67,25 @@
                     guideShow: false,   //引导页
                     matchShow: true,  //筛选页
                 },
-
                 minNum: "1",
                 loadingShow: false,
-                headerInfoIndex: 1,  //头部 当前
+                headerInfoIndex: 3,  //头部 当前
                 // basicTabActive: 0, //第一部分 tab显隐
                 tabBasicIndex: 1, //基本信息 三大导航  tab显隐
                 activeRadio: 'activeRadio',  //选中的radio样式
 
                 /*三大步骤导航 按钮*/
                 btnCreditArr: [
-                    {id: 1, name: '1', disabled: true, type: 'basicInfo'},
-                    {id: 2, name: '2', disabled: true, type: 'assetsInfo'},
-                    {id: 3, name: '3', disabled: true, type: 'creditInfo'},
+                    {id: 1, name: '信用贷款', disabled: true, type: 'basicInfo'},
+                    {id: 2, name: '房抵贷款', disabled: true, type: 'assetsInfo'},
+                    {id: 3, name: '车抵贷款', disabled: true, type: 'creditInfo'},
                 ],
 
                 /*三大步骤导航页面 对应显隐*/
                 showStatePage: {
-                    basicShow: true,
+                    basicShow: false,
                     assetsShow: false,
-                    creditShow: false,
+                    creditShow: true,
                 },
 
                 /*基本信息 tab*/
@@ -106,7 +97,7 @@
 
                 /*三大 next 下一步 导航 按钮 对应显影*/
                 showNextBtn: {
-                    basicNext: true,
+                    basicNext: false,
                     assetsNext: false,
                     creditNext: false,
                 },
@@ -128,7 +119,7 @@
                 /*用户选中*/
                 userChecked: {
                     age: 18,          // 1、年龄
-                    hyzk: 1,         // 3、婚姻状况
+                    hyzk: -1,         // 3、婚姻状况
                     hj: -1,           // 4、户籍
                     dwxz: -1,         // 5、单位性质
                     gzffxs: -1,       // 6、工资发放形式
@@ -196,9 +187,7 @@
             faMethods(val) {
                 console.log(val);
                 console.log(val[1]);
-
-                return false
-                this.changeShowState(type);
+                this.changeShowState(val[1]);
             },
 
             /*显影*/
@@ -209,12 +198,6 @@
                 }
             },
 
-
-            radioNo(item) {
-                console.log(item);
-                this.userChecked.fclx = -1;
-            },
-
             /*获取 数据 接口*/
             getCondiProductList() {
                 getCondiProductList(this.userChecked).then(res => {
@@ -223,7 +206,6 @@
                     console.log(res);
                 })
             },
-
 
             /*三大信用状态 点击显隐*/
             btnShowCredit(val) {
@@ -236,16 +218,13 @@
             /* 基本信息 三大导航 tab */
             btnTabBasic(val) {
                 console.log(val);
+                console.log(this.userChecked2.zylx);
+                this.userChecked2.zylx =-1;
+                this.userChecked2.sb =-1;
+                this.userChecked2.gjj =-1;
+
                 this.tabBasicIndex = val.id;
-
                 this.userChecked.loan_type = val.id;
-            },
-
-            /*下一步*/
-            btnNext(type) {
-                console.log(type);
-
-                this.changeShowState(type);
             },
 
             /*顶部 导航  显隐状态*/
@@ -289,8 +268,6 @@
                 }
 
                 if (type == 'submit') {
-                    console.log('提交ing');
-
                     console.log(this.userChecked);
 
                     this.getCondiProductList();
@@ -307,38 +284,56 @@
             //2、没选与选 怎么下一步按钮
         },
         watch: {
-            userChecked: {
+            // userChecked2: {
+            //     handler(newVal, oldVal) {
+            //         console.log(newVal);
+            //         if(newVal.zylx ==1){   //职业类型 上班族
+            //             console.log(this.userChecked.yyzznx);
+            //             this.userChecked.yyzznx = -1;
+            //             this.userChecked.dwxz = -1;
+            //         }
+            //         if(newVal.zylx == 2){   //职业类型  自选股东
+            //             console.log(this.userChecked.yyzznx);
+            //             this.userChecked.yyzznx = -1;
+            //             this.userChecked.dwxz = -1;
+            //         }
+            //     },
+            //     deep: true,  //深度监听，可以监听到对象里面的值的变化
+            //     // immediate: true,   //默认为false，初始化就开始监听
+            //
+            // },
+           /* userChecked: {
                 handler(newVal, oldVal) {
 
 
                     if (this.tabBasicIndex == 1) {
-                        /*console.log(newVal);*/
+                        /!*console.log(newVal);*!/
                         if (this.userChecked.hyzk != -1 && this.userChecked.hj != -1 && this.userChecked.hj != -1
-                            /*&& this.userChecked.hj != -1 && this.userChecked.hj != -1 && this.userChecked.hj != -1
-                          && this.userChecked.hj != -1 && this.userChecked.hj != -1 && this.userChecked.hj != -1*/
+                            /!*&& this.userChecked.hj != -1 && this.userChecked.hj != -1 && this.userChecked.hj != -1
+                          && this.userChecked.hj != -1 && this.userChecked.hj != -1 && this.userChecked.hj != -1*!/
                         ) {
 
                         }
                     }
 
 
-                    /*第一部分 基本信息 是否显示 下一步按钮*/
-                    /*this.showNextBtn = {
+                    /!*第一部分 基本信息 是否显示 下一步按钮*!/
+                    /!*this.showNextBtn = {
                         basicNext: true,
                         assetsNext: false,
                         creditNext: false,
-                    };*/
+                    };*!/
 
 
-                    /*第二部分 资产信息 是否显示 下一步按钮*/
-                    /* this.showNextBtn = {
+                    /!*第二部分 资产信息 是否显示 下一步按钮*!/
+                    /!* this.showNextBtn = {
                         basicNext: true,
                         assetsNext: true,
                         creditNext: false,
-                    };*/
+                    };*!/
 
 
-                    /*第三部分 征信信息 是否显示 提交按钮*/
+                    /!*第三部分 征信信息 是否显示 提交按钮*!/
 
                     this.showNextBtn = {
                         basicNext: true,
@@ -348,7 +343,7 @@
 
 
                 },
-            }
+            }*/
         },
         components: {
             matchGuide,

@@ -11,7 +11,7 @@
             <li class="info-item">
                 <h4 class="info-title">房产信息</h4>
                 <van-radio-group v-model="userChecked2.fcxx" class="info-box">
-                    <van-radio :name="item.name" v-for="(item,index) in userInfo.fcxx" :key="item.id" @click="radioNo(item)">
+                    <van-radio :name="item.name" v-for="(item,index) in userInfo.fcxx" :key="item.id">
                         <template #icon="props">
                             <div class="infoRadio" :class="props.checked ? activeRadio : ' ' ">{{item.value}}</div>
                         </template>
@@ -177,7 +177,7 @@
                 <div class="flex-between info-age">
                     <div class="match-age">{{userChecked.fl}}</div>
                     <div class="match-ageSlider" >
-                        <van-slider  v-model="userChecked.fl" @change="changeFl" min="18" max="75"/>
+                        <van-slider  v-model="userChecked.fl" @change="changeFl" min="1" max="70"/>
                     </div>
                 </div>
             </li>
@@ -349,7 +349,7 @@
             </li>
         </ul>
 
-        <van-button class='btn-next'  @click="sendFa()">下一步</van-button>
+        <van-button class='btn-next'  @click="sendFa('creditInfo')">下一步</van-button>
 
     </div>
 </template>
@@ -376,8 +376,8 @@
             }
         },
         methods: {
-            sendFa(){
-                this.$emit('faMethods',this.userChecked)
+            sendFa(type){
+                this.$emit('faMethods',this.userChecked,type)
             },
 
             changeAge(){
@@ -389,15 +389,89 @@
             },
         },
 
-       /* watch: {
+        watch: {
+
+            userChecked2: {
+                handler(newVal, oldVal) {
+                    console.log(newVal);
+                    let tabBasicIndex = this.tabBasicIndex;
+
+                    /*信用贷款*/
+                    if(tabBasicIndex ==1){
+                        /*房产信息判断*/
+                        if(newVal.fcxx == 3){
+                            this.userChecked2.fczt = -1;
+                            this.userChecked.fclx = -1;
+                            this.userChecked.ajz = -1;
+                            this.userChecked.ajjq = -1;
+                            this.userChecked.qkf = -1;
+                            this.userChecked.fl = -1;
+                        }
+
+                        /*车辆状态判断*/
+                        if(newVal.clzt2 != 1){
+                            this.userChecked.ajc = -1;
+                        }
+                        if(newVal.clzt2 != 2){
+                            this.userChecked.qkc = -1;
+                        }
+                        if(newVal.clzt2 != 3){
+                            this.userChecked.qkc = -1;
+                        }
+
+                        /*保险保单*/
+                        if(newVal.bxbd == 2){
+                            this.userChecked.bxlx = -1;
+                            this.userChecked.bxjnfs = -1;
+                            this.userChecked.bxjfsj = -1;
+                        }
+                    }
+
+                    /*信用贷款  + 房抵贷款*/
+                    if(tabBasicIndex != 3){
+                        /*房产状态*/
+                        if(newVal.fczt2 != 1){
+                            this.userChecked.ajz = -1;
+                        }
+                        if(newVal.fczt2 != 2){
+                            this.userChecked.ajjq = -1;
+                        }
+                        if(newVal.fczt2 != 3){
+                            this.userChecked.qkf = -1;
+                        }
+
+                    }
+
+                    /*车抵贷款*/
+                    if(tabBasicIndex == 3){
+                        if(newVal.clgsdq == 2){
+                            this.userChecked.clgsd = -1;
+                        }
+                    }
+
+
+                },
+                deep: true,  //深度监听，可以监听到对象里面的值的变化
+                // immediate: true,   //默认为false，初始化就开始监听
+            },
             userChecked: {
                 handler(newVal, oldVal) {
                     console.log(newVal);
+                    let tabBasicIndex = this.tabBasicIndex;
+                    if(tabBasicIndex == 3){
+                        /*车辆按揭时间*/
+                        if(newVal.clzt != 1){
+                            this.userChecked.ajc = -1;
+                        }
+                        if(newVal.clzt != 2){
+                            this.userChecked.qkc = -1;
+                        }
+                    }
                 },
                 deep: true,  //深度监听，可以监听到对象里面的值的变化
                 // immediate: true,   //默认为false，初始化就开始监听
             }
-        },*/
+        },
 
         created() {
 

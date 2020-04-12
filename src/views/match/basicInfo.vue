@@ -245,7 +245,7 @@
 
         </ul>
 
-        <van-button class='btn-next' @click="sendFa('basecInfo')">下一步</van-button>
+        <van-button class='btn-next' @click="sendFa('assetsInfo')">下一步</van-button>
 
     </div>
 </template>
@@ -276,7 +276,6 @@
         methods: {
             sendFa(type){
                 this.$emit('faMethods',this.userChecked,type)
-
             },
 
             changeAge(){
@@ -288,9 +287,49 @@
             },
         },
         watch: {
+            userChecked2: {
+                handler(newVal, oldVal) {
+                    console.log(newVal);
+                    if(newVal.zylx ==1){   //职业类型 上班族
+                        this.userChecked.yyzznx = -1;
+                        this.userChecked.dwsfkc = -1;
+                        this.userChecked.dgls = -1;
+                        this.userChecked.gskpje = -1;
+                        this.userChecked.gsnsje = -1;
+                    }
+                    if(newVal.zylx == 2){   //职业类型  自选股东
+                        this.userChecked.dwxz = -1;
+                        this.userChecked.gzffxs = -1;
+                        this.userChecked.pjgz = -1;
+                        this.userChecked.bdwgzsc = -1;
+                    }
+
+                    /*社保判断*/
+                    // if(newVal.sb ==1){   //职业类型 上班族
+                    //     this.userChecked.yyzznx = -1;
+                    // }
+                    if(newVal.sb == 2){   //职业类型  自选股东
+                        this.userChecked.sbjs = -1;
+                        this.userChecked.sb_jnsc = -1;
+                        this.userChecked.sb_xdwjnsc = -1;
+                    }
+
+                    /*公积金判断*/
+                    if(newVal.gjj == 2){   //职业类型  自选股东
+                        this.userChecked.gjjjs = -1;
+                        this.userChecked.gjj_jnsc = -1;
+                        this.userChecked.gjj_xdwjnsc = -1;
+                    }
+
+                },
+                deep: true,  //深度监听，可以监听到对象里面的值的变化
+                // immediate: true,   //默认为false，初始化就开始监听
+
+            },
             userChecked: {
                 handler(newVal, oldVal) {
                     console.log(newVal);
+
                 },
                 deep: true,  //深度监听，可以监听到对象里面的值的变化
                 // immediate: true,   //默认为false，初始化就开始监听
