@@ -218,7 +218,7 @@ $navHei:.14rem;
   border-radius: 4px;
 }
 .dHeader-good{
-  margin: 6px 0 10px;
+  margin: 6px 0 0;
   span{
     @include good();
     background-color: $themeColor;
@@ -229,6 +229,7 @@ $navHei:.14rem;
 }
 
 .dHeader-good2{
+  margin-top: .1rem;
   span{
     @include good();
     background-color: $colorGray;
@@ -254,25 +255,40 @@ $navHei:.14rem;
 
 
 /*期数样式*/
-.qs-box > span{
-  display: inline-block;
-  padding: 10px;
+.qs-box{
+  display: flex;
+  margin-top: .1rem;
+  .van-button {
+    text-align: center;
+    background-color: $colorGray;
+    border-radius: 4px;
+    width: 23.5%;
+    padding: .06rem ;
+    height: auto;
+    line-height: inherit;
+    &:not(:nth-child(4n)) {
+      margin-right: 2%;
+    }
+  }
+  .qsActive{
+    color: #fff;
+    background-color: #ffa300;
+  }
 }
-.qsActive{
-  color: #ffa300;
+.detail-slider{
+  margin: .3rem 0 .2rem;
 }
 
 /*图表样式*/
 .ve-ring {
-  width: 240px;
-  height: 220px;
+  width: 220px;
+  height: 130px;
   display: block;
   margin: 0 auto;
-  border: solid 1px red;
-  padding-top: 20px;
+  //border: solid 1px red;;
 }
 .ve-ring>div:first-child{
-  height: 220px!important;
+  height: 130px!important;
 }
 
 
@@ -282,3 +298,66 @@ $navHei:.14rem;
   width: .16rem;
   height: .16rem;
 }
+
+$loansTotal:#ffa300;
+$loansMonthTotal:#1EAAA1;
+$loansRatesTotal:#FF8A7E;
+$loansServiceTotal:#4CCBEB;
+
+.chart-info{
+  display: flex;
+  li{
+    text-align: center;
+    background-color: $colorGray;
+    border-radius: 4px;
+    width: 23.5%;
+    &:not(:nth-child(4n)) {
+      margin-right: 2%;
+    }
+    &:first-child{
+      border-top: solid 3px  $loansTotal;  //background-color: $loansTotal;
+    }
+    &:nth-child(2){
+      border-top: solid 3px $loansMonthTotal;
+    }
+    &:nth-child(3){
+      border-top: solid 3px $loansRatesTotal;
+    }
+    &:nth-child(4){
+      border-top: solid 3px $loansServiceTotal;
+    }
+    span{
+      font-size: .12rem;
+      margin-bottom: 2px;
+    }
+  }
+  .loans-num{
+    font-size: .18rem;
+    font-weight: 500;
+    margin-bottom: -5px;
+  }
+}
+ .chart-info2{
+   display: flex;
+   justify-content: space-between;
+   li{
+     width: 10px;
+     height: 10px;
+     display: block;
+     text-align: center;
+     border-radius: 2px;
+     margin: 0 auto 8px;
+     &:first-child{
+       background-color: $loansTotal;
+     }
+     &:nth-child(2){
+       background-color: $loansMonthTotal;
+     }
+     &:nth-child(3){
+       background-color:$loansRatesTotal;
+     }
+     &:nth-child(4){
+       background-color: $loansServiceTotal;
+     }
+   }
+ }
