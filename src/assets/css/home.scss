@@ -251,3 +251,34 @@ $navHei:.14rem;
   font-size: .13rem;
   padding: .1rem;
 }
+
+
+/*期数样式*/
+.qs-box > span{
+  display: inline-block;
+  padding: 10px;
+}
+.qsActive{
+  color: #ffa300;
+}
+
+/*图表样式*/
+.ve-ring {
+  width: 240px;
+  height: 220px;
+  display: block;
+  margin: 0 auto;
+  border: solid 1px red;
+  padding-top: 20px;
+}
+.ve-ring>div:first-child{
+  height: 220px!important;
+}
+
+
+/*滑块样式*/
+.van-slider__button{
+  border: solid 2px #ffa300;
+  width: .16rem;
+  height: .16rem;
+}
