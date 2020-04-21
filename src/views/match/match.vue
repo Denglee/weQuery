@@ -44,7 +44,7 @@
 
         </div>
 
-        <!--<matchSon :userChecked="userChecked" @faMethods="faMethods"></matchSon>-->
+<!--        <matchSon :userChecked="userChecked" @faMethods="faMethods"></matchSon>-->
 
     </div>
 </template>
@@ -69,7 +69,7 @@
                 },
                 minNum: "1",
                 loadingShow: false,
-                headerInfoIndex: 3,  //头部 当前
+                headerInfoIndex: 1,  //头部 当前
                 // basicTabActive: 0, //第一部分 tab显隐
                 tabBasicIndex: 1, //基本信息 三大导航  tab显隐
                 activeRadio: 'activeRadio',  //选中的radio样式
@@ -83,9 +83,9 @@
 
                 /*三大步骤导航页面 对应显隐*/
                 showStatePage: {
-                    basicShow: false,
+                    basicShow: true,
                     assetsShow: false,
-                    creditShow: true,
+                    creditShow: false,
                 },
 
                 /*基本信息 tab*/

@@ -644,8 +644,15 @@ let LoanBankInfo = {
                 "productId":1,
                 "name":"利率0.99%",
                 'value':'0.99'
+            },
+            {
+                "id":6798345,
+                "productId":1,
+                "name":"利率0.99%",
+                'value':'0.99'
             }
         ],
+        
         "qsList":[
             {
                 "id":3,

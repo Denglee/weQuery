@@ -310,7 +310,9 @@
             if(!prodArr){
                 this.prodArr = prodArr;
             }
-            // this.getProdDetail();
+
+            // this.getProdDetail2
+            this.getProdDetail();
 
             console.log(this.detailsArr);
 
