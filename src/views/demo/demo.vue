@@ -202,6 +202,3 @@
     }
 </script>
 
-<style lang="scss">
-
-</style>

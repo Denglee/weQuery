@@ -33,3 +33,10 @@ export const getHistoryList   = params => post('productCondi/getHistoryList', pa
 
 // 获取历史匹配产品列表接口：http://xkgfjp.natappfree.cc/productCondi/getHistoryProductList?historyId=55
 export const getHistoryProductList   = params => post('productCondi/getHistoryProductList', params);         /* 历史匹配产品列表*/
+
+// 获取信用卡信息列表接口
+export const getCreditCard   = params => post('creditCard/getAll', params);
+
+// 通过条件查询匹配结果接口：
+export const getMatchProductList   = params => post('productCondi/getMatchProductList', params);
+

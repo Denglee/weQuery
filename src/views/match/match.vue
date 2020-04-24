@@ -64,8 +64,8 @@
         data() {
             return {
                 showState: {    //显影状态
-                    guideShow: false,   //引导页
-                    matchShow: true,  //筛选页
+                    guideShow: true,   //匹配进入 引导页
+                    matchShow: false,  //匹配筛选页
                 },
                 minNum: "1",
                 loadingShow: false,
@@ -76,9 +76,9 @@
 
                 /*三大步骤导航 按钮*/
                 btnCreditArr: [
-                    {id: 1, name: '信用贷款', disabled: true, type: 'basicInfo'},
-                    {id: 2, name: '房抵贷款', disabled: true, type: 'assetsInfo'},
-                    {id: 3, name: '车抵贷款', disabled: true, type: 'creditInfo'},
+                    {id: 1, name: '基本信息', disabled: true, type: 'basicInfo'},
+                    {id: 2, name: '资产信息', disabled: true, type: 'assetsInfo'},
+                    {id: 3, name: '征信信息', disabled: true, type: 'creditInfo'},
                 ],
 
                 /*三大步骤导航页面 对应显隐*/
