@@ -6,7 +6,7 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: '/',
-    redirect: '/loanDetails',
+    redirect: '/index',
   },
   {
     path: "/index",
