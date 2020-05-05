@@ -68,11 +68,12 @@
             <!--滑块-->
             <div  class="detail-slider">
                 <van-slider v-model="chartsLoans.loansTotal"  @change="changeTotal($event)"
-                          :max="sliderArr.maxQuota"
-                          :min="sliderArr.minQuota"
-                          :step="sliderArr.step"
-                          bar-height="6px"
-                          active-color="#ffa300">
+                            :max="sliderArr.max"
+                            :min="sliderArr.min"
+                            :step="sliderArr.step"
+                            bar-height="6px"
+                            active-color="#ffa300"
+                >
                 </van-slider>
             </div>
             <div class="dHeader-good">
@@ -140,7 +141,7 @@
 <script>
     import {getAllType , getByProdType,getProdDetail} from '@/assets/js/api' /*引用 接口*/
     export default {
-        name: "loanList",
+        name: "cardInfo",
         data() {
             /*图标设置*/
             this.totalColor = ['#1EAAA1','#FF8A7E','#4CCBEB','#ffa300'];//会员总览 潜在会员 自定义的颜色
@@ -166,8 +167,8 @@
 
                 /*分类*/
                 prodArr:{
-                    prodType:5,   //分类
-                    prodId:5,     //id
+                    prodType:0,   //分类
+                    prodId:1,     //id
                 },
 
                 /*图表样式*/
@@ -180,14 +181,11 @@
                 // detailsArr:[],
                 detailsArr:this.GLOBAL.LoanBankInfo.data,
 
-
-
                 /*滑块*/
                 sliderArr:{
-                    minQuota: 5,
-                    maxQuota: 30,
-                    step: 1,
-                    defaultQuota: 5,
+                    min:1,
+                    max:200,
+                    step:1,
                 },
 
                 /*期数数组*/
@@ -218,9 +216,6 @@
                     console.log(res.data);
                     if(res.status == 'success'){
                         this.detailsArr = res.data;
-                            console.log(this.detailsArr.qsList[0].nameValue);
-                            this.qsArr.qsNum = this.detailsArr.qsList[0].nameValue;
-                            this.chartsLoans.loansTotal = 20;
                     }else{
                         this.loanArr= '';
                     }
@@ -232,19 +227,16 @@
             /*详情赋值  后续接口正常 要删 并且使用上面的方法*/
             getProdDetail2(){
                 // this.detailsArr = detailsArr;
-                console.log(this.detailsArr.qsList[0].nameValue);
-                this.qsArr.qsNum = this.detailsArr.qsList[0].nameValue;
-                this.sliderArr.qsNum = this.detailsArr.qsList[0].nameValue;
-                this.sliderArr = this.detailsArr.quotaList[0];
-                this.chartsLoans.loansTotal = this.detailsArr.quotaList[0].defaultQuota;
+                console.log(this.detailsArr.qsList[0].value);
+                this.qsArr.qsNum = this.detailsArr.qsList[0].value;
+                this.chartsLoans.loansTotal = 20;
             },
 
             /*值 计算 并 渲染 图表*/
             getChartVal(){
                 let loansTotal        = Number(this.chartsLoans.loansTotal);     //++ 获取总金额
                 let totalQs           = Number(this.qsArr.qsNum);                       //获取总期数
-                let interestRate      = parseFloat(this.detailsArr.basicInfoList[0].nameValue);  //获取利率
-                console.log(interestRate);
+                let interestRate      = Number(this.detailsArr.basicInfoList[0].value);  //获取利率
                 let loansMonthTotal   = this.toDecimal2(Number( loansTotal / totalQs ));                 //++ 获取月供 = 总金额/期数
                 let loansRatesTotal   = this.toDecimal2(Number(loansTotal * (interestRate /100) * totalQs));  //++ 获取总利息 = 金额*利率*期数
                 let loansServiceTotal = this.toDecimal2(Number(this.chartsLoans.loansServiceTotal));      //++ 获取 手续费
@@ -278,7 +270,7 @@
             /*期数选择*/
             checkedQS(val,index){
                 this.qsArr.qsListCurren = index;
-                this.qsArr.qsNum = val.nameValue;
+                this.qsArr.qsNum = val.value;
 
                 this.setChartData();
                 this.getChartVal();
@@ -314,14 +306,13 @@
         },
         created() {
             let prodArr = this.$route.params.prodArr;
-            console.log(prodArr);
-            if(prodArr){
+            // console.log(prodArr);
+            if(!prodArr){
                 this.prodArr = prodArr;
             }
 
-            console.log( this.prodArr)
-
-            // this.getProdDetail();
+            // this.getProdDetail2
+            this.getProdDetail();
 
             console.log(this.detailsArr);
 

@@ -35,6 +35,15 @@ if (process.env.NODE_ENV === 'production') {
 import '@/assets/css/global.scss'
 import '@/assets/css/home.scss'
 
+/* 6、 引入 moment 时间转换 */
+/*凡是用的prototype 使用都要this.继承 console.log(this.$moment().format("YYYY-MM"));*/
+import moment from 'moment'  //引用moment js
+Vue.prototype.$moment = moment;//赋值使用
+moment.locale('zh-cn');//需要汉化
+
+Vue.filter('minuteFormat', (dataStr, pattern = 'YYYY-MM-DD HH:mm:ss') =>{
+    return moment(dataStr).format(pattern)
+})
 
 
 /*引用全局js*/

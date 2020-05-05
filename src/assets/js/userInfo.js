@@ -353,7 +353,16 @@ let userInfo = {
         {id: 'sfsygwld1', name: 0, value: '没有'},
         {id: 'sfsygwld2', name: 1, value: '有'},
     ],
-
+    sfyssqydd: [  //62、是否有上市企业订单
+        {id: 'sfyssqydd1', name: 0, value: '没有'},
+        {id: 'sfyssqydd2', name: 1, value: '有'},
+    ],
+    sfgxjsqy: [  //62、是否高新技术企业
+        {id: 'sfgxjsqy1', name: 0, value: '不是'},
+        {id: 'sfgxjsqy2', name: 1, value: '国高'},
+        {id: 'sfgxjsqy3', name: 2, value: '深高'},
+        {id: 'sfgxjsqy4', name: 3, value: '都有'},
+    ],
 /*
 
 36.保险缴纳方式 bxjnfs:  1、年缴；2、季缴；3、月缴；4、趸缴

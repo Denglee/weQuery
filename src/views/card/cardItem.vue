@@ -3,14 +3,14 @@
 
         <van-tabs  v-model="activeTab"  @click="changeTab" animated swipeable type="card" id="loanTabs">
             <van-tab  v-for="(item,index) in navArr" :key="index" :title="item.name"
-            class="loan-tab">
+                      class="loan-tab">
 
                 <van-row  v-if="loanArr.length == 0">
                     <van-col>暂无数据</van-col>
                 </van-row>
                 <van-row gutter="12" v-else>
                     <van-col span="8" v-for="(item,index) in loanArr" :ket="index">
-                        <div  class="fire-list" @click="goLoanDetails(item)">
+                        <div  class="fire-list" @click="goLoanDetails">
                             <van-image :src="item.ioc" alt="" class="fire-img"></van-image>
 
                             <div class="fire-title">{{item.name}}</div>
@@ -37,15 +37,16 @@
 
     import {getAllType , getByProdType} from '@/assets/js/api' /*引用  接口*/
     export default {
-        name: "loanList",
+        name: "cardItem",
         data() {
             return {
                 activeTab:0,
+                loanIndex : 0, //nav选中
 
-                /*swiper:{
+                swiper:{
                     swiperWid:'',
                     swiperHei:'50',
-                },*/
+                },
 
                 /*导航*/
                 navArr:[
@@ -89,77 +90,63 @@
                 })
             },
 
+            /* 导航 切换 点击*/
+            /*swiperNav(item,index){
+                console.log(item.id);
+                console.log(index);
+                this.loanIndex = index;
+                this.prodArr.prodType = item.id;
+                this.getByProdType();
+            },*/
 
             /*tab 切换*/
-            changeTab(index){
+            changeTab(index,titme){
+                console.log(index);
+                console.log(titme);
                 this.prodArr.prodType = index + 1;
                 this.getByProdType();
             },
 
             /*获取屏幕宽度 然后传给swiper*/
-            /*getClientWidth(){
+            getClientWidth(){
                 let clientWidth = document.body.clientWidth;
                 let swiperWid = clientWidth /4 + clientWidth / 6;
                 this.swiper.swiperWid = swiperWid;
-            },*/
+            },
 
             /*去贷款详情页*/
-            goLoanDetails(item){
-                let prodId =item.basicInfoList[0].productId;
-                console.log(prodId);
-                console.log(item);
-                this.prodArr.prodId =prodId
-
-                console.log(this.prodArr);
-
+            goLoanDetails(){
+                // let prodType = this.prodArr.prodType;
+                // let prodId = this.prodArr.prodId;
+                // console.log(prodType);
                 this.$router.push({
-                    name:'loanDetails',
+                    path:'/loanDetails',
                     params: {'prodArr':this.prodArr}
                 })
             },
         },
 
-
         created() {
-            // this.getClientWidth();
-            let indexLoan = this.$route.params.indexLoan;
-            console.log(indexLoan);
+            this.getClientWidth();
 
-            if(indexLoan){
-                this.activeTab = 5;
-                this.prodArr.prodType = 6;
-                console.log( this.prodArr.prodType)
-            }
             this.getByProdType();  //获取分类
+
         },
-
-
-
-       /* beforeRouteEnter (to, from, next) {
-            // 导航离开该组件的对应路由时调用
-            // 可以访问组件实例 `this`
-            console.log(to);
-            console.log(from);
-
-            next(vm=>{
-                if(from.fullPath == '/index'){
-                    vm.prodArr = {
-                        prodType : 6
-                    };
-                    vm.activeTab = 5;
-                    console.log(vm.prodArr.prodType);
-                }
-
-            })
-
-        },*/
-        watch : {
-            '$route' (to, from) {
-                // do your want
-                console.log(to);
-            },
-            immediate: true,
-        },
+        mounted(){
+            // new Swiper ('.swiper-container', {
+            //     width:'90',
+            //     height:'100',
+            //     keyboard : true,
+            //     virtualTranslate : true,
+            //     on:{
+            //         setTranslate: function(){
+            //             this.$wrapperEl.transition('');
+            //             TweenMax.to(this.$wrapperEl, 0.1, {x:this.translate, ease:Power4.easeOut})
+            //
+            //         }
+            //     },
+            // })
+        }
     }
 </script>
 

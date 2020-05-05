@@ -2,6 +2,16 @@
     <div>
         <!--基本信息 通用部分-->
         <ul>
+            <li class="info-item" style="padding-bottom: 10px;">
+                <h4 class="info-title">贷款总额总额</h4>
+                <div class="flex-between inp-info">
+                   <van-field
+                            v-model="userChecked.zonge"
+                            name="zonge"
+                            type="number"
+                            placeholder="总额（万元）"/>
+                </div>
+            </li>
             <li class="info-item">
                 <h4 class="info-title">年纪-周岁</h4>
                 <div class="flex-between info-age">
@@ -41,6 +51,7 @@
                     </van-radio>
                 </van-radio-group>
             </li>
+
 
             <!-- 单位性质 选择上班族 只有在信用和房抵 显示 -->
             <li class="info-item" v-show="userChecked2.zylx ==1 && this.tabBasicIndex != 3">
@@ -101,6 +112,29 @@
                     </van-radio>
                 </van-radio-group>
             </li>
+
+            <div v-if="userChecked.zonge > 300 && userChecked.yyzznx  == 6">
+                <li class="info-item">
+                    <h4 class="info-title">是否有上市企业订单</h4>
+                    <van-radio-group v-model="userChecked.sfyssqydd" class="info-box">
+                        <van-radio :name="item.name" v-for="(item,index) in userInfo.sfyssqydd" :key="item.id">
+                            <template #icon="props">
+                                <div class="infoRadio" :class="props.checked ? activeRadio : ' ' ">{{item.value}}</div>
+                            </template>
+                        </van-radio>
+                    </van-radio-group>
+                </li>
+                <li class="info-item">
+                    <h4 class="info-title">是否高新技术企业</h4>
+                    <van-radio-group v-model="userChecked.sfgxjsqy" class="info-box">
+                        <van-radio :name="item.name" v-for="(item,index) in userInfo.sfgxjsqy" :key="item.id">
+                            <template #icon="props">
+                                <div class="infoRadio" :class="props.checked ? activeRadio : ' ' ">{{item.value}}</div>
+                            </template>
+                        </van-radio>
+                    </van-radio-group>
+                </li>
+            </div>
 
             <!-- 单位/公司是否可考察 除了车贷 -->
             <li class="info-item" v-show="this.tabBasicIndex !=3 && userChecked2.zylx == 2 && userChecked.yyzznx != 1  && userChecked.yyzznx != -1">
@@ -290,6 +324,7 @@
             userChecked2: {
                 handler(newVal, oldVal) {
                     console.log(newVal);
+                    console.log(newVal.yyzznx);
                     if(newVal.zylx ==1){   //职业类型 上班族
                         this.userChecked.yyzznx = -1;
                         this.userChecked.dwsfkc = -1;
@@ -302,6 +337,12 @@
                         this.userChecked.gzffxs = -1;
                         this.userChecked.pjgz = -1;
                         this.userChecked.bdwgzsc = -1;
+                    }
+                    if(newVal.yyzznx == 6){
+                        console.log(newVal.yyzznx);
+                        console.log(newVal.sfyssqydd);
+                        this.userChecked.sfyssqydd = -1;
+                        this.userChecked.sfgxjsqy = -1;
                     }
 
                     /*社保判断*/
@@ -329,7 +370,6 @@
             userChecked: {
                 handler(newVal, oldVal) {
                     console.log(newVal);
-
                 },
                 deep: true,  //深度监听，可以监听到对象里面的值的变化
                 // immediate: true,   //默认为false，初始化就开始监听

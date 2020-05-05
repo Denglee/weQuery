@@ -28,7 +28,12 @@
             <!--四大导航-->
             <van-row gutter="14" class="index-nav-main">
                 <van-col span="12" v-for="(item,index) in indexNav" :key="index">
-                    <div class="index-navItem">
+                    <div v-if="item.id == 2" class="index-navItem" @click="goLoan(item)">
+                        <h4 class="index-navTitle">{{item.name}}</h4>
+                        <div class="index-navSub">{{item.sunTitle}}</div>
+                        <div class="index-navSub">{{item.sunTitle2}}</div>
+                    </div>
+                    <div class="index-navItem"  v-else>
                         <router-link :to="item.url">
                             <h4 class="index-navTitle">{{item.name}}</h4>
                             <div class="index-navSub">{{item.sunTitle}}</div>
@@ -65,9 +70,9 @@
                 /*四大导航*/
                 indexNav: [
                     {id: '1', url: '/loanList', name: '银行产品', icon: '1', sunTitle: '近期最新银行政策', sunTitle2: '让您抢先一步'},
-                    {id: '2', url: '/index', name: '在线急融', icon: '2', sunTitle: '汇集先上银行产品', sunTitle2: '线上申请'},
+                    {id: '2', url: '/loanList', name: '在线急融', icon: '2', sunTitle: '汇集先上银行产品', sunTitle2: '线上申请'},
                     {id: '3', url: '/index', name: '办卡信用', icon: '3', sunTitle: '高额度当天下午', sunTitle2: ''},
-                    {id: '4', url: '/index', name: '服务中心', icon: '4', sunTitle: '24小时客服在线', sunTitle2: '急速答疑解惑'},
+                    {id: '4', url: '/aboutUs', name: '服务中心', icon: '4', sunTitle: '24小时客服在线', sunTitle2: '急速答疑解惑'},
                 ],
             }
         },
@@ -83,9 +88,11 @@
 
 
             /*去贷款列表页*/
-            goLoan(){
+            goLoan(item){
+                console.log(item)
                 this.$router.push({
-                    path:'/loanList'
+                    name:'loanList',
+                    params:{'indexLoan':item},
                 })
             },
 

@@ -82,9 +82,9 @@ module.exports = {
 
     // 它支持webPack-dev-server的所有选项
     devServer: {
-        // host: "192.168.0.106",  //下油松
+        host: "192.168.0.106",  //下油松
         // host: "192.168.0.8",  //东边
-        host: "localhost",
+        // host: "localhost",
         port: 8050, // 端口号
         https: false, // https:{type:Boolean}
         open: false, //配置自动启动浏览器
@@ -93,7 +93,7 @@ module.exports = {
         // 配置多个代理
         proxy: {
             "/api": {
-                target: "http://cryzbs.natappfree.cc/",
+                target: "http://ehw85f.natappfree.cc",
                 ws: true,// 是否启用websockets
                 changeOrigin: true, //开启代理：在本地会创建一个虚拟服务端，然后发送请求的数据，并同时接收请求的数据，这样服务端和服务端进行数据的交互就不会有跨域问题
                 pathRewrite: {

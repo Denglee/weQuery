@@ -52,20 +52,24 @@
 <script>
 
     import {userInfo} from '@/assets/js/userInfo' /*引用 用户信息 */
-    import {getCondiProductList} from '@/assets/js/api' /*引用 接口*/
-    import matchGuide from '@/components/matchGuide/matchGuide'
+    // import {getCondiProductList,getHistoryList} from '@/assets/js/api' /*引用 接口*/
+    import {getAllType } from '@/assets/js/api' /*引用 接口*/
+
+
+    import matchGuide from '@/components/matchGuide/matchGuide'  //匹配进入页
     import basicInfo from '@/views/match/basicInfo' //基本信息
     import assetsInfo from '@/views/match/assetsInfo' //资产信息
     import creditInfo from '@/views/match/creditInfo' //征信信息
-    import matchSon from '@/views/match/matchSon'
+    // import matchSon from '@/views/match/matchSon'
 
     export default {
         name: "match",
         data() {
             return {
+                matchResArr:[],  //匹配历史记录 数组
                 showState: {    //显影状态
-                    guideShow: true,   //匹配进入 引导页
-                    matchShow: false,  //匹配筛选页
+                    guideShow: false,   //匹配进入 引导页
+                    matchShow: true,  //匹配筛选页
                 },
                 minNum: "1",
                 loadingShow: false,
@@ -118,6 +122,9 @@
 
                 /*用户选中*/
                 userChecked: {
+                    zonge:'',         //总额
+                    sfyssqydd:'',         //是否有上市企业订单
+                    sfgxjsqy:'',         //是否高新技术企业
                     age: 18,          // 1、年龄
                     hyzk: -1,         // 3、婚姻状况
                     hj: -1,           // 4、户籍
@@ -184,6 +191,7 @@
             }
         },
         methods: {
+
             faMethods(val) {
                 console.log(val);
                 console.log(val[1]);
@@ -282,6 +290,7 @@
             /*console.log(this.userInfo);*/
             //1、选中后又取消 怎么清空
             //2、没选与选 怎么下一步按钮
+
         },
         watch: {
             // userChecked2: {
@@ -350,7 +359,7 @@
             assetsInfo,
             creditInfo,
             basicInfo,
-            matchSon,
+            // matchSon,
         }
     }
 </script>

@@ -24,9 +24,29 @@ const routes = [
     component: () => import(/* webpackChunkName: "loanDetails" */ "../views/loan/loanDetails.vue")
   },
   {
+    path: "/cardItem",
+    name: "cardItem",  /*信用卡列表页*/
+    component: () => import(/* webpackChunkName: "cardItem" */ "../views/card/cardItem.vue")
+  },
+  {
+    path: "/cardInfo",
+    name: "cardInfo", /*信用卡详情页*/
+    component: () => import(/* webpackChunkName: "cardInfo" */ "../views/card/cardInfo.vue")
+  },
+  {
     path: "/match",
-    name: "match", /*贷款详情页*/
+    name: "match", /*贷款匹配页*/
     component: () => import(/* webpackChunkName: "match" */ "../views/match/match.vue")
+  },
+  {
+    path: "/matchResult",
+    name: "matchResult", /*匹配详情页*/
+    component: () => import(/* webpackChunkName: "match" */ "../views/match/matchResult.vue")
+  },
+  {
+    path: "/aboutUs",
+    name: "aboutUs", /*关于我们*/
+    component: () => import(/* webpackChunkName: "aboutUs" */ "../views/other/aboutUs.vue")
   },
   {
     path: "/demo",

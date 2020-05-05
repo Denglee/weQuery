@@ -1,13 +1,19 @@
+@import "theme";
 
 .info-box {
   display: inline-flex;
   flex-wrap: wrap;
-
+  width: 100%;
   .van-radio {
     margin-bottom: .1rem;
+    min-width: 22%;
+    &:not(:last-of-type){
+      margin-right: 4%;
+    }
   }
 
   .van-radio__icon {
+    width: 100%;
     -webkit-box-flex: 0;
     -webkit-flex: none;
     flex: none;
@@ -15,24 +21,26 @@
     font-size: 14px;
     line-height: initial;
     cursor: pointer;
+    text-align: center;
   }
 }
 .infoRadio {
   padding: 10px;
-  background-color: #ddd;
+  background-color:  rgba(216, 217, 219, 0.45);
   margin-right: 10px;
   border-radius: 4px;
+  width: 100%;
 }
 
 .match-box {
-  background-color: #ddd;
+  //background-color: #ddd;
   min-height: 100vh;
   .headerInfo-nav .van-button{
     width: 100%;
-    background-color: blue;
+    background-color: $themeColor;
     border: none;
     border-radius: 0;
-    color: #ddd;
+    color: #fff;
     opacity: 1;
   }
 
@@ -43,6 +51,7 @@
 
   .activeInfoNav {
     color: #ffa300!important;
+    background-color: #fff!important;
   }
 
   .activeTabBasic {
@@ -56,6 +65,92 @@
   }
 }
 
+.guide-box{
+  padding-top: 1rem;
+  position: relative;
+  .guide-topBg {
+    width: 100%;
+    //margin-top: -100px;
+    height: 2.8rem;
+    background: #8705f0;
+    //background: linear-gradient(to bottom right, #4dbef2, #4dbef2);
+    background: $themeColor;
+    border-radius: 100% / 50%;
+    position: absolute;
+    top: -1rem;
+  }
+
+  .guide-content {
+    width: 92%;
+    height: 2.6rem;
+    background-color: #fff;
+    border-radius: 20px;
+    margin: -1rem auto 0;
+    position: relative;
+    box-shadow: -1px 2px 8px 0 rgba(12, 22, 36, .1);
+  }
+
+  .guide-logo {
+    width: .8rem;
+    height: .8rem;
+    border-radius: 50%;
+    margin: 0 auto;
+    display: block;
+    //border: solid 1px red;
+    position: absolute;
+    top: -.4rem;
+    left: calc(50% - .4rem);
+  }
+
+  .guide-nav {
+    /*display: flex;*/
+    /*justify-content: space-between;*/
+    width: 60%;
+    margin: .6rem auto .3rem;
+    padding-top: 0.6rem;
+    /*border: solid;*/
+    span {
+      text-align: center;
+      width: 50%;
+      margin-top: .1rem;
+      display: inline-block;
+    }
+  }
+
+  .btnGoMatch {
+    width: .8rem;
+    height: .8rem;
+    border-radius: 50%;
+    margin: 0 auto;
+    display: block;
+    background-color: $themeColor;
+    color: #fff;
+  }
+
+  .guide-lately {
+    //width: 92%;
+    margin: .1rem auto;
+    background-color: #fff;
+    border-right: 6px;
+    text-align: center;
+    padding: 6px 0;
+    border-radius: 4px;
+  }
+  .item-guide{
+    padding: 6px;
+    border-radius: 4px;
+  }
+
+  .matchRes-ul{
+    li{
+      background-color: #fff;
+      padding: 6px;
+      border-radius: 4px;
+      margin-bottom: .1rem;
+    }
+  }
+}
+
 .basic-nav{
   display: flex;
   justify-content: center;
@@ -65,6 +160,7 @@
     border: solid 2px #ddd;
     border-radius: 50%;
     padding: 0;
+    margin-bottom: 10px;
     &:not(:last-child){
       margin-right: .2rem;
     }
@@ -83,8 +179,17 @@
   .info-title{
     margin-bottom: .1rem;
   }
-}
 
+}
+.inp-info{
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: solid 1px rgba(216, 217, 219, 0.45);
+  margin-bottom: 6px;
+  .van-cell{
+    padding: 0;
+  }
+}
 .info-age{
   align-items: center;
   padding-bottom: 10px;
@@ -92,7 +197,7 @@
 .match-age{
   width: .6rem;
   color: #ffa300;
-  background-color: #ddd;
+  background-color: rgba(216, 217, 219, 0.45);
   margin-right: .4rem;
   text-align: center;
   padding: 4px 0;

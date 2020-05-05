@@ -29,10 +29,10 @@ export const getCondiProductList   = params => post('productCondi/getProductList
 
 
 // 获取历史匹配列表接口：http://xkgfjp.natappfree.cc/productCondi/getHistoryList?staffNo=11&staffName=姚明
-export const getHistoryList   = params => post('productCondi/getHistoryList', params);         /* 历史匹配列表*/
+export const getHistoryList   = params => get('productCondi/getHistoryList', params);         /* 历史匹配列表 */
 
 // 获取历史匹配产品列表接口：http://xkgfjp.natappfree.cc/productCondi/getHistoryProductList?historyId=55
-export const getHistoryProductList   = params => post('productCondi/getHistoryProductList', params);         /* 历史匹配产品列表*/
+export const getHistoryProductList   = params => get('productCondi/getHistoryProductList', params);         /* 历史匹配产品 详情*/
 
 // 获取信用卡信息列表接口
 export const getCreditCard   = params => post('creditCard/getAll', params);
