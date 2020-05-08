@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, viewport-fit=cover"/>
+
+    <!-- 开启 safe-area-inset-bottom 属性 -->
+    <van-number-keyboard safe-area-inset-bottom />
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vant@2.6/lib/index.css"/>
+    <!-- 引入 Vue 和 Vant 的 JS 文件 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vant@2.6/lib/vant.min.js"></script>
+    <style>
+        *{
+            padding:0;
+            margin: 0;
+            font-size: 14px;
+        }
+        #app{
+            width: 100%;
+            height: 100vh;
+            background-color: #ddd;
+
+        }
+        .flex-between{
+            display: flex;
+            justify-content: space-between;
+        }
+        .info-item{
+            width: 94%;
+            margin: 0px auto 0;
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 10px 10px 0;
+            box-sizing: border-box;
+        }
+        .info-item:last-child{
+             margin-bottom: 10px;
+         }
+        .info-item .info-title{
+            margin-bottom: .1rem;
+        }
+        .info-item .flex-between{
+            margin-top: 8px;
+            align-items: center;
+        }
+        .info-item h4{
+            background-color: #f2f3f5;
+            width: 50%;
+            padding: 4px;
+            border-radius:6px ;
+        }
+        .info-item .info-subTitle{
+            background-color: #f2f3f5;
+        }
+        .info-stepper button{
+            /*background: none;*/
+            /*border:solid 1px red;*/
+        }
+        .info-stepper input{
+            /*background: none;*/
+        }
+
+        /**/
+    </style>
+
+</head>
+<body>
+
+<div id="app">
+    <ul>
+        <li class="info-item">
+            <h4 class="info-subTitle">近一年逾期次数</h4>
+            <div class="flex-between">
+                <h4 class="label-title">第一个单选 {{userChecked.ynn_yqygycs}}</h4>
+                <div class="info-stepper">
+                    <van-stepper v-model="userChecked.ynn_yqygycs" step="1" min="0" disable-input />
+                </div>
+            </div>
+            <div class="flex-between">
+                <h4 class="info-subTitle">第一个单选 {{userChecked.ynn_yqlgycs}}</h4>
+                <div class="info-stepper">
+                    <van-stepper v-model="userChecked.ynn_yqlgycs" step="1" min="0" disable-input />
+                </div>
+            </div>
+            <div class="flex-between">
+                <h4 class="info-subTitle">第一个单选 {{userChecked.ynn_yqsgycs}}</h4>
+                <div class="info-stepper">
+                    <van-stepper v-model="userChecked.ynn_yqsgycs" step="1" min="0" disable-input />
+                </div>
+            </div>
+            <div class="flex-between">
+                <h4 class="info-subTitle">第一个单选 {{userChecked.ynn_yqsigycs}}</h4>
+                <div class="info-stepper">
+                    <van-stepper v-model="userChecked.ynn_yqsigycs" step="1" min="0" disable-input />
+                </div>
+            </div>
+        </li>
+    </ul>
+
+</div>
+
+<script>
+    // 在 #app 标签下渲染一个按钮组件
+    new Vue({
+        el: '#app',
+
+        data(){
+            return{
+                data:'dsd',
+                /*用户选中*/
+                userChecked: {
+                    zonge:'',         //总额
+                    sfyssqydd:'',         //是否有上市企业订单
+                    sfgxjsqy:'',         //是否高新技术企业
+                    age: 18,          // 1、年龄
+                    hyzk: -1,         // 3、婚姻状况
+                    hj: -1,           // 4、户籍
+                    dwxz: -1,         // 5、单位性质
+                    gzffxs: -1,       // 6、工资发放形式
+                    pjgz: -1,         // 7、平均工资
+                    bdwgzsc: -1,      // 8、本单位工作时长
+                    sbjs: -1,         // 9、社保基数
+                    sb_jnsc: -1,      // 10、社保缴纳时长
+                    sb_xdwjnsc: -1,   // 11、社保现单位缴纳时长
+                    gjjjs: -1,        // 12、公积金基数
+                    gjj_jnsc: -1,     // 13、公积金缴纳时长
+                    gjj_xdwjnsc: -1,  // 14、公积金现单位缴纳时长
+                    yyzznx: -1,       // 15、营业执照年限
+                    dwsfkc: -1,       // 16、单位是否考察
+                    dgls: -1,         // 17、对公流水
+                    gskpje: -1,       // 18、公司开票金额
+                    gsnsje: -1,       // 19、公司纳税金额
+                    fclx: -1,         // 20、房产类型
+                    ajz: -1,          // 21、按揭中（月供时间）
+                    ajjq: -1,         // 22、按揭结清（结清时间）
+                    qkf: -1,          // 23、全款房（过户时间）
+                    fl: -1,           // 24、房龄
+                    ajc: -1,          // 25、按揭车（按揭时间）
+                    qkc: -1,          // 26、全款车（按揭结清或过户时间）
+                    clsyc: -1,        // 27、车辆所有权
+                    clxz: -1,         // 28、车辆性质
+                    clczsj: -1,       // 29、车辆持证时间
+                    clgsd: -1,        // 30、车辆归属地
+                    cl: -1,           // 31、车龄
+                    jqxsyyxq: -1,     // 32、交强险剩余有效期
+                    xsgls: -1,        // 33、行驶公里数
+                    syxsyyxq: -1,     // 34、商业险剩余有效期
+                    bxlx: -1,         // 35、保险类型
+                    bxjnfs: -1,       // 36、保险缴纳方式
+                    bxjfsj: -1,       // 37、保险缴费时间
+                    ygyncxcs: -1,     // 38、一个月内查询次数
+                    lgyncxcs: -1,     // 39、两个月内查询次数
+                    sgyncxcs: -1,     // 40、三个月内查询次数
+                    liugyncxcs: -1,   // 41、六个月内查询次数
+                    segyncxcs: -1,    // 42、十二个月内查询次数
+                    dqxebs: -1,       // 43、当前小额笔数
+                    dqxfjrbs: -1,     // 44、当前消费金融笔数
+                    sfczyc: -1,       // 45、贷款/信用卡是否存在止付；呆账；关注等异常
+                    dqyqed: -1,       // 46、当前逾期额度
+                    bnn_wyq: -1,      // 47、近半年内有无逾期
+                    bnn_yqygycs: -1,  // 48、近半年内逾期一个月次数
+                    bnn_yqlgycs: -1,  // 49、近半年内逾期两个月次数
+                    bnn_yqsgycs: -1,  // 50、近半年内逾期三个月次数
+                    bnn_yqsigycs: -1, // 51、近半年内逾期四个月次数
+                    ynn_wyq: -1,      // 52、近一年内有无逾期
+                    ynn_yqygycs: -1,  // 53、近一年内逾期一个月次数
+                    ynn_yqlgycs: -1,  // 54、近一年内逾期二个月次数
+                    ynn_yqsgycs: -1,  // 55、近一年内逾期三个月次数
+                    ynn_yqsigycs: -1, // 56、近一年内逾期四个月次数
+                    lnn_wyq: -1,      // 57、近两年内有无逾期
+                    lnn_yqygycs: -1,  // 58、近两年内逾期一个月次数
+                    lnn_yqlgycs: -1,  // 59、近两年内逾期二个月次数
+                    lnn_yqsgycs: -1,  // 60、近两年内逾期三个月次数
+                    lnn_yqsigycs: -1, // 61、近两年内逾期四个月次数
+                    sfsygwld: -1,     // 62、是否使用过微粒贷
+                    loan_type: -1,      //63、信用三大分裂
+                },
+
+            }
+        }
+    });
+
+    // 调用函数组件，弹出一个 Toast
+    vant.Toast('提示');
+
+    // 通过 CDN 引入时不会自动注册 Lazyload 组件
+    // 可以通过下面的方式手动注册
+    Vue.use(vant.Lazyload);
+</script>
+
+</body>
+</html>
