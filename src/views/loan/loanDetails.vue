@@ -75,11 +75,13 @@
                           active-color="#ffa300">
                 </van-slider>
             </div>
+
             <div class="dHeader-good">
                     <span v-for="(good,index) in detailsArr.labelList" :key="index">
                         {{good.name}}
                     </span>
             </div>
+
         </div>
 
         <!--办理条件-->
@@ -133,6 +135,16 @@
             </div>
         </div>
 
+        <!--联系我们-->
+        <div>
+            <van-button type="default">默认按钮</van-button>
+            <van-button type="primary">主要按钮</van-button>
+        </div>
+
+        <div>
+            <van-button type="default"><a :href="'tel:' + 110">联系商家</a></van-button>
+            <van-button type="primary">主要按钮</van-button>
+        </div>
 
     </div>
 </template>

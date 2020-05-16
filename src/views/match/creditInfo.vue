@@ -57,26 +57,26 @@
             <li class="info-item" v-show="userChecked.bnn_wyq == 1">
                 <h4 class="info-title">近半年逾期次数</h4>
                 <div class="flex-between">
-                    <h4>近半年内逾期1个月次数 {{userChecked.bnn_yqygycs}}</h4>
-                    <div>
+                    <h4 class="info-subTitle">近半年内逾期1个月次数 {{userChecked.bnn_yqygycs}}</h4>
+                    <div class="info-stepper">
                         <van-stepper v-model="userChecked.bnn_yqygycs" step="1" min="0" disable-input />
                     </div>
                 </div>
                 <div class="flex-between">
-                    <h4>近半年内逾期2个月次数 {{userChecked.bnn_yqlgycs}}</h4>
-                    <div>
+                    <h4 class="info-subTitle">近半年内逾期2个月次数 {{userChecked.bnn_yqlgycs}}</h4>
+                    <div class="info-subTitle">
                         <van-stepper v-model="userChecked.bnn_yqlgycs" step="1" min="0" disable-input />
                     </div>
                 </div>
                 <div class="flex-between">
-                    <h4>近半年内逾期3个月次数 {{userChecked.bnn_yqsgycs}}</h4>
-                    <div>
+                    <h4 class="info-subTitle">近半年内逾期3个月次数 {{userChecked.bnn_yqsgycs}}</h4>
+                    <div class="info-subTitle">
                         <van-stepper v-model="userChecked.bnn_yqsgycs" step="1" min="0" disable-input />
                     </div>
                 </div>
                 <div class="flex-between">
-                    <h4>近半年内逾期4个月次数 {{userChecked.bnn_yqsigycs}}</h4>
-                    <div>
+                    <h4 class="info-subTitle">近半年内逾期4个月次数 {{userChecked.bnn_yqsigycs}}</h4>
+                    <div class="info-subTitle">
                         <van-stepper v-model="userChecked.bnn_yqsigycs" step="1" min="0" disable-input />
                     </div>
                 </div>
@@ -96,26 +96,26 @@
             <li class="info-item" v-show="userChecked.ynn_wyq == 1">
                 <h4 class="info-title">近一年逾期次数</h4>
                 <div class="flex-between">
-                    <h4>近一年内逾期1个月次数 {{userChecked.ynn_yqygycs}}</h4>
-                    <div>
+                    <h4  class="info-subTitle">近一年内逾期1个月次数 {{userChecked.ynn_yqygycs}}</h4>
+                    <div class="info-stepper">
                         <van-stepper v-model="userChecked.ynn_yqygycs" step="1" min="0" disable-input />
                     </div>
                 </div>
                 <div class="flex-between">
-                    <h4>近一年内逾期2个月次数 {{userChecked.ynn_yqlgycs}}</h4>
-                    <div>
+                    <h4  class="info-subTitle">近一年内逾期2个月次数 {{userChecked.ynn_yqlgycs}}</h4>
+                    <div class="info-stepper">
                         <van-stepper v-model="userChecked.ynn_yqlgycs" step="1" min="0" disable-input />
                     </div>
                 </div>
                 <div class="flex-between">
-                    <h4>近一年内逾期3个月次数 {{userChecked.ynn_yqsgycs}}</h4>
-                    <div>
+                    <h4  class="info-subTitle">近一年内逾期3个月次数 {{userChecked.ynn_yqsgycs}}</h4>
+                    <div class="info-stepper">
                         <van-stepper v-model="userChecked.ynn_yqsgycs" step="1" min="0" disable-input />
                     </div>
                 </div>
                 <div class="flex-between">
-                    <h4>近一年内逾期4个月次数 {{userChecked.ynn_yqsigycs}}</h4>
-                    <div>
+                    <h4  class="info-subTitle">近一年内逾期4个月次数 {{userChecked.ynn_yqsigycs}}</h4>
+                    <div class="info-stepper">
                         <van-stepper v-model="userChecked.ynn_yqsigycs" step="1" min="0" disable-input />
                     </div>
                 </div>
@@ -135,26 +135,26 @@
             <li class="info-item" v-show="userChecked.lnn_wyq == 1">
                 <h4 class="info-title">近两年逾期次数</h4>
                 <div class="flex-between">
-                    <h4>近两年内逾期1个月次数 {{userChecked.lnn_yqygycs}}</h4>
-                    <div>
+                    <h4  class="info-subTitle">近两年内逾期1个月次数 {{userChecked.lnn_yqygycs}}</h4>
+                    <div class="info-stepper">
                         <van-stepper v-model="userChecked.lnn_yqygycs" step="1" min="0" disable-input />
                     </div>
                 </div>
                 <div class="flex-between">
-                    <h4>近两年内逾期2个月次数 {{userChecked.lnn_yqlgycs}}</h4>
-                    <div>
+                    <h4  class="info-subTitle">近两年内逾期2个月次数 {{userChecked.lnn_yqlgycs}}</h4>
+                    <div class="info-stepper">
                         <van-stepper v-model="userChecked.lnn_yqlgycs" step="1" min="0" disable-input />
                     </div>
                 </div>
                 <div class="flex-between">
-                    <h4>近两年内逾期3个月次数 {{userChecked.lnn_yqsgycs}}</h4>
-                    <div>
+                    <h4  class="info-subTitle">近两年内逾期3个月次数 {{userChecked.lnn_yqsgycs}}</h4>
+                    <div class="info-stepper">
                         <van-stepper v-model="userChecked.lnn_yqsgycs" step="1" min="0" disable-input />
                     </div>
                 </div>
                 <div class="flex-between">
-                    <h4>近两年内逾期4个月次数 {{userChecked.lnn_yqsigycs}}</h4>
-                    <div>
+                    <h4  class="info-subTitle">近两年内逾期4个月次数 {{userChecked.lnn_yqsigycs}}</h4>
+                    <div class="info-stepper">
                         <van-stepper v-model="userChecked.lnn_yqsigycs" step="1" min="0" disable-input />
                     </div>
                 </div>
@@ -164,32 +164,32 @@
             <li class="info-item">
                 <h4 class="info-title">征信查询次数</h4>
                 <div class="flex-between">
-                    <h4>一个月内查询次数 {{userChecked.lgyncxcs}}</h4>
-                    <div>
+                    <h4  class="info-subTitle">一个月内查询次数 {{userChecked.lgyncxcs}}</h4>
+                    <div class="info-stepper">
                         <van-stepper v-model="userChecked.lgyncxcs" step="1" min="0" disable-input />
                     </div>
                 </div>
                 <div class="flex-between">
-                    <h4>两个月内查询次数 {{userChecked.lgyncxcs}}</h4>
-                    <div>
+                    <h4 class="info-subTitle">两个月内查询次数 {{userChecked.lgyncxcs}}</h4>
+                    <div class="info-stepper">
                         <van-stepper v-model="userChecked.lgyncxcs" step="1" min="0" disable-input />
                     </div>
                 </div>
                 <div class="flex-between">
-                    <h4>三个月内查询次数 {{userChecked.sgyncxcs}}</h4>
-                    <div>
+                    <h4 class="info-subTitle">三个月内查询次数 {{userChecked.sgyncxcs}}</h4>
+                    <div class="info-stepper">
                         <van-stepper v-model="userChecked.sgyncxcs" step="1" min="0" disable-input />
                     </div>
                 </div>
                 <div class="flex-between">
-                    <h4>六个月内查询次数 {{userChecked.liugyncxcs}}</h4>
-                    <div>
+                    <h4 class="info-subTitle">六个月内查询次数 {{userChecked.liugyncxcs}}</h4>
+                    <div class="info-stepper">
                         <van-stepper v-model="userChecked.liugyncxcs" step="1" min="0" disable-input />
                     </div>
                 </div>
                 <div class="flex-between">
-                    <h4>十二个月内查询次数 {{userChecked.segyncxcs}}</h4>
-                    <div>
+                    <h4 class="info-subTitle">十二个月内查询次数 {{userChecked.segyncxcs}}</h4>
+                    <div class="info-stepper">
                         <van-stepper v-model="userChecked.segyncxcs" step="1" min="0" disable-input />
                     </div>
                 </div>

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>vant</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, viewport-fit=cover"/>
 
     <!-- 开启 safe-area-inset-bottom 属性 -->
@@ -30,7 +30,7 @@
         }
         .info-item{
             width: 94%;
-            margin: 0px auto 0;
+            margin: 0 auto;
             background-color: #fff;
             border-radius: 10px;
             padding: 10px 10px 0;
@@ -70,7 +70,7 @@
 <body>
 
 <div id="app">
-    <ul>
+    <ul style="display: none;">
         <li class="info-item">
             <h4 class="info-subTitle">近一年逾期次数</h4>
             <div class="flex-between">
@@ -99,6 +99,20 @@
             </div>
         </li>
     </ul>
+
+
+    <van-cell is-link @click="showPopup">展示弹出层</van-cell>
+    <van-popup v-model="show"  position="bottom">
+        <van-picker
+                title="标题"
+                show-toolbar
+                :columns="columns2"
+                value-key="name"
+                @confirm="onConfirm"
+                @cancel="onCancel"
+                @change="onChange"
+        />
+    </van-popup>
 
 </div>
 
@@ -179,16 +193,40 @@
                     loan_type: -1,      //63、信用三大分裂
                 },
 
+                columns:['aa', 'bb', 'cc', 'dd', 'ee'],
+                columns2: [
+                    {name:'杭州',id:'1'},
+                    {name:'湖州',id:'2'},
+                ],
+                show: false,
+
             }
-        }
+        },
+        methods:{
+            showPopup() {
+                this.show = true;
+            },
+            onConfirm(value, index) {
+                vant.Toast(`当前值：${value}, 当前索引：${index}`);
+            },
+            onChange(picker, value, index) {
+                console.log(picker);
+                console.log(value);
+                vant.Toast(`当前值：${value}, 当前索引：${index}`);
+            },
+            onCancel() {
+                // vant.Toast('取消');
+                this.show = false;
+            },
+        },
     });
 
     // 调用函数组件，弹出一个 Toast
-    vant.Toast('提示');
+    // vant.Toast('提示');
 
     // 通过 CDN 引入时不会自动注册 Lazyload 组件
     // 可以通过下面的方式手动注册
-    Vue.use(vant.Lazyload);
+    // Vue.use(vant.Lazyload);
 </script>
 
 </body>

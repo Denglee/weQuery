@@ -179,7 +179,29 @@
   .info-title{
     margin-bottom: .1rem;
   }
-
+}
+.info-item:last-child{
+  margin-bottom: 10px;
+}
+.info-item .flex-between{
+  margin-top: 8px;
+  align-items: center;
+}
+.info-item h4{
+  background-color: #f2f3f5;
+  width: 50%;
+  padding: 4px;
+  border-radius:6px ;
+}
+.info-item .info-subTitle{
+  background-color: #f2f3f5;
+}
+.info-stepper button{
+  /*background: none;*/
+  /*border:solid 1px red;*/
+}
+.info-stepper input{
+  /*background: none;*/
 }
 .inp-info{
   padding: 6px 10px;
