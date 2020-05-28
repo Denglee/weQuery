@@ -46,13 +46,14 @@
 
 <!--        <matchSon :userChecked="userChecked" @faMethods="faMethods"></matchSon>-->
 
+        <matchResult></matchResult>
     </div>
 </template>
 
 <script>
 
     import {userInfo} from '@/assets/js/userInfo' /*引用 用户信息 */
-    // import {getCondiProductList,getHistoryList} from '@/assets/js/api' /*引用 接口*/
+    import {getCondiProductList,getHistoryList} from '@/assets/js/api' /*引用 接口*/
     import {getAllType } from '@/assets/js/api' /*引用 接口*/
 
 
@@ -60,6 +61,8 @@
     import basicInfo from '@/views/match/basicInfo' //基本信息
     import assetsInfo from '@/views/match/assetsInfo' //资产信息
     import creditInfo from '@/views/match/creditInfo' //征信信息
+
+    import matchResult from '@/views/match/matchResult' //征信信息
     // import matchSon from '@/views/match/matchSon'
 
     export default {
@@ -69,7 +72,8 @@
                 matchResArr:[],  //匹配历史记录 数组
                 showState: {    //显影状态
                     guideShow: false,   //匹配进入 引导页
-                    matchShow: true,  //匹配筛选页
+                    matchShow: false,  //匹配筛选页
+                    matchResult: true,  //匹配筛选页
                 },
                 minNum: "1",
                 loadingShow: false,
@@ -207,7 +211,7 @@
             },
 
             /*获取 数据 接口*/
-            getCondiProductList() {
+            getCondiProductList2() {
                 getCondiProductList(this.userChecked).then(res => {
                     console.log(res.data);
                 }).catch(res => {
@@ -278,7 +282,7 @@
                 if (type == 'submit') {
                     console.log(this.userChecked);
 
-                    this.getCondiProductList();
+                    this.getCondiProductList2();
                 }
 
             },
@@ -359,6 +363,8 @@
             assetsInfo,
             creditInfo,
             basicInfo,
+
+            matchResult,
             // matchSon,
         }
     }
