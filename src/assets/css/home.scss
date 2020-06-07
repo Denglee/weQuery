@@ -144,7 +144,9 @@ $navHei:.14rem;
     font-size: .12rem;
   }
   .fire-month{
-    background-color: #f0f8ff;
+    //background-color: #f0f8ff;
+    background-color: rgb(252, 247, 232);
+    color: $themeColor;
     border-radius: 4px;
     padding: 4px;
     width: 90%;
@@ -248,6 +250,7 @@ $navHei:.14rem;
   width: 100%;
   margin: 0 auto;
   padding:4% ;
+  //text-align: right;
   .dHeader-good2{
     span{
       width:auto;
@@ -256,6 +259,10 @@ $navHei:.14rem;
         margin-right: 2%;
       }
     }
+  }
+
+  .detail-item{
+    margin-top: 20px;
   }
 }
 
@@ -377,3 +384,51 @@ $loansServiceTotal:#4CCBEB;
      }
    }
  }
+
+ .btnFixed-tel{
+   position: fixed;
+   z-index: 11111;
+   width: 100%;
+   left: 0;
+   bottom: 0;
+   .van-button{
+     width: 50%;
+   }
+   .btnCode{
+     background-color: $loansTotal;
+     border:solid 1px $loansTotal;
+   }
+
+ }
+.btn-manager{
+  position: fixed;
+  z-index: 11111;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  align-items: center;
+  background-color: #fff;
+  .icon-manger{
+    font-size: 30px;
+    vertical-align: middle;
+    margin-top: -1px;
+    margin-right: 4px;
+    color: $loansTotal;
+  }
+  .btnTel{
+    height: 30px;
+    line-height: 30px;
+    padding:0 10px;
+    background-color: $loansTotal;
+    border:solid 1px $loansTotal;
+    i{
+      font-size: 16px;
+      vertical-align: middle;
+      margin-top: -1px;
+      margin-right: 4px;
+    }
+  }
+}

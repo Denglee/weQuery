@@ -71,8 +71,10 @@
                 indexNav: [
                     {id: '1', url: '/loanList', name: '银行产品', icon: '1', sunTitle: '近期最新银行政策', sunTitle2: '让您抢先一步'},
                     {id: '2', url: '/loanList', name: '在线急融', icon: '2', sunTitle: '汇集先上银行产品', sunTitle2: '线上申请'},
-                    {id: '3', url: '/index', name: '办卡信用', icon: '3', sunTitle: '高额度当天下午', sunTitle2: ''},
-                    {id: '4', url: '/aboutUs', name: '服务中心', icon: '4', sunTitle: '24小时客服在线', sunTitle2: '急速答疑解惑'},
+                    {id: '3', url: '/cardItem', name: '办卡信用', icon: '3', sunTitle: '高额度当天下午', sunTitle2: ''},
+                    // {id: '3', url: '/index', name: '办卡信用', icon: '3', sunTitle: '高额度当天下午', sunTitle2: ''},
+                    // {id: '4', url: '/aboutUs', name: '服务中心', icon: '4', sunTitle: '24小时客服在线', sunTitle2: '急速答疑解惑'},
+                    {id: '4', url: '/index', name: '服务中心', icon: '4', sunTitle: '24小时客服在线', sunTitle2: '急速答疑解惑'},
                 ],
             }
         },

@@ -10,17 +10,13 @@
                 </van-row>
                 <van-row gutter="12" v-else>
                     <van-col span="8" v-for="(item,index) in loanArr" :ket="index">
-                        <div  class="fire-list" @click="goLoanDetails(item)">
+                        <div  class="fire-list" @click="goLoanDetails(item)"
+                              v-if="item.label2List.length >0 "
+                        >
                             <van-image :src="item.ioc" alt="" class="fire-img"></van-image>
-
-                            <div class="fire-title">{{item.name}}</div>
-
-                            <div v-for="(item2,index2) in item.labelList" :key="index2">
-                                <div class="fire-month fire-subtitle">{{item2.name}}</div>
-                            </div>
-
-                            <div class="fire-month">{{item.name}}</div>
-                            <!--<div class="fire-month fire-quoto">{{item.maxQuota}}</div>-->
+                            <div class="fire-title">{{item.name || ''}}</div>
+                            <div class="fire-month fire-subtitle">{{item.label2List[0].name || ''}}</div><div class="fire-month">{{item.basicInfoList[0].name || ''}}</div>
+                            <div class="fire-month fire-quoto">额度最高{{item.quotaList[0].maxQuota || ''}}万</div>
 
                             <van-button type="default" size="mini" class="btnLook-fire">查看</van-button>
                         </div>
@@ -78,7 +74,7 @@
                 getByProdType({
                     prodType:this.prodArr.prodType,
                 }).then(res =>{
-                    console.log(res.data);
+                    // console.log(res.data[0]);
                     if(res.status == 'success'){
                         this.loanArr = res.data;
                     }else{
@@ -106,11 +102,11 @@
             /*去贷款详情页*/
             goLoanDetails(item){
                 let prodId =item.basicInfoList[0].productId;
-                console.log(prodId);
-                console.log(item);
                 this.prodArr.prodId =prodId
 
                 console.log(this.prodArr);
+
+                // return false
 
                 this.$router.push({
                     name:'loanDetails',

@@ -164,9 +164,9 @@
             <li class="info-item">
                 <h4 class="info-title">征信查询次数</h4>
                 <div class="flex-between">
-                    <h4  class="info-subTitle">一个月内查询次数 {{userChecked.lgyncxcs}}</h4>
+                    <h4  class="info-subTitle">一个月内查询次数 {{userChecked.ygyncxcs}}</h4>
                     <div class="info-stepper">
-                        <van-stepper v-model="userChecked.lgyncxcs" step="1" min="0" disable-input />
+                        <van-stepper v-model="userChecked.ygyncxcs" step="1" min="0" disable-input />
                     </div>
                 </div>
                 <div class="flex-between">

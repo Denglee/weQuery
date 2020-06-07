@@ -136,15 +136,25 @@
         </div>
 
         <!--联系我们-->
-        <div>
-            <van-button type="default">默认按钮</van-button>
-            <van-button type="primary">主要按钮</van-button>
-        </div>
+        <!--<div style="padding-top: 30px">
+            <div class="btnFixed-tel" v-if="prodArr.prodType == 5">
+                <van-button type="default">电话咨询</van-button>
+                <van-button type="primary" class="btnCode">立即申请</van-button>
+            </div>
 
-        <div>
+            <div v-else class="btn-manager">
+                <div cla><van-icon name="https://b.yzcdn.cn/vant/icon-demo-1126.png" class="icon-manger"/>客户经理</div>
+                <div>
+                    <van-button type="primary" class="btnTel"><van-icon name="phone-o" />电话</van-button>
+                </div>
+            </div>
+        </div>-->
+
+
+     <!--   <div>
             <van-button type="default"><a :href="'tel:' + 110">联系商家</a></van-button>
             <van-button type="primary">主要按钮</van-button>
-        </div>
+        </div>-->
 
     </div>
 </template>
@@ -178,8 +188,8 @@
 
                 /*分类*/
                 prodArr:{
-                    prodType:5,   //分类
-                    prodId:5,     //id
+                    prodType:'' || 1,   //分类
+                    prodId:'' || 1,     //id
                 },
 
                 /*图表样式*/
@@ -230,9 +240,13 @@
                     console.log(res.data);
                     if(res.status == 'success'){
                         this.detailsArr = res.data;
+                        let totalNum = res.data.quotaList[0].defaultQuota;
+                        console.log(totalNum);
                             console.log(this.detailsArr.qsList[0].nameValue);
                             this.qsArr.qsNum = this.detailsArr.qsList[0].nameValue;
-                            this.chartsLoans.loansTotal = 20;
+                            this.chartsLoans.loansTotal = totalNum;
+
+                        this.getChartVal();
                     }else{
                         this.loanArr= '';
                     }
@@ -242,29 +256,39 @@
             },
 
             /*详情赋值  后续接口正常 要删 并且使用上面的方法*/
-            getProdDetail2(){
-                // this.detailsArr = detailsArr;
-                console.log(this.detailsArr.qsList[0].nameValue);
-                this.qsArr.qsNum = this.detailsArr.qsList[0].nameValue;
-                this.sliderArr.qsNum = this.detailsArr.qsList[0].nameValue;
-                this.sliderArr = this.detailsArr.quotaList[0];
-                this.chartsLoans.loansTotal = this.detailsArr.quotaList[0].defaultQuota;
-            },
+            // getProdDetail2(){
+            //     // this.detailsArr = detailsArr;
+            //     console.log(this.detailsArr.qsList[0].nameValue);
+            //     this.qsArr.qsNum = this.detailsArr.qsList[0].nameValue;
+            //     this.sliderArr.qsNum = this.detailsArr.qsList[0].nameValue;
+            //     this.sliderArr = this.detailsArr.quotaList[0];
+            //     this.chartsLoans.loansTotal = this.detailsArr.quotaList[0].defaultQuota;
+            // },
 
             /*值 计算 并 渲染 图表*/
             getChartVal(){
                 let loansTotal        = Number(this.chartsLoans.loansTotal);     //++ 获取总金额
                 let totalQs           = Number(this.qsArr.qsNum);                       //获取总期数
                 let interestRate      = parseFloat(this.detailsArr.basicInfoList[0].nameValue);  //获取利率
-                console.log(interestRate);
-                let loansMonthTotal   = this.toDecimal2(Number( loansTotal / totalQs ));                 //++ 获取月供 = 总金额/期数
+                // console.log(interestRate);
+                console.log(loansTotal);
+                console.log(totalQs);
+                let loansMonthTotal = 0;
+                if(loansTotal == 0 && totalQs == 0){
+                    loansMonthTotal = 0;
+                } else if(totalQs == 0){
+                    loansMonthTotal = 0;
+                }else{
+                    loansMonthTotal   = this.toDecimal2(Number( loansTotal / totalQs ));     //++ 获取月供 = 总金额/期数
+                }
+
                 let loansRatesTotal   = this.toDecimal2(Number(loansTotal * (interestRate /100) * totalQs));  //++ 获取总利息 = 金额*利率*期数
                 let loansServiceTotal = this.toDecimal2(Number(this.chartsLoans.loansServiceTotal));      //++ 获取 手续费
-                console.log('getChartVal: '+loansTotal);
-                console.log('getChartVal: '+totalQs);
-                console.log('getChartVal: '+interestRate);
-                console.log('getChartVal: '+loansMonthTotal);
-                console.log('getChartVal: '+loansRatesTotal);
+                console.log(loansTotal);
+                console.log(totalQs);
+                console.log(interestRate);
+                console.log(loansMonthTotal);
+                console.log(loansRatesTotal);
                 this.chartsLoans = {
                     loansTotal:loansTotal,  //总金额
                     loansMonthTotal:loansMonthTotal,  //月供  总金额/期数
@@ -325,22 +349,24 @@
             },
         },
         created() {
-            let prodArr = this.$route.params.prodArr;
-            console.log(prodArr);
-            if(prodArr){
-                this.prodArr = prodArr;
+            let prodParms = this.$route.params.prodArr;
+            // console.log(prodParms);
+            // console.log(prodParms.prodType);
+            // console.log(prodParms.prodId);
+            if(prodParms){
+                this.prodArr = {
+                    prodType:prodParms.prodType,   //分类
+                    prodId:prodParms.prodId,     //id
+                };
             }
 
-            console.log( this.prodArr)
+            console.log( this.prodArr);
+            this.getProdDetail();
 
-            // this.getProdDetail();
-
-            console.log(this.detailsArr);
 
             //调用详情赋值 待删除
-            this.getProdDetail2();
+            /*this.getProdDetail2();*/
 
-            this.getChartVal();
             this.setChartData();
         },
     }

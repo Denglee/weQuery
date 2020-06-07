@@ -1,41 +1,35 @@
 <template>
     <div class="loan-main main">
 
-        <van-tabs  v-model="activeTab"  @click="changeTab" animated swipeable type="card" id="loanTabs">
+        <!--<van-tabs  v-model="activeTab"  @click="changeTab" animated swipeable type="card" id="loanTabs">
             <van-tab  v-for="(item,index) in navArr" :key="index" :title="item.name"
                       class="loan-tab">
 
-                <van-row  v-if="loanArr.length == 0">
-                    <van-col>暂无数据</van-col>
-                </van-row>
-                <van-row gutter="12" v-else>
-                    <van-col span="8" v-for="(item,index) in loanArr" :ket="index">
-                        <div  class="fire-list" @click="goLoanDetails">
-                            <van-image :src="item.ioc" alt="" class="fire-img"></van-image>
-
-                            <div class="fire-title">{{item.name}}</div>
-
-                            <div v-for="(item2,index2) in item.labelList" :key="index2">
-                                <div class="fire-month fire-subtitle">{{item2.name}}</div>
-                            </div>
-
-                            <div class="fire-month">{{item.name}}</div>
-                            <!--<div class="fire-month fire-quoto">{{item.maxQuota}}</div>-->
-
-                            <van-button type="default" size="mini" class="btnLook-fire">查看</van-button>
-                        </div>
-                    </van-col>
-                </van-row>
-
             </van-tab>
-        </van-tabs>
+        </van-tabs>-->
+
+        <div  id="loanTabs">
+            <van-row  v-if="loanArr.length == 0">
+                <van-col>暂无数据</van-col>
+            </van-row>
+            <van-row gutter="12" v-else>
+                <van-col span="8" v-for="(item,index) in loanArr" :ket="index">
+                    <div  class="fire-list" @click="goLoanDetails(item)">
+                        <van-image :src="item.ioc" alt="" class="fire-img"></van-image>
+                        <div class="fire-title">{{item.name}}</div>
+                        <div class="fire-month">{{item.label}}</div>
+                        <van-button type="default" size="mini" class="btnLook-fire">申请</van-button>
+                    </div>
+                </van-col>
+        </van-row>
+        </div>
 
     </div>
 </template>
 
 <script>
 
-    import {getAllType , getByProdType} from '@/assets/js/api' /*引用  接口*/
+    import {getAllCard , getByProdType} from '@/assets/js/api' /*引用  接口*/
     export default {
         name: "cardItem",
         data() {
@@ -76,7 +70,7 @@
 
             /*获取 数据 接口*/
             getByProdType(){
-                getByProdType({
+                getAllCard({
                     prodType:this.prodArr.prodType,
                 }).then(res =>{
                     console.log(res.data);
@@ -90,44 +84,22 @@
                 })
             },
 
-            /* 导航 切换 点击*/
-            /*swiperNav(item,index){
-                console.log(item.id);
-                console.log(index);
-                this.loanIndex = index;
-                this.prodArr.prodType = item.id;
-                this.getByProdType();
-            },*/
-
-            /*tab 切换*/
-            changeTab(index,titme){
-                console.log(index);
-                console.log(titme);
-                this.prodArr.prodType = index + 1;
-                this.getByProdType();
-            },
-
-            /*获取屏幕宽度 然后传给swiper*/
-            getClientWidth(){
-                let clientWidth = document.body.clientWidth;
-                let swiperWid = clientWidth /4 + clientWidth / 6;
-                this.swiper.swiperWid = swiperWid;
-            },
 
             /*去贷款详情页*/
-            goLoanDetails(){
-                // let prodType = this.prodArr.prodType;
-                // let prodId = this.prodArr.prodId;
-                // console.log(prodType);
-                this.$router.push({
-                    path:'/loanDetails',
-                    params: {'prodArr':this.prodArr}
-                })
+            goLoanDetails(val){
+
+                let url = 'http://' + val.url;
+                console.log(url);
+                window.location.href = url;
+                // this.$router.push({
+                //     path:'/loanDetails',
+                //     params: {'prodArr':this.prodArr}
+                // })
             },
         },
 
         created() {
-            this.getClientWidth();
+            // this.getClientWidth();
 
             this.getByProdType();  //获取分类
 

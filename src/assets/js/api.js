@@ -37,6 +37,9 @@ export const getHistoryProductList   = params => get('productCondi/getHistoryPro
 // 获取信用卡信息列表接口
 export const getCreditCard   = params => post('creditCard/getAll', params);
 
+
 // 通过条件查询匹配结果接口：
 export const getMatchProductList   = params => post('productCondi/getMatchProductList', params);
 
+// 信用卡
+export const getAllCard   = params => get('creditCard/getAll', params);         /* 所有产品*/

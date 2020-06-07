@@ -3,7 +3,7 @@
         <!--基本信息 通用部分-->
         <ul>
             <li class="info-item" style="padding-bottom: 10px;">
-                <h4 class="info-title">贷款总额总额</h4>
+                <h4 class="info-title">贷款总额</h4>
                 <div class="flex-between inp-info">
                    <van-field
                             v-model="userChecked.zonge"

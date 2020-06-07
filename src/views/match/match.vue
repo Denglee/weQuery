@@ -1,8 +1,8 @@
 <template>
     <div class="match-box">
-        <matchGuide v-show="showState.guideShow" @showMatch="showMatch"></matchGuide>
+        <matchGuide v-if="showState.guideShow" @showMatch="showMatch"></matchGuide>
 
-        <div v-show="showState.matchShow">
+        <div v-if="showState.matchShow">
 
             <!--顶部三大步骤导航-->
             <van-row class="headerInfo-nav">
@@ -44,9 +44,27 @@
 
         </div>
 
+        <van-overlay :show="matchShowRes.matchRightShow" >
+            <div class="wrapper-match" @click.stop>
+                <div class="wrapper-Content">
+                    <div class="wrapper-name">正在生成匹配报告</div>
+                     <van-loading type="spinner" color="#ffa300" size = '60px'/>
+                </div>
+            </div>
+        </van-overlay>
+
+        <van-popup v-model="matchShowRes.matchErrShow"
+                   position="bottom"
+                   class = 'match-errBox'
+                   :style="{ height: '70%' }"
+                   :close-on-click-overlay="false">
+            <div class="match-errTip">没有符合您的匹配结果</div>
+            <van-button type="default" class="btn-matchErr" @click = 'resStartMatch'>重新匹配</van-button>
+        </van-popup>
+
 <!--        <matchSon :userChecked="userChecked" @faMethods="faMethods"></matchSon>-->
 
-        <matchResult></matchResult>
+<!--        <matchResult v-show="showState.matchResult"></matchResult>-->
     </div>
 </template>
 
@@ -62,18 +80,22 @@
     import assetsInfo from '@/views/match/assetsInfo' //资产信息
     import creditInfo from '@/views/match/creditInfo' //征信信息
 
-    import matchResult from '@/views/match/matchResult' //征信信息
+    // import matchResult from '@/views/match/matchResult' //征信信息
     // import matchSon from '@/views/match/matchSon'
 
     export default {
         name: "match",
         data() {
             return {
-                matchResArr:[],  //匹配历史记录 数组
+                matchShowRes:{
+                    matchErrShow:false,  //失败
+                    matchRightShow:false,  //成功
+                },
+                // matchResArr:[],  //匹配历史记录 数组
                 showState: {    //显影状态
-                    guideShow: false,   //匹配进入 引导页
+                    guideShow: true,   //匹配进入 引导页
                     matchShow: false,  //匹配筛选页
-                    matchResult: true,  //匹配筛选页
+                    // matchResult: false,  //匹配结果筛选页
                 },
                 minNum: "1",
                 loadingShow: false,
@@ -195,6 +217,21 @@
             }
         },
         methods: {
+            // 失败后去重新匹配
+            resStartMatch(){
+                // window.location.reload();
+                this.showStatePage = {
+                    basicShow: true,
+                    assetsShow: false,
+                    creditShow: false,
+                };
+                
+                this.matchShowRes.matchErrShow = false;
+                this.showState = {    //显影状态
+                    guideShow: true,   //匹配进入 引导页
+                    matchShow: false,  //匹配筛选页
+                };
+            },
 
             faMethods(val) {
                 console.log(val);
@@ -207,13 +244,31 @@
                 this.showState = {    //显影状态
                     guideShow: false,   //引导页
                     matchShow: true,  //帅选页
+                    matchResult: false,   //引导页
                 }
             },
 
             /*获取 数据 接口*/
             getCondiProductList2() {
+                this.matchShowRes.matchRightShow = true;
                 getCondiProductList(this.userChecked).then(res => {
-                    console.log(res.data);
+                    this.matchShowRes.matchRightShow = false;
+                    if(res.status == 'success'){
+                        console.log(res.data[0]);
+                        console.log(res.data[0].historyId);
+
+                        let historyId = res.data[0].historyId;
+                        this.$router.push({
+                            name: "matchResult",//跳转到新界面，路由变化
+                            params: {
+                                params:historyId, //传递给新界面的数据，包括用户id和用户名
+                            }
+                        });
+                    }
+                    if(res.status == 'fail') {
+                        this.matchShowRes.matchErrShow = true;
+                    }
+
                 }).catch(res => {
                     console.log(res);
                 })
@@ -239,10 +294,11 @@
                 this.userChecked.loan_type = val.id;
             },
 
-            /*顶部 导航  显隐状态*/
+            /*顶部 导航  显隐状态 */
             changeShowState(type) {
                 // basicInfo,assetsInfo,creditInfo
                 if (type == 'basicInfo') {   //基本信息
+
                     this.showStatePage = {
                         basicShow: true,
                         assetsShow: false,
@@ -364,7 +420,7 @@
             creditInfo,
             basicInfo,
 
-            matchResult,
+            // matchResult,
             // matchSon,
         }
     }
