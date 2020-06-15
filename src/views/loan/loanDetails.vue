@@ -4,24 +4,24 @@
         <!--银行信息-->
         <div class="detail-item detail-header">
             <div class="dHeader-img">
-                <span class="dHeader-tip" v-if="detailsArr.id == 1">银行信贷</span>
-                <span class="dHeader-tip" v-else-if="detailsArr.id == 2">机构信贷</span>
-                <span class="dHeader-tip" v-else-if="detailsArr.id == 3">小额贷款</span>
-                <span class="dHeader-tip" v-else-if="detailsArr.id == 4">企业贷款</span>
-                <span class="dHeader-tip" v-else-if="detailsArr.id == 5">抵押贷款</span>
+                <span class="dHeader-tip" v-if="detailsArr.prodType == 1">银行信贷</span>
+                <span class="dHeader-tip" v-else-if="detailsArr.prodType == 2">机构信贷</span>
+                <span class="dHeader-tip" v-else-if="detailsArr.prodType == 3">小额贷款</span>
+                <span class="dHeader-tip" v-else-if="detailsArr.prodType == 4">企业贷款</span>
+                <span class="dHeader-tip" v-else-if="detailsArr.prodType == 5">抵押贷款</span>
                 <span class="dHeader-tip" v-else>线上急融</span>
-                <van-image src="https://dss0.bdstatic.com/-0U0bnSm1A5BphGlnYG/tam-ogel/029a2245173731f649a7fea19c7ff2f7_121_121.jpg"  fit="cover"/>
+                <van-image :src="detailsArr.ioc"  fit="cover"/>
             </div>
             <div class="dHeader-info">
                 <h4 class="dHeader">{{detailsArr.name}}</h4>
                 <div class="dHeader-good">
-                    <span v-for="(good2,index2) in detailsArr.label2List" :key="index2">
+                    <span v-for="(good2,index2) in detailsArr.labelList" :key="index2">
                         {{good2.name}}
                     </span>
                 </div>
                 <div class="dHeader-good2">
-                    <span v-for="(good,index) in detailsArr.labelList" :key="index">
-                        {{good.name}}
+                    <span v-for="(basic,basicIndex) in detailsArr.basicInfoList" :key="basicIndex">
+                        {{basic.name}}{{basic.nameValue}}
                     </span>
                 </div>
             </div>
@@ -68,16 +68,16 @@
             <!--滑块-->
             <div  class="detail-slider">
                 <van-slider v-model="chartsLoans.loansTotal"  @change="changeTotal($event)"
-                          :max="sliderArr.maxQuota"
-                          :min="sliderArr.minQuota"
-                          :step="sliderArr.step"
+                          :max="detailsArr.quotaList[0].maxQuota"
+                          :min="detailsArr.quotaList[0].minQuota"
+                          :step="detailsArr.quotaList[0].step"
                           bar-height="6px"
                           active-color="#ffa300">
                 </van-slider>
             </div>
 
             <div class="dHeader-good">
-                    <span v-for="(good,index) in detailsArr.labelList" :key="index">
+                    <span v-for="(good,index) in detailsArr.label2List" :key="index">
                         {{good.name}}
                     </span>
             </div>
@@ -87,51 +87,51 @@
         <!--办理条件-->
         <div class="detail-item" v-show="detailsArr.bltjList.length > 0">
             <h4 class="Ditem-title">办理条件</h4>
-            <div class="Ditem-info">
-                <b>{{detailsArr.bltjList[0].name}}</b>
-                {{ detailsArr.bltjList[0].nameValue}}
+            <div class="Ditem-info" v-for="(item, index) in detailsArr.bltjList" :key="index">
+                <b>{{item.name}}:</b>
+                {{ item.nameValue}}
             </div>
         </div>
 
         <!--所需资料-->
         <div class="detail-item" v-show="detailsArr.sxzlList.length > 0">
             <h4 class="Ditem-title">所需资料</h4>
-            <div class="Ditem-info">
-                {{detailsArr.sxzlList[0].name}}
+            <div class="Ditem-info"  v-for="(item, index) in detailsArr.sxzlList" :key="index">
+                {{item.name}}
             </div>
         </div>
 
         <!--办理流程-->
         <div class="detail-item" v-show="detailsArr.bllcList.length > 0">
             <h4 class="Ditem-title">办理流程</h4>
-            <div class="Ditem-info">
-                {{detailsArr.bllcList[0].name}}
+            <div class="Ditem-info"  v-for="(item, index) in detailsArr.bllcList" :key="index">
+                {{item.name}}
             </div>
         </div>
 
         <!--其他信息-->
         <div class="detail-item" v-show="detailsArr.ohterInfoList.length > 0">
             <h4 class="Ditem-title">其他信息</h4>
-            <div class="Ditem-info">
-                <b>{{detailsArr.ohterInfoList[0].name}}</b>
-                {{detailsArr.ohterInfoList[0].nameValue}}
+            <div class="Ditem-info"  v-for="(item, index) in detailsArr.ohterInfoList" :key="index">
+                <b>{{item.name}}:</b>
+                {{item.nameValue}}
             </div>
         </div>
 
         <!--征信要求-->
         <div class="detail-item" v-show="detailsArr.zxyqList.length > 0">
             <h4 class="Ditem-title">征信要求</h4>
-            <div class="Ditem-info">
-                <b>{{detailsArr.zxyqList[0].name}}</b>
-                {{detailsArr.zxyqList[0].nameValue}}
+            <div class="Ditem-info"  v-for="(item, index) in detailsArr.zxyqList" :key="index">
+                <b>{{item.name}}:</b>
+                {{item.nameValue}}
             </div>
         </div>
 
         <!--免责声明-->
         <div class="detail-item" v-show="detailsArr.mzsmList.length > 0">
             <h4 class="Ditem-title">免责声明</h4>
-            <div class="Ditem-info">
-                {{detailsArr.mzsmList[0].name}}
+            <div class="Ditem-info"  v-for="(item, index) in detailsArr.mzsmList" :key="index">
+                {{item.name}}
             </div>
         </div>
 
@@ -160,7 +160,8 @@
 </template>
 
 <script>
-    import {getAllType , getByProdType,getProdDetail} from '@/assets/js/api' /*引用 接口*/
+    import {getAllType , getByProdType,getProdDetail} from '@/assets/js/api'
+    import {totalMember_number} from "../../../../insist/src/assets/js/api"; /*引用 接口*/
     export default {
         name: "loanList",
         data() {
@@ -188,8 +189,8 @@
 
                 /*分类*/
                 prodArr:{
-                    prodType:'' || 1,   //分类
-                    prodId:'' || 1,     //id
+                    prodType:'',   //分类
+                    prodId:'',     //id
                 },
 
                 /*图表样式*/
@@ -199,18 +200,9 @@
                 },
 
                 /*详情arr*/
-                // detailsArr:[],
-                detailsArr:this.GLOBAL.LoanBankInfo.data,
+                detailsArr:[],
+                // detailsArr:this.GLOBAL.LoanBankInfo.data,
 
-
-
-                /*滑块*/
-                sliderArr:{
-                    minQuota: 5,
-                    maxQuota: 30,
-                    step: 1,
-                    defaultQuota: 5,
-                },
 
                 /*期数数组*/
                 qsArr:{
@@ -241,38 +233,30 @@
                     if(res.status == 'success'){
                         this.detailsArr = res.data;
                         let totalNum = res.data.quotaList[0].defaultQuota;
-                        console.log(totalNum);
-                            console.log(this.detailsArr.qsList[0].nameValue);
-                            this.qsArr.qsNum = this.detailsArr.qsList[0].nameValue;
-                            this.chartsLoans.loansTotal = totalNum;
+                        this.qsArr.qsNum = this.detailsArr.qsList[0].nameValue;  //获取期数
+                        this.chartsLoans.loansTotal = totalNum;
 
                         this.getChartVal();
                     }else{
-                        this.loanArr= '';
+                        this.detailsArr= '';
                     }
                 }).catch(res =>{
                     console.log(res);
                 })
             },
 
-            /*详情赋值  后续接口正常 要删 并且使用上面的方法*/
-            // getProdDetail2(){
-            //     // this.detailsArr = detailsArr;
-            //     console.log(this.detailsArr.qsList[0].nameValue);
-            //     this.qsArr.qsNum = this.detailsArr.qsList[0].nameValue;
-            //     this.sliderArr.qsNum = this.detailsArr.qsList[0].nameValue;
-            //     this.sliderArr = this.detailsArr.quotaList[0];
-            //     this.chartsLoans.loansTotal = this.detailsArr.quotaList[0].defaultQuota;
-            // },
 
             /*值 计算 并 渲染 图表*/
             getChartVal(){
-                let loansTotal        = Number(this.chartsLoans.loansTotal);     //++ 获取总金额
-                let totalQs           = Number(this.qsArr.qsNum);                       //获取总期数
-                let interestRate      = parseFloat(this.detailsArr.basicInfoList[0].nameValue);  //获取利率
-                // console.log(interestRate);
-                console.log(loansTotal);
-                console.log(totalQs);
+                let loansTotal     = Number(this.chartsLoans.loansTotal);     //++ 获取总金额
+                let totalQs     = Number(this.qsArr.qsNum);                       //获取总期数
+
+                if(totalQs == NaN){
+                    totalQs = 0;
+                    console.log(totalQs())
+                }
+                let interestRate  = parseFloat(this.detailsArr.basicInfoList[0].nameValue);  //获取利率
+
                 let loansMonthTotal = 0;
                 if(loansTotal == 0 && totalQs == 0){
                     loansMonthTotal = 0;
@@ -284,11 +268,11 @@
 
                 let loansRatesTotal   = this.toDecimal2(Number(loansTotal * (interestRate /100) * totalQs));  //++ 获取总利息 = 金额*利率*期数
                 let loansServiceTotal = this.toDecimal2(Number(this.chartsLoans.loansServiceTotal));      //++ 获取 手续费
-                console.log(loansTotal);
-                console.log(totalQs);
-                console.log(interestRate);
-                console.log(loansMonthTotal);
-                console.log(loansRatesTotal);
+                console.log('loansTotal 获取总金额:'+ loansTotal);
+                console.log('totalQs：获取总期数:'+totalQs);
+                console.log('interestRate 获取利率:'+interestRate);
+                console.log('loansMonthTotal 获取月供:'+loansMonthTotal);
+                console.log('loansRatesTotal 获取总利息:'+loansRatesTotal);
                 this.chartsLoans = {
                     loansTotal:loansTotal,  //总金额
                     loansMonthTotal:loansMonthTotal,  //月供  总金额/期数
@@ -349,23 +333,23 @@
             },
         },
         created() {
+
             let prodParms = this.$route.params.prodArr;
-            // console.log(prodParms);
-            // console.log(prodParms.prodType);
-            // console.log(prodParms.prodId);
+            console.log(prodParms);
             if(prodParms){
-                this.prodArr = {
+                let prodArrData = {
                     prodType:prodParms.prodType,   //分类
                     prodId:prodParms.prodId,     //id
                 };
+                this.prodArr = prodArrData;
+                localStorage.setItem('sessionDetail',JSON.stringify(prodArrData));
+            }else{
+                let sessionDetail =JSON.parse(localStorage.getItem('sessionDetail'));
+                this.prodArr = sessionDetail;
             }
 
-            console.log( this.prodArr);
             this.getProdDetail();
 
-
-            //调用详情赋值 待删除
-            /*this.getProdDetail2();*/
 
             this.setChartData();
         },

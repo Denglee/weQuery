@@ -16,11 +16,9 @@
         <div class="main-width">
             <div class="guide-lately">近期前三条历史匹配结果</div>
             <ul class="matchRes-ul">
-               <li v-for="(item,index) in matchResArr" :key="index">
-                   <router-link :to="{name: 'matchResult', params: {'prodArr':item.id }}"  :data="item.id">
-                       {{item.queryTime | minuteFormat}}  |  信用贷款 | 匹配{{item.num}}个产品
-                       <van-icon name="arrow" />
-                   </router-link>
+               <li v-for="(item,index) in matchResArr" :key="index" @click="goMatchRes(item)">
+                   {{item.queryTime | minuteFormat}}  |  信用贷款 | 匹配{{item.num}}个产品
+                   <van-icon name="arrow" />
                </li>
             </ul>
         </div>
@@ -49,6 +47,16 @@
                     console.log(res);
                 })
             },
+            goMatchRes(val){
+                let historyId = val.id;
+                console.log(historyId);
+                this.$router.push({
+                    name: "matchResult",//跳转到新界面，路由变化
+                });
+                localStorage.setItem('historyId',historyId);
+            },
+
+
         },
         created() {
             this.getHisList();

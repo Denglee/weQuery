@@ -1,7 +1,7 @@
 <template>
     <div class="loan-main main">
 
-        <van-tabs  v-model="activeTab"  @click="changeTab" animated swipeable type="card" id="loanTabs">
+        <van-tabs  v-model="activeTab"  @click="changeTab" animated type="card" id="loanTabs">
             <van-tab  v-for="(item,index) in navArr" :key="index" :title="item.name"
             class="loan-tab">
 
@@ -11,10 +11,9 @@
                 <van-row gutter="12" v-else>
                     <van-col span="8" v-for="(item,index) in loanArr" :ket="index">
                         <div  class="fire-list" @click="goLoanDetails(item)"
-                              v-if="item.label2List.length >0 "
-                        >
+                              v-if="item.label2List.length >0 ">
                             <van-image :src="item.ioc" alt="" class="fire-img"></van-image>
-                            <div class="fire-title">{{item.name || ''}}</div>
+                            <div class="fire-title">{{item.name | cutOutStr}}</div>
                             <div class="fire-month fire-subtitle">{{item.label2List[0].name || ''}}</div><div class="fire-month">{{item.basicInfoList[0].name || ''}}</div>
                             <div class="fire-month fire-quoto">额度最高{{item.quotaList[0].maxQuota || ''}}万</div>
 
@@ -89,6 +88,7 @@
             /*tab 切换*/
             changeTab(index){
                 this.prodArr.prodType = index + 1;
+                this.loanArr =[];
                 this.getByProdType();
             },
 

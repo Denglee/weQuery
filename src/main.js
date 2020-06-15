@@ -42,7 +42,13 @@ Vue.prototype.$moment = moment;//赋值使用
 moment.locale('zh-cn');//需要汉化
 
 Vue.filter('minuteFormat', (dataStr, pattern = 'YYYY-MM-DD HH:mm:ss') =>{
-    return moment(dataStr).format(pattern)
+    return moment(dataStr).format(pattern);
+})
+
+Vue.filter('cutOutStr', (name, type='-') =>{
+    let str = name.indexOf(type);
+    let strName = name.substring(str + 1);
+    return strName
 })
 
 

@@ -72,24 +72,25 @@
         <div class="detail-item detail-header" v-if="detailsArr.length == 0">暂无数据</div>
         <div class="detail-item detail-header" v-for="(itemFa,index) in detailsArr" v-else>
             <div class="dHeader-img">
-                <span class="dHeader-tip" v-if="detailsArr.id == 1">银行信贷</span>
-                <span class="dHeader-tip" v-else-if="detailsArr.id == 2">机构信贷</span>
-                <span class="dHeader-tip" v-else-if="detailsArr.id == 3">小额贷款</span>
-                <span class="dHeader-tip" v-else-if="detailsArr.id == 4">企业贷款</span>
-                <span class="dHeader-tip" v-else-if="detailsArr.id == 5">抵押贷款</span>
+                <span class="dHeader-tip" v-if="itemFa.prodType == 1">银行信贷</span>
+                <span class="dHeader-tip" v-else-if="itemFa.prodType == 2">机构信贷</span>
+                <span class="dHeader-tip" v-else-if="itemFa.prodType == 3">小额贷款</span>
+                <span class="dHeader-tip" v-else-if="itemFa.prodType == 4">企业贷款</span>
+                <span class="dHeader-tip" v-else-if="itemFa.prodType == 5">抵押贷款</span>
                 <span class="dHeader-tip" v-else>线上急融</span>
-                <van-image src="https://dss0.bdstatic.com/-0U0bnSm1A5BphGlnYG/tam-ogel/029a2245173731f649a7fea19c7ff2f7_121_121.jpg"  fit="cover"/>
+                <van-image :src="itemFa.ioc"  fit="cover"/>
             </div>
             <div class="dHeader-info" @click="goLoanD(itemFa)">
                 <h4 class="dHeader">{{itemFa.name}}</h4>
                 <div class="dHeader-good">
-                    <span v-for="(good2,index2) in itemFa.label2List" :key="index2">
+                    <span v-for="(good2,index2) in itemFa.labelList" :key="index2">
                         {{good2.name}}
                     </span>
                 </div>
                 <div class="dHeader-good2">
-                    <span v-for="(good,index) in itemFa.labelList" :key="index">
-                        {{good.name}}
+
+                    <span v-for="(basic,basicIndex) in itemFa.basicInfoList" :key="basicIndex">
+                        {{basic.name}}{{basic.nameValue}}
                     </span>
                 </div>
             </div>
@@ -156,7 +157,7 @@
                     loan_time_limit:'',   // 时效
                     loan_mode:'',   // 方式
                     interest:'',   // 利息
-                    history_id:'' || 501,
+                    history_id:'',
                 },
 
                 prodArr:{
@@ -284,11 +285,9 @@
             },
         },
         created() {
-            let resArr  =  this.$route.params.prodArr;
-            console.log(resArr);
-            if(resArr){
-                this.matchResFoam.history_id = resArr;
-            }
+            let resHistory =localStorage.getItem('historyId');
+            console.log(resHistory);
+            this.matchResFoam.history_id = resHistory;
 
             this.getHistoryList();
         },

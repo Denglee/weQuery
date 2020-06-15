@@ -14,7 +14,7 @@ function fnResize() {
         deviceWidth = 320
     }
     document.documentElement.style.fontSize = (deviceWidth / 7.5 * 2) + 'px';
-    // console.log( document.documentElement.style.fontSize);
+    console.log( document.documentElement.style.fontSize);
 }
 
 
@@ -703,6 +703,7 @@ let LoanBankInfo = {
         "mzsmList": [{"id": 1, "productId": 5, "name": "免责声明"}]
     }
 };
+
 
 export default {
     localUrl,

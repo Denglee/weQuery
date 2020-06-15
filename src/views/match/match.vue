@@ -62,9 +62,6 @@
             <van-button type="default" class="btn-matchErr" @click = 'resStartMatch'>重新匹配</van-button>
         </van-popup>
 
-<!--        <matchSon :userChecked="userChecked" @faMethods="faMethods"></matchSon>-->
-
-<!--        <matchResult v-show="showState.matchResult"></matchResult>-->
     </div>
 </template>
 
@@ -95,8 +92,10 @@
                 showState: {    //显影状态
                     guideShow: true,   //匹配进入 引导页
                     matchShow: false,  //匹配筛选页
-                    // matchResult: false,  //匹配结果筛选页
+                    matchResult: false,  //匹配结果筛选页
                 },
+
+
                 minNum: "1",
                 loadingShow: false,
                 headerInfoIndex: 1,  //头部 当前
@@ -248,21 +247,18 @@
                 }
             },
 
-            /*获取 数据 接口*/
+            /*获取 数据 接口 匹配结果  提交 */
             getCondiProductList2() {
                 this.matchShowRes.matchRightShow = true;
                 getCondiProductList(this.userChecked).then(res => {
                     this.matchShowRes.matchRightShow = false;
                     if(res.status == 'success'){
                         console.log(res.data[0]);
-                        console.log(res.data[0].historyId);
-
                         let historyId = res.data[0].historyId;
+                        console.log(historyId);
+                        localStorage.setItem('historyId',historyId);
                         this.$router.push({
                             name: "matchResult",//跳转到新界面，路由变化
-                            params: {
-                                params:historyId, //传递给新界面的数据，包括用户id和用户名
-                            }
                         });
                     }
                     if(res.status == 'fail') {
