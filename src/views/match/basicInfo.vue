@@ -185,50 +185,52 @@
             </li>
 
             <!-- 社保   只有在信用 和 房抵  显示 -->
-            <li class="info-item" v-show="this.tabBasicIndex != 3">
-                <h4 class="info-title">社保信息</h4>
-                <van-radio-group v-model="userChecked2.sb" class="info-box">
-                    <van-radio :name="item.name" v-for="(item,index) in userInfo.sb" :key="item.id">
-                        <template #icon="props">
-                            <div class="infoRadio" :class="props.checked ? activeRadio : ' ' ">{{item.value}}</div>
-                        </template>
-                    </van-radio>
-                </van-radio-group>
-            </li>
+            <div>
+                <li class="info-item" v-show="this.tabBasicIndex != 3">
+                    <h4 class="info-title">社保信息</h4>
+                    <van-radio-group v-model="userChecked2.sb" class="info-box">
+                        <van-radio :name="item.name" v-for="(item,index) in userInfo.sb" :key="item.id">
+                            <template #icon="props">
+                                <div class="infoRadio" :class="props.checked ? activeRadio : ' ' ">{{item.value}}</div>
+                            </template>
+                        </van-radio>
+                    </van-radio-group>
+                </li>
 
-            <!-- 社保基数 选择有社保 只有在信用  显示 -->
-            <li class="info-item" v-show="this.tabBasicIndex == 1  && userChecked2.sb == 1">
-                <h4 class="info-title">社保基数</h4>
-                <van-radio-group v-model="userChecked.sbjs" class="info-box">
-                    <van-radio :name="item.name" v-for="(item,index) in userInfo.sbjs" :key="item.id">
-                        <template #icon="props">
-                            <div class="infoRadio" :class="props.checked ? activeRadio : ' ' ">{{item.value}}</div>
-                        </template>
-                    </van-radio>
-                </van-radio-group>
-            </li>
+                <!-- 社保基数 选择有社保 只有在信用  显示 -->
+                <li class="info-item" v-show="this.tabBasicIndex == 1  && userChecked2.sb == 1">
+                    <h4 class="info-title">社保基数</h4>
+                    <van-radio-group v-model="userChecked.sbjs" class="info-box">
+                        <van-radio :name="item.name" v-for="(item,index) in userInfo.sbjs" :key="item.id">
+                            <template #icon="props">
+                                <div class="infoRadio" :class="props.checked ? activeRadio : ' ' ">{{item.value}}</div>
+                            </template>
+                        </van-radio>
+                    </van-radio-group>
+                </li>
 
-            <!-- 社保缴纳时长 选择有社保后 只在 信用贷款  显示 -->
-            <li class="info-item" v-show="this.tabBasicIndex == 1  && userChecked2.sb == 1">
-                <h4 class="info-title">社保缴纳时长</h4>
-                <van-radio-group v-model="userChecked.sb_jnsc" class="info-box">
-                    <van-radio :name="item.name" v-for="(item,index) in userInfo.sb_jnsc" :key="item.id">
-                        <template #icon="props">
-                            <div class="infoRadio" :class="props.checked ? activeRadio : ' ' ">{{item.value}}</div>
-                        </template>
-                    </van-radio>
-                </van-radio-group>
-            </li>
-            <li class="info-item" v-show="this.tabBasicIndex != 3  && userChecked2.sb == 1">
-                <h4 class="info-title">社保现单位缴纳时长</h4>
-                <van-radio-group v-model="userChecked.sb_xdwjnsc" class="info-box">
-                    <van-radio :name="item.name" v-for="(item,index) in userInfo.sb_xdwjnsc" :key="item.id">
-                        <template #icon="props">
-                            <div class="infoRadio" :class="props.checked ? activeRadio : ' ' ">{{item.value}}</div>
-                        </template>
-                    </van-radio>
-                </van-radio-group>
-            </li>
+                <!-- 社保缴纳时长 选择有社保后 只在 信用贷款  显示 -->
+                <li class="info-item" v-show="this.tabBasicIndex == 1  && userChecked2.sb == 1">
+                    <h4 class="info-title">社保缴纳时长</h4>
+                    <van-radio-group v-model="userChecked.sb_jnsc" class="info-box">
+                        <van-radio :name="item.name" v-for="(item,index) in userInfo.sb_jnsc" :key="item.id">
+                            <template #icon="props">
+                                <div class="infoRadio" :class="props.checked ? activeRadio : ' ' ">{{item.value}}</div>
+                            </template>
+                        </van-radio>
+                    </van-radio-group>
+                </li>
+                <li class="info-item" v-show="this.tabBasicIndex != 3  && userChecked2.sb == 1">
+                    <h4 class="info-title">社保现单位缴纳时长</h4>
+                    <van-radio-group v-model="userChecked.sb_xdwjnsc" class="info-box">
+                        <van-radio :name="item.name" v-for="(item,index) in userInfo.sb_xdwjnsc" :key="item.id">
+                            <template #icon="props">
+                                <div class="infoRadio" :class="props.checked ? activeRadio : ' ' ">{{item.value}}</div>
+                            </template>
+                        </van-radio>
+                    </van-radio-group>
+                </li>
+            </div>
 
             <!--公积金 只在信用贷款 展示 -->
             <div v-show="this.tabBasicIndex == 1">

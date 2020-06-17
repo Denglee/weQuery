@@ -91,7 +91,7 @@
                 let url = 'http://' + val.url;
                 console.log(url);
                 window.location.href = url;
-                // this.$router.push({
+                // this.$routerConfigure.push({
                 //     path:'/loanDetails',
                 //     params: {'prodArr':this.prodArr}
                 // })

@@ -136,19 +136,20 @@
         </div>
 
         <!--联系我们-->
-        <!--<div style="padding-top: 30px">
+        <div style="padding-top: 30px">
             <div class="btnFixed-tel" v-if="prodArr.prodType == 5">
                 <van-button type="default">电话咨询</van-button>
                 <van-button type="primary" class="btnCode">立即申请</van-button>
             </div>
 
             <div v-else class="btn-manager">
-                <div cla><van-icon name="https://b.yzcdn.cn/vant/icon-demo-1126.png" class="icon-manger"/>客户经理</div>
+                <div class="" ><van-icon name="https://b.yzcdn.cn/vant/icon-demo-1126.png" class="icon-manger"/>客户经理</div>
+                <vant-image src="" alt="" />
                 <div>
                     <van-button type="primary" class="btnTel"><van-icon name="phone-o" />电话</van-button>
                 </div>
             </div>
-        </div>-->
+        </div>
 
 
      <!--   <div>
@@ -186,6 +187,16 @@
             };
 
             return {
+
+                // 联系方式
+                contactList:[
+                    {
+                        id:1,
+                        productId:1,
+                        qrimg:'',
+                        telephone:15915403745,
+                    }
+                ],
 
                 /*分类*/
                 prodArr:{
