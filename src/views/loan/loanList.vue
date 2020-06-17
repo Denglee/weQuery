@@ -10,12 +10,11 @@
                 </van-row>
                 <van-row gutter="12" v-else>
                     <van-col span="8" v-for="(item,index) in loanArr" :ket="index">
-                        <div  class="fire-list" @click="goLoanDetails(item)"
-                              v-if="item.label2List.length >0 ">
-                            <van-image :src="item.ioc" alt="" class="fire-img"></van-image>
-                            <div class="fire-title">{{item.name | cutOutStr}}</div>
-                            <div class="fire-month fire-subtitle">{{item.label2List[0].name || ''}}</div><div class="fire-month">{{item.basicInfoList[0].name || ''}}</div>
-                            <div class="fire-month fire-quoto">额度最高{{item.quotaList[0].maxQuota || ''}}万</div>
+                        <div  class="fire-list" @click="goLoanDetails(item)">
+<!--                            <van-image :src="item.ioc" alt="" class="fire-img"></van-image>-->
+<!--                            <div class="fire-title">{{item.name | cutOutStr}}</div>-->
+<!--                            <div class="fire-month fire-subtitle">{{item.label2List[0].name || ''}}</div><div class="fire-month">{{item.basicInfoList[0].name || ''}}</div>-->
+<!--                            <div class="fire-month fire-quoto">额度最高{{item.quotaList[0].maxQuota || ''}}万</div>-->
 
                             <van-button type="default" size="mini" class="btnLook-fire">查看</van-button>
                         </div>

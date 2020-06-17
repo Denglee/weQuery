@@ -12,8 +12,8 @@
         <!--轮播图-->
         <van-swipe :autoplay="3000" :width="swiper.swiperWid" :height="swiper.swiperHei"
         class="index-swiper" :show-indicators="false">
-            <van-swipe-item v-for="(image, index) in images" :key="index">
-                <van-image :src="image"  fit="cover"/>
+            <van-swipe-item v-for="(image, index) in imgBanner" :key="index">
+                <van-image :src="image.rotationImg"  fit="cover"/>
             </van-swipe-item>
         </van-swipe>
 
@@ -49,7 +49,7 @@
 <script>
     // import Swiper from 'swiper';
     // import TweenMax from '@/assets/js/TweenMax.min.js';
-    import {IndexTotal_membership,} from '@/assets/js/api'   /*引用 首页 接口*/
+    import {IndexTotal_membership,getLunbo} from '@/assets/js/api'   /*引用 首页 接口*/
 
     export default {
         name: "Home",
@@ -62,10 +62,7 @@
                 },
 
                 /*轮播图*/
-                images: [
-                    'https://img.yzcdn.cn/vant/apple-1.jpg',
-                    'https://img.yzcdn.cn/vant/apple-2.jpg'
-                ],
+                imgBanner: [],
 
                 /*四大导航*/
                 indexNav: [
@@ -84,6 +81,17 @@
                 let clientWidth = document.body.clientWidth;
                 let swiperWid = clientWidth /4 + clientWidth / 6;
                 this.swiperWid = swiperWid;
+            },
+
+
+            // 轮播
+            getLunboImg(){
+                getLunbo().then(res=>{
+                    console.log(res);
+                    this.imgBanner = res.data
+                }).catch(res=>{
+                    console.log(res);
+                })
             },
 
             /*去贷款列表页*/
@@ -111,7 +119,7 @@
 
         },
         created() {
-
+            this.getLunboImg()
         },
         mounted(){
 

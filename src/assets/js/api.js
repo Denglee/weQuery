@@ -15,6 +15,9 @@ import { get, post } from './axios';
  * 最后通过export导出topics。
  */
 
+// 轮播图
+export const getLunbo   = params => post('rotation/getAllRotation', params);         /* 所有产品*/
+
 /* 1、产品 */
 export const getAllType   = params => get('product/getAll', params);         /* 所有产品*/
 
