@@ -143,19 +143,25 @@
             </div>
 
             <div v-else class="btn-manager">
-                <div class="" ><van-icon name="https://b.yzcdn.cn/vant/icon-demo-1126.png" class="icon-manger"/>客户经理</div>
-                <vant-image src="" alt="" />
-                <div>
-                    <van-button type="primary" class="btnTel"><van-icon name="phone-o" />电话</van-button>
+                <div class="" >
+                    <van-image class="icon-manger"></van-image >客户经理
                 </div>
+
+                <van-button type="primary" class="btnTel btnCode" @click="funCodePopup"><van-icon name="coupon-o" />二维码</van-button>
+
+                <van-button type="primary" class="btnTel"><van-icon name="phone-o" />电话</van-button>
+
             </div>
         </div>
 
+        <!--二维码弹出-->
+        <van-popup v-model="ShowCodePopup"
+                   position="bottom"
+                   round
+                   style="height: 40%;display: flex; align-items: center;justify-content: center;">
+            <van-image src="https://img.yzcdn.cn/vant/cat.jpeg" class="detaile-code"></van-image>
+        </van-popup>
 
-     <!--   <div>
-            <van-button type="default"><a :href="'tel:' + 110">联系商家</a></van-button>
-            <van-button type="primary">主要按钮</van-button>
-        </div>-->
 
     </div>
 </template>
@@ -187,6 +193,7 @@
             };
 
             return {
+                ShowCodePopup:false,
 
                 // 联系方式
                 contactList:[
@@ -237,6 +244,11 @@
             }
         },
         methods: {
+
+            funCodePopup(){
+                this.ShowCodePopup = true;
+            },
+
             /*获取 数据 接口*/
             getProdDetail(){
                 getProdDetail(this.prodArr).then(res =>{
@@ -366,9 +378,3 @@
         },
     }
 </script>
-
-<style>
-    .detail-item{
-        /*display: none;*/
-    }
-</style>

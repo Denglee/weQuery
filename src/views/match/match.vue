@@ -249,9 +249,28 @@
 
             /*获取 数据 接口 匹配结果  提交 */
             getCondiProductList2() {
+                // 选中的状态
+                let resCheckedMatch={
+                    loan_type :this.userChecked.loan_type,
+                    zylx:this.userChecked2.zylx,
+                }
+                this.$router.push({
+                    name: "matchResult",//跳转到新界面，路由变化
+                    params:{'resCheckedMatch':resCheckedMatch},
+                });
+
+
+                return false
+
                 this.matchShowRes.matchRightShow = true;
                 getCondiProductList(this.userChecked).then(res => {
                     this.matchShowRes.matchRightShow = false;
+
+                    // 选中的状态
+                    let resCheckedMatch={
+                        loan_type :this.userChecked.loan_type,
+                        zylx:this.userChecked2.zylx,
+                    }
                     if(res.status == 'success'){
                         console.log(res.data[0]);
                         let historyId = res.data[0].historyId;
@@ -259,6 +278,7 @@
                         localStorage.setItem('historyId',historyId);
                         this.$router.push({
                             name: "matchResult",//跳转到新界面，路由变化
+                            params:{'resCheckedMatch':resCheckedMatch},
                         });
                     }
                     if(res.status == 'fail') {
@@ -348,68 +368,7 @@
             //2、没选与选 怎么下一步按钮
 
         },
-        watch: {
-            // userChecked2: {
-            //     handler(newVal, oldVal) {
-            //         console.log(newVal);
-            //         if(newVal.zylx ==1){   //职业类型 上班族
-            //             console.log(this.userChecked.yyzznx);
-            //             this.userChecked.yyzznx = -1;
-            //             this.userChecked.dwxz = -1;
-            //         }
-            //         if(newVal.zylx == 2){   //职业类型  自选股东
-            //             console.log(this.userChecked.yyzznx);
-            //             this.userChecked.yyzznx = -1;
-            //             this.userChecked.dwxz = -1;
-            //         }
-            //     },
-            //     deep: true,  //深度监听，可以监听到对象里面的值的变化
-            //     // immediate: true,   //默认为false，初始化就开始监听
-            //
-            // },
-           /* userChecked: {
-                handler(newVal, oldVal) {
 
-
-                    if (this.tabBasicIndex == 1) {
-                        /!*console.log(newVal);*!/
-                        if (this.userChecked.hyzk != -1 && this.userChecked.hj != -1 && this.userChecked.hj != -1
-                            /!*&& this.userChecked.hj != -1 && this.userChecked.hj != -1 && this.userChecked.hj != -1
-                          && this.userChecked.hj != -1 && this.userChecked.hj != -1 && this.userChecked.hj != -1*!/
-                        ) {
-
-                        }
-                    }
-
-
-                    /!*第一部分 基本信息 是否显示 下一步按钮*!/
-                    /!*this.showNextBtn = {
-                        basicNext: true,
-                        assetsNext: false,
-                        creditNext: false,
-                    };*!/
-
-
-                    /!*第二部分 资产信息 是否显示 下一步按钮*!/
-                    /!* this.showNextBtn = {
-                        basicNext: true,
-                        assetsNext: true,
-                        creditNext: false,
-                    };*!/
-
-
-                    /!*第三部分 征信信息 是否显示 提交按钮*!/
-
-                    this.showNextBtn = {
-                        basicNext: true,
-                        assetsNext: true,
-                        creditNext: true,
-                    };
-
-
-                },
-            }*/
-        },
         components: {
             matchGuide,
             assetsInfo,

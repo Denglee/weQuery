@@ -17,7 +17,6 @@ if (process.env.NODE_ENV === 'production') {
         //production 生产环境发布 地址
         // Axios.defaults.baseURL = 'http://8.129.189.135:8090/cc';//路径
         Axios.defaults.baseURL = 'http://8.129.189.135:8090/cc';//路径
-
     } else {
         //test 测试环境 测试地址 http://vikily.f3322.net:20000
         // Axios.defaults.baseURL = 'http://nhgdgc.natappfree.cc';//路径

@@ -1,7 +1,7 @@
 <template>
     <div class="reslist-box">
 
-        <div class="resSearch-box">
+        <!--<div class="resSearch-box">
             <div class="input_box">
                 <input type="text" v-model="matchResFoam.loan_years" placeholder="请输入贷款年限">
                 <input type="text" v-model="matchResFoam.interest" placeholder="请输入利息">
@@ -67,9 +67,9 @@
                 <van-button type="default" size="small" class="btn" @click="btnSearch" :loading = 'btnLoad' loading-text="确定...">确定</van-button>
             </div>
 
-        </div>
+        </div>-->
 
-        <div class="detail-item detail-header" v-if="detailsArr.length == 0">暂无数据</div>
+       <!-- <div class="detail-item detail-header" v-if="detailsArr.length == 0">暂无数据</div>
         <div class="detail-item detail-header" v-for="(itemFa,index) in detailsArr" v-else>
             <div class="dHeader-img">
                 <span class="dHeader-tip" v-if="itemFa.prodType == 1">银行信贷</span>
@@ -88,12 +88,69 @@
                     </span>
                 </div>
                 <div class="dHeader-good2">
-
                     <span v-for="(basic,basicIndex) in itemFa.basicInfoList" :key="basicIndex">
                         {{basic.name}}{{basic.nameValue}}
                     </span>
                 </div>
             </div>
+        </div>-->
+
+
+        <div v-if="resChecked.loan_type == 1 && resChecked.zylx == 1 ">
+            个人信用
+        </div>
+        <div v-if="resChecked.loan_type == 1 && resChecked.zylx == 2 ">
+            个人信用 + 企业信用
+        </div>
+        <div v-if="resChecked.loan_type == 2 && resChecked.zylx == 1 ">
+            个人抵押
+        </div>
+        <div v-if="resChecked.loan_type == 2 && resChecked.zylx == 2 ">
+            个人抵押 + 企业抵押
+        </div>
+
+        <van-row type="flex" justify="center" gutter="10" class="resSearch-box">
+            <van-col span="8">
+                <van-button @click="toggleSort('isRateUp','num')" type="default" size="small">
+                    利好
+                    <van-icon name="ascending" v-if="sortWay.isRateUp == true"/>
+                    <van-icon name="descending" v-else/>
+                </van-button>
+            </van-col>
+            <van-col span="8">
+                <van-button @click="toggleSort('isQuotaUp','num2')" type="default" size="small">
+                    跨域
+                    <van-icon name="ascending" v-if="sortWay.isQuotaUp == true"/>
+                    <van-icon name="descending" v-else/>
+                </van-button>
+            </van-col>
+            <van-col span="8">
+                <van-field
+                        readonly
+                        clickable
+                        name="picker"
+                        :value="ModeArr.ModeName"
+                        placeholder="选择还款方式"
+                        @click="ModeArr.ModeShow = true"/>
+                <van-popup v-model="LimitArr.LimitShow" position="bottom">
+                    <van-picker
+                            show-toolbar
+                            :columns="LimitData"
+                            value-key="name"
+                            @confirm="LimitConfirm"
+                            @cancel="LimitArr.LimitShow = false"/>
+                </van-popup>
+            </van-col>
+        </van-row>
+
+
+
+
+
+
+
+        <div v-for="item in sortListAfter" class="item">
+            <div>num: lx:{{ item.num }}  -----------------    edu:{{ item.num2 }}</div>
         </div>
 
     </div>
@@ -105,6 +162,25 @@
         name: "matchResult",
         data() {
             return {
+                resChecked:{},
+                sortList:[
+                    { num:'5',  num2:'84', value:'开始 111 num2 222 num 777 '},
+                    { num:'88', num2:'78', value:'开始 222 num2 333 num 111 '},
+                    { num:'43', num2:'16', value:'开始 333 num2 775 num 444 '},
+                    { num:'56', num2:'85', value:'开始 444 num2 111 num 333 '},
+                    { num:'28', num2:'47', value:'开始 555 num2 555 num 555 '},
+                    { num:'61', num2:'45', value:'开始 666 num2 666 num 222 '},
+                    { num:'9',  num2:'54', value:'开始 777 num2 444 num 666 '},
+                ],
+
+                sortWay:{
+                    isRateUp : true,   //利息 默认排序 从大到小
+                    isQuotaUp : true,  //额度 默认排序 从大到小
+                },
+
+                sortListAfter:[],  //排序后 数据
+
+
                 // resArr2:[],  //父级传值数组
                 detailsArr:[],  //历史列表数组
 
@@ -167,6 +243,28 @@
             }
         },
         methods: {
+
+            //排序 点击
+            toggleSort(isSortWay,sortName){
+                this.sortWay[isSortWay] =  !this.sortWay[isSortWay];
+
+                let isSortWay2 = this.sortWay[isSortWay];
+                this.funSort(  isSortWay2,sortName);
+            },
+
+            //排序方法
+            funSort(isSortState,sortName){
+                let that = this;
+                that.sortList.sort(function( a , b){
+                    if(isSortState){
+                        return b[sortName] - a[sortName];
+                    }else{
+                        return a[sortName] - b[sortName];
+                    }
+                });
+                that.sortListAfter = that.sortList;
+            },
+
             // 匹配
             getMatchList() {
                 let postRes = {};
@@ -285,9 +383,28 @@
             },
         },
         created() {
+
+            this.funSort(true,'num');
+
             let resHistory =localStorage.getItem('historyId');
             console.log(resHistory);
             this.matchResFoam.history_id = resHistory;
+
+
+
+            let resCheckedMatch = this.$route.params.resCheckedMatch;
+
+            if( resCheckedMatch  == undefined){
+                console.log(resCheckedMatch);
+                this.resChecked ={
+                    loan_type :1,
+                    zylx:1,
+                }
+            }else{
+                this.resChecked = resCheckedMatch;
+            }
+
+
 
             this.getHistoryList();
         },

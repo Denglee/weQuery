@@ -388,7 +388,7 @@ $loansServiceTotal:#4CCBEB;
 
  .btnFixed-tel{
    position: fixed;
-   z-index: 11111;
+   z-index: 111;
    width: 100%;
    left: 0;
    bottom: 0;
@@ -403,7 +403,7 @@ $loansServiceTotal:#4CCBEB;
  }
 .btn-manager{
   position: fixed;
-  z-index: 11111;
+  z-index: 111;
   width: 100%;
   left: 0;
   bottom: 0;
@@ -432,8 +432,18 @@ $loansServiceTotal:#4CCBEB;
       margin-right: 4px;
     }
   }
+  .btnCode{
+    background-color: #8D8D8D;
+    border:solid 1px #8D8D8D;
+  }
 }
-
+.code-popup{
+  text-align: center;
+  padding: 10px;
+}
+.detaile-code{
+  width: 40%;
+}
 
 
 //匹配结果
@@ -442,6 +452,9 @@ $loansServiceTotal:#4CCBEB;
   background-color: #fff;
   border-radius: 6px;
   padding: 10px;
+  .van-icon{
+    font-size: 20px;
+  }
 }
 .input_box{
   display: flex;
