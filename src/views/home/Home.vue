@@ -12,7 +12,7 @@
         <!--轮播图-->
         <van-swipe :autoplay="3000" :width="swiper.swiperWid" :height="swiper.swiperHei"
         class="index-swiper" :show-indicators="false">
-            <van-swipe-item v-for="(image, index) in imgBanner" :key="index">
+            <van-swipe-item v-for="(image, index) in imgBanner" :key="index" @click="funSwiper(image)">
                 <van-image :src="image.rotationImg"  fit="cover"/>
             </van-swipe-item>
         </van-swipe>
@@ -76,6 +76,11 @@
             }
         },
         methods: {
+            // 轮播 点击事件
+            funSwiper(val){
+                console.log(val)
+            },
+
             /*获取屏幕宽度 然后传给swiper*/
             getClientWidth(){
                 let clientWidth = document.body.clientWidth;

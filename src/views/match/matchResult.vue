@@ -1,7 +1,7 @@
 <template>
     <div class="reslist-box">
 
-        <!--<div class="resSearch-box">
+        <div class="resSearch-box">
             <div class="input_box">
                 <input type="text" v-model="matchResFoam.loan_years" placeholder="请输入贷款年限">
                 <input type="text" v-model="matchResFoam.interest" placeholder="请输入利息">
@@ -67,9 +67,9 @@
                 <van-button type="default" size="small" class="btn" @click="btnSearch" :loading = 'btnLoad' loading-text="确定...">确定</van-button>
             </div>
 
-        </div>-->
+        </div>
 
-       <!-- <div class="detail-item detail-header" v-if="detailsArr.length == 0">暂无数据</div>
+        <div class="detail-item detail-header" v-if="detailsArr.length == 0">暂无数据</div>
         <div class="detail-item detail-header" v-for="(itemFa,index) in detailsArr" v-else>
             <div class="dHeader-img">
                 <span class="dHeader-tip" v-if="itemFa.prodType == 1">银行信贷</span>
@@ -93,18 +93,18 @@
                     </span>
                 </div>
             </div>
-        </div>-->
-
-
-        <div v-if="resChecked.loan_type == 1 && resChecked.zylx == 1 ">
-            个人信用
         </div>
+
+
+        <!--<div v-if="resChecked.loan_type == 1 && resChecked.zylx == 1 ">
+            个人信用
+        </div>-->
         <div v-if="resChecked.loan_type == 1 && resChecked.zylx == 2 ">
             个人信用 + 企业信用
         </div>
-        <div v-if="resChecked.loan_type == 2 && resChecked.zylx == 1 ">
+        <!--<div v-if="resChecked.loan_type == 2 && resChecked.zylx == 1 ">
             个人抵押
-        </div>
+        </div>-->
         <div v-if="resChecked.loan_type == 2 && resChecked.zylx == 2 ">
             个人抵押 + 企业抵押
         </div>
@@ -112,14 +112,14 @@
         <van-row type="flex" justify="center" gutter="10" class="resSearch-box">
             <van-col span="8">
                 <van-button @click="toggleSort('isRateUp','num')" type="default" size="small">
-                    利好
+                    利息
                     <van-icon name="ascending" v-if="sortWay.isRateUp == true"/>
                     <van-icon name="descending" v-else/>
                 </van-button>
             </van-col>
             <van-col span="8">
                 <van-button @click="toggleSort('isQuotaUp','num2')" type="default" size="small">
-                    跨域
+                    额度
                     <van-icon name="ascending" v-if="sortWay.isQuotaUp == true"/>
                     <van-icon name="descending" v-else/>
                 </van-button>
