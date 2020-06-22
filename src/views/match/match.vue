@@ -314,7 +314,6 @@
             changeShowState(type) {
                 // basicInfo,assetsInfo,creditInfo
                 if (type == 'basicInfo') {   //基本信息
-
                     this.showStatePage = {
                         basicShow: true,
                         assetsShow: false,
@@ -325,16 +324,20 @@
                 }
 
                 if (type == 'assetsInfo') {   //资产信息
-                    this.showStatePage = {
-                        basicShow: false,
-                        assetsShow: true,
-                        creditShow: false,
-                    };
-                    this.headerInfoIndex = 2;
-                    this.showStatePage.assetsShow = true;
-                    this.btnCreditArr[0].disabled = false;
-                    this.btnCreditArr[1].disabled = true;
 
+                    if(this.userChecked2.zylx == 2  && this.userChecked.yyzznx == -1){
+                        this.$toast('营业执照年限不能为空！');
+                    }else{
+                        this.showStatePage = {
+                            basicShow: false,
+                            assetsShow: true,
+                            creditShow: false,
+                        };
+                        this.headerInfoIndex = 2;
+                        this.showStatePage.assetsShow = true;
+                        this.btnCreditArr[0].disabled = false;
+                        this.btnCreditArr[1].disabled = true;
+                    }
                 }
 
                 if (type == 'creditInfo') {   /*征信信息*/

@@ -138,18 +138,24 @@
         <!--联系我们-->
         <div style="padding-top: 30px">
             <div class="btnFixed-tel" v-if="prodArr.prodType == 5">
-                <van-button type="default">电话咨询</van-button>
+                <van-button class="btnTel">
+                    <a :href="'tel:' + contactList.telephone"  class="btnTel">电话咨询</a>
+                </van-button>
                 <van-button type="primary" class="btnCode">立即申请</van-button>
             </div>
 
             <div v-else class="btn-manager">
                 <div class="" >
-                    <van-image class="icon-manger"></van-image >客户经理
+                    <van-icon name="user-circle-o" class="icon-manger"/>
+                    <!--<van-image class="icon-manger"></van-image >-->
+                    客户经理
                 </div>
 
                 <van-button type="primary" class="btnTel btnCode" @click="funCodePopup"><van-icon name="coupon-o" />二维码</van-button>
 
-                <van-button type="primary" class="btnTel"><van-icon name="phone-o" />电话</van-button>
+                <van-button type="primary" class="btnTel"><van-icon name="phone-o" />
+                    <a :href="'tel:' + contactList.telephone"  class="btnTel">电话</a>
+                </van-button>
 
             </div>
         </div>
@@ -159,7 +165,7 @@
                    position="bottom"
                    round
                    style="height: 40%;display: flex; align-items: center;justify-content: center;">
-            <van-image src="https://img.yzcdn.cn/vant/cat.jpeg" class="detaile-code"></van-image>
+            <van-image :src="contactList.qrimg" class="detaile-code"></van-image>
         </van-popup>
 
 

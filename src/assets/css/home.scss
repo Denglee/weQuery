@@ -413,23 +413,23 @@ $loansServiceTotal:#4CCBEB;
   align-items: center;
   background-color: #fff;
   .icon-manger{
-    font-size: 30px;
+    font-size: 20px;
     vertical-align: middle;
     margin-top: -1px;
     margin-right: 4px;
-    color: $loansTotal;
+    //color: $loansTotal;
   }
   .btnTel{
     height: 30px;
     line-height: 30px;
-    padding:0 10px;
+    padding:0 4px 0 0;
     background-color: $loansTotal;
     border:solid 1px $loansTotal;
+    color:#fff;
     i{
       font-size: 16px;
       vertical-align: middle;
-      margin-top: -1px;
-      margin-right: 4px;
+      margin:-1px 4px 0;
     }
   }
   .btnCode{
