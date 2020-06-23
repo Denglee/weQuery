@@ -147,9 +147,9 @@
 
                 /*用户选中*/
                 userChecked: {
-                    zonge:'',         //总额
-                    sfyssqydd:'',         //是否有上市企业订单
-                    sfgxjsqy:'',         //是否高新技术企业
+                    zonge:0,         //总额
+                    sfyssqydd:-1,         //是否有上市企业订单
+                    sfgxjsqy:-1,         //是否高新技术企业
                     age: 18,          // 1、年龄
                     hyzk: -1,         // 3、婚姻状况
                     hj: -1,           // 4、户籍
@@ -211,7 +211,7 @@
                     lnn_yqsgycs: -1,  // 60、近两年内逾期三个月次数
                     lnn_yqsigycs: -1, // 61、近两年内逾期四个月次数
                     sfsygwld: -1,     // 62、是否使用过微粒贷
-                    loan_type: 1,      //63、信用三大分裂
+                    loan_type: 1,      //63、信用三大分类
                 },
             }
         },

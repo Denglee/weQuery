@@ -29,8 +29,6 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 
-
-
 /*引入自己的全局的css*/
 import '@/assets/css/global.scss'
 import '@/assets/css/home.scss'
