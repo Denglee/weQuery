@@ -2,8 +2,7 @@
     <div class="loan-main main">
 
         <van-tabs  v-model="activeTab"  @click="changeTab" animated type="card" id="loanTabs">
-            <van-tab  v-for="(item,index) in navArr" :key="index" :title="item.name"
-            class="loan-tab">
+            <van-tab  v-for="(item,index) in navArr" :key="index" :title="item.name" class="loan-tab">
 
                 <van-row  v-if="loanArr.length == 0">
                     <van-col>暂无数据</van-col>
@@ -114,6 +113,11 @@
             },
         },
 
+        mounted (){
+            this.$router.afterEach((to, from, next) => {
+                window.scrollTo(0, 0)
+            })
+        },
 
         created() {
             // this.getClientWidth();

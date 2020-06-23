@@ -249,18 +249,6 @@
 
             /*获取 数据 接口 匹配结果  提交 */
             getCondiProductList2() {
-                // 选中的状态
-                let resCheckedMatch={
-                    loan_type :this.userChecked.loan_type,
-                    zylx:this.userChecked2.zylx,
-                }
-                this.$router.push({
-                    name: "matchResult",//跳转到新界面，路由变化
-                    params:{'resCheckedMatch':resCheckedMatch},
-                });
-
-
-                return false
 
                 this.matchShowRes.matchRightShow = true;
                 getCondiProductList(this.userChecked).then(res => {
@@ -272,6 +260,7 @@
                         zylx:this.userChecked2.zylx,
                     }
                     if(res.status == 'success'){
+                        this.matchShowRes.matchErrShow = true;
                         console.log(res.data[0]);
                         let historyId = res.data[0].historyId;
                         console.log(historyId);
@@ -294,7 +283,6 @@
             btnShowCredit(val) {
                 console.log(val);
                 this.headerInfoIndex = val.id;
-
                 this.changeShowState(val.type);
             },
 
@@ -325,8 +313,19 @@
 
                 if (type == 'assetsInfo') {   //资产信息
 
+                    /*let resCheckedMatch={
+                        loan_type :this.userChecked.loan_type,
+                        zylx:this.userChecked2.zylx,
+                    }
+                    this.$router.push({
+                        name: "matchResult",//跳转到新界面，路由变化
+                        params:{'resCheckedMatch':resCheckedMatch},
+                    });
+
+                    return false*/
+
                     if(this.userChecked2.zylx == 2  && this.userChecked.yyzznx == -1){
-                        this.$toast('营业执照年限不能为空！');
+                        this.$toast('营业执照年限必选！');
                     }else{
                         this.showStatePage = {
                             basicShow: false,

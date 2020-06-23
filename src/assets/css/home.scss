@@ -244,6 +244,9 @@ $navHei:.14rem;
     &:not(:last-child){
       margin-right: 3%;
     }
+    b{
+      font-weight: 500;
+    }
   }
 }
 
@@ -392,10 +395,23 @@ $loansServiceTotal:#4CCBEB;
    width: 100%;
    left: 0;
    bottom: 0;
+   height: 44px;
+   line-height: 44px;
    .van-button{
      width: 50%;
    }
+   .btnTel{
+     width: 50%;
+     display: inline-block;
+     text-align: center;
+     background: #fff;
+     border:solid 1px #fff;
+     height: 44px;
+     line-height: 44px;
+   }
    .btnCode{
+     height: 44px;
+     line-height: 44px;
      background-color: $loansTotal;
      border:solid 1px $loansTotal;
    }
@@ -422,10 +438,11 @@ $loansServiceTotal:#4CCBEB;
   .btnTel{
     height: 30px;
     line-height: 30px;
-    padding:0 4px 0 0;
+    padding:0 14px 0 6px;
     background-color: $loansTotal;
     border:solid 1px $loansTotal;
     color:#fff;
+    border-radius: 4px;
     i{
       font-size: 16px;
       vertical-align: middle;
@@ -435,6 +452,7 @@ $loansServiceTotal:#4CCBEB;
   .btnCode{
     background-color: #8D8D8D;
     border:solid 1px #8D8D8D;
+    border-radius: 4px;
   }
 }
 .code-popup{
@@ -451,7 +469,7 @@ $loansServiceTotal:#4CCBEB;
   width: 100%;
   background-color: #fff;
   border-radius: 6px;
-  padding: 10px;
+  padding: 14px;
   .van-icon{
     font-size: 20px;
   }
@@ -470,16 +488,30 @@ $loansServiceTotal:#4CCBEB;
 .picker-ul{
   display: flex;
   justify-content: space-between;
-  margin-bottom: 10px;
+  //margin-bottom: 10px;
   .picker-item{
-    width: 31%;
-    border: solid 1px rgba(216, 217, 219, 0.45);
+    .van-icon{
+      top: 5px;
+    }
     .van-cell{
-      padding: 4px;
+      padding:2px 8px;
       border-radius: 4px;
+      width: 100%;
+      border: solid 1px rgba(216, 217, 219, 0.45);
+    }
+    .van-button{
+      width: 100%;
+      font-size: 14px;
     }
   }
+  .picker-item2{
+    width: 32%;
+    margin-right: 4%;
+  }
 
+  .picker-item3{
+    width: 38%;
+  }
 
 }
 .btnResSerach{
@@ -488,5 +520,15 @@ $loansServiceTotal:#4CCBEB;
     background-color: $themeColor;
     color: #fff;
     border-radius: 6px;
+  }
+}
+
+
+.btnResTop{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  .van-button{
+    width: 48%;
   }
 }

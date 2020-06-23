@@ -138,9 +138,7 @@
         <!--联系我们-->
         <div style="padding-top: 30px">
             <div class="btnFixed-tel" v-if="prodArr.prodType == 5">
-                <van-button class="btnTel">
-                    <a :href="'tel:' + contactList.telephone"  class="btnTel">电话咨询</a>
-                </van-button>
+                <a :href="'tel:' + contactList[0].telephone"  class="btnTel">电话咨询</a>
                 <van-button type="primary" class="btnCode">立即申请</van-button>
             </div>
 
@@ -151,11 +149,12 @@
                     客户经理
                 </div>
 
-                <van-button type="primary" class="btnTel btnCode" @click="funCodePopup"><van-icon name="coupon-o" />二维码</van-button>
+                <van-button type="primary" class="btnTel btnCode" @click="funCodePopup"
+                v-if ="contactList[0].qrimg != '' " ><van-icon name="coupon-o" />二维码</van-button>
 
-                <van-button type="primary" class="btnTel"><van-icon name="phone-o" />
-                    <a :href="'tel:' + contactList.telephone"  class="btnTel">电话</a>
-                </van-button>
+                <a :href="'tel:' + contactList[0].telephone"  class="btnTel">
+                    <van-icon name="phone-o" />电话
+                </a>
 
             </div>
         </div>
@@ -165,9 +164,8 @@
                    position="bottom"
                    round
                    style="height: 40%;display: flex; align-items: center;justify-content: center;">
-            <van-image :src="contactList.qrimg" class="detaile-code"></van-image>
+            <van-image :src="contactList[0].qrimg" class="detaile-code"></van-image>
         </van-popup>
-
 
     </div>
 </template>
@@ -200,14 +198,13 @@
 
             return {
                 ShowCodePopup:false,
-
                 // 联系方式
                 contactList:[
                     {
-                        id:1,
-                        productId:1,
+                        id:'',
+                        productId:'',
                         qrimg:'',
-                        telephone:15915403745,
+                        telephone:'1768882946xx',
                     }
                 ],
 
@@ -264,6 +261,15 @@
                         let totalNum = res.data.quotaList[0].defaultQuota;
                         this.qsArr.qsNum = this.detailsArr.qsList[0].nameValue;  //获取期数
                         this.chartsLoans.loansTotal = totalNum;
+
+
+                        /*联系方式*/
+                        let contactList = res.data.contactList;
+                        if (!contactList && typeof(contactList)!="undefined" && contactList!=0){
+                            /*alert("null");*/
+                        }else{
+                            this.contactList = contactList;
+                        }
 
                         this.getChartVal();
                     }else{
@@ -378,7 +384,6 @@
             }
 
             this.getProdDetail();
-
 
             this.setChartData();
         },
