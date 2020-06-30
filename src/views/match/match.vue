@@ -147,7 +147,8 @@
 
                 /*用户选中*/
                 userChecked: {
-                    zonge:0,         //总额
+                    // zonge:0,         //总额
+                    total_financing:0,  //总额
                     sfyssqydd:-1,         //是否有上市企业订单
                     sfgxjsqy:-1,         //是否高新技术企业
                     age: 18,          // 1、年龄
@@ -326,7 +327,9 @@
 
                     if(this.userChecked2.zylx == 2  && this.userChecked.yyzznx == -1){
                         this.$toast('营业执照年限必选！');
-                    }else{
+                    }else if(this.userChecked2.zylx == 1  && this.userChecked.sbjs == -1){
+                        this.$toast('社保基数必选！');
+                    } else{
                         this.showStatePage = {
                             basicShow: false,
                             assetsShow: true,

@@ -6,8 +6,8 @@
                 <h4 class="info-title">贷款总额</h4>
                 <div class="flex-between inp-info">
                    <van-field
-                            v-model="userChecked.zonge"
-                            name="zonge"
+                            v-model="userChecked.total_financing"
+                            name="total_financing"
                             type="number"
                             placeholder="总额（万元）"/>
                 </div>
