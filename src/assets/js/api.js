@@ -46,3 +46,9 @@ export const getMatchProductList   = params => post('productCondi/getMatchProduc
 
 // 信用卡
 export const getAllCard   = params => get('creditCard/getAll', params);         /* 所有产品*/
+
+
+
+// 记录点击客服中心次数
+export const customerVisit   = params => get('customerService/visit', params);
+

@@ -135,7 +135,7 @@
                 userInfo: userInfo,
 
                 userChecked2: {
-                    zylx: -1,  //职业类型
+
                     sb: -1,  //有无社保
                     gjj: -1,  //有无公积金
                     clgsdq: -1,  //车辆归属地区
@@ -147,6 +147,8 @@
 
                 /*用户选中*/
                 userChecked: {
+                    zylx: -1,  //职业类型
+
                     // zonge:0,         //总额
                     total_financing:0,  //总额
                     sfyssqydd:-1,         //是否有上市企业订单
@@ -258,7 +260,7 @@
                     // 选中的状态
                     let resCheckedMatch={
                         loan_type :this.userChecked.loan_type,
-                        zylx:this.userChecked2.zylx,
+                        zylx:this.userChecked.zylx,
                     }
                     if(res.status == 'success'){
                         this.matchShowRes.matchErrShow = true;
@@ -290,8 +292,8 @@
             /* 基本信息 三大导航 tab */
             btnTabBasic(val) {
                 console.log(val);
-                console.log(this.userChecked2.zylx);
-                this.userChecked2.zylx =-1;
+                console.log(this.userChecked.zylx);
+                this.userChecked.zylx =-1;
                 this.userChecked2.sb =-1;
                 this.userChecked2.gjj =-1;
 
@@ -325,11 +327,9 @@
 
                     return false*/
 
-                    if(this.userChecked2.zylx == 2  && this.userChecked.yyzznx == -1){
-                        this.$toast('营业执照年限必选！');
-                    }else if(this.userChecked2.zylx == 1  && this.userChecked.sbjs == -1){
-                        this.$toast('社保基数必选！');
-                    } else{
+                    if(this.userChecked.zylx == -1 ){
+                        this.$toast('职业类型必选！');
+                    }else{
                         this.showStatePage = {
                             basicShow: false,
                             assetsShow: true,

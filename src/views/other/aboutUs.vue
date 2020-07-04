@@ -16,14 +16,23 @@
 </template>
 
 <script>
+    import {customerVisit} from '@/assets/js/api'   /*引用 首页 接口*/
     export default {
         name: "aboutUs", //关于我们
         data() {
             return {}
         },
-        methods: {},
+        methods: {
+            getCustomerVisit(){
+                customerVisit().then(res=>{
+                    console.log(res);
+                }).catch(res=>{
+                    console.log(res)
+                })
+            }
+        },
         created() {
-
+            this.getCustomerVisit();
         },
     }
 </script>
