@@ -63,8 +63,8 @@ module.exports = {
         extract: {
             // https://www.cnblogs.com/1rookie/p/11589863.html
             //一种方式，每次打包后的css文件名会变更新。
-            filename: `css/[name].${Timestamp}.css`,
-            chunkFilename: `css/[name].${Timestamp}.css`,
+            filename: `dist/css/[name].${Timestamp}.css`,
+            chunkFilename: `dist/css/[name].${Timestamp}.css`,
         }
     },
     configureWebpack: {
@@ -77,8 +77,8 @@ module.exports = {
             // filename: `riches/js/[name].js?v=${Timestamp}`,
             // chunkFilename: `riches/js/[name].js?v=${Timestamp}`,
 
-            filename: `js/[name].${Timestamp}.js`,
-            chunkFilename: `js/[name].${Timestamp}.js`,
+            filename: `dist/js/[name].${Timestamp}.js`,
+            chunkFilename: `dist/js/[name].${Timestamp}.js`,
         },
     },
 
