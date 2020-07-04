@@ -110,22 +110,22 @@
         </div>
 
         <!--其他信息-->
-        <div class="detail-item" v-show="detailsArr.ohterInfoList.length > 0">
+        <!--<div class="detail-item" v-show="detailsArr.ohterInfoList.length > 0">
             <h4 class="Ditem-title">其他信息</h4>
             <div class="Ditem-info"  v-for="(item, index) in detailsArr.ohterInfoList" :key="index">
                 <b>{{item.name}}:</b>
                 {{item.nameValue}}
             </div>
-        </div>
+        </div>-->
 
         <!--征信要求-->
-        <div class="detail-item" v-show="detailsArr.zxyqList.length > 0">
+        <!--<div class="detail-item" v-show="detailsArr.zxyqList.length > 0">
             <h4 class="Ditem-title">征信要求</h4>
             <div class="Ditem-info"  v-for="(item, index) in detailsArr.zxyqList" :key="index">
                 <b>{{item.name}}:</b>
                 {{item.nameValue}}
             </div>
-        </div>
+        </div>-->
 
         <!--免责声明-->
         <div class="detail-item" v-show="detailsArr.mzsmList.length > 0">
@@ -371,6 +371,7 @@
 
             let prodParms = this.$route.params.prodArr;
             console.log(prodParms);
+            return false
             if(prodParms){
                 let prodArrData = {
                     prodType:prodParms.prodType,   //分类

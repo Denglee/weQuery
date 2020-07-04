@@ -63,8 +63,8 @@ module.exports = {
         extract: {
             // https://www.cnblogs.com/1rookie/p/11589863.html
             //一种方式，每次打包后的css文件名会变更新。
-            filename: `css/[name].${Timestamp}.css`,
-            chunkFilename: `css/[name].${Timestamp}.css`,
+            filename: `dist/css/[name].${Timestamp}.css`,
+            chunkFilename: `dist/css/[name].${Timestamp}.css`,
         }
     },
     configureWebpack: {
@@ -77,8 +77,8 @@ module.exports = {
             // filename: `riches/js/[name].js?v=${Timestamp}`,
             // chunkFilename: `riches/js/[name].js?v=${Timestamp}`,
 
-            filename: `js/[name].${Timestamp}.js`,
-            chunkFilename: `js/[name].${Timestamp}.js`,
+            filename: `dist/js/[name].${Timestamp}.js`,
+            chunkFilename: `dist/js/[name].${Timestamp}.js`,
         },
     },
 
@@ -94,7 +94,8 @@ module.exports = {
         // 配置多个代理
         proxy: {
             "/api": {
-                target: "http://8.129.189.135:8090/cc",// 测试答咔访问的接口域名
+                // target: "http://8.129.189.135:8090/cc",// 测试答咔访问的接口域名
+                target: "http://www.jierong123.com",// 测试答咔访问的接口域名
                 ws: true,// 是否启用websockets
                 changeOrigin: true, //开启代理：在本地会创建一个虚拟服务端，然后发送请求的数据，并同时接收请求的数据，这样服务端和服务端进行数据的交互就不会有跨域问题
                 pathRewrite: {

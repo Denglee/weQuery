@@ -20,15 +20,17 @@
         <!--立即匹配贷款-->
         <div  class="index-nav-box">
             <div class="index-match">
-                <h4 class="index-match-title">一键选贷款</h4>
-                <div class="index-match-info">根据个人资质智能匹配贷款方案</div>
-                <van-button size="mini" class="btn-match" @click="goMatch">智能匹配</van-button>
+                <div class="index-match-title">银行产品 </div>
+                <van-button size="mini" class="btn-match" @click="goMatch"><h4>匹配</h4></van-button>
+                <div class="index-match-title">智能匹配</div>
+                <!--<div class="index-match-info">智能匹配</div>-->
             </div>
 
             <!--四大导航-->
+            <!--四大导航-->
             <van-row gutter="14" class="index-nav-main">
                 <van-col span="12" v-for="(item,index) in indexNav" :key="index">
-                    <div v-if="item.id == 2" class="index-navItem" @click="goLoan(item)">
+                    <div v-if="item.id == 1 || item.id == 4 || item.id == 6" class="index-navItem" @click="goLoan(item)">
                         <h4 class="index-navTitle">{{item.name}}</h4>
                         <div class="index-navSub">{{item.sunTitle}}</div>
                         <div class="index-navSub">{{item.sunTitle2}}</div>
@@ -41,7 +43,15 @@
                         </router-link>
                     </div>
                 </van-col>
+                <van-col span="12">
+                    <div class="index-navItem"  >
+                        <h4 class="index-navTitle">
+                            <a href="tel:17688829466">联系我们</a>
+                        </h4>
+                    </div>
+                </van-col>
             </van-row>
+
         </div>
     </div>
 </template>
@@ -66,19 +76,21 @@
 
                 /*四大导航*/
                 indexNav: [
-                    {id: '1', url: '/loanList', name: '银行产品', icon: '1', sunTitle: '近期最新银行政策', sunTitle2: '让您抢先一步'},
-                    {id: '2', url: '/loanList', name: '在线急融', icon: '2', sunTitle: '汇集先上银行产品', sunTitle2: '线上申请'},
-                    {id: '3', url: '/cardItem', name: '办卡信用', icon: '3', sunTitle: '高额度当天下午', sunTitle2: ''},
-                    // {id: '3', url: '/index', name: '办卡信用', icon: '3', sunTitle: '高额度当天下午', sunTitle2: ''},
-                    // {id: '4', url: '/aboutUs', name: '服务中心', icon: '4', sunTitle: '24小时客服在线', sunTitle2: '急速答疑解惑'},
-                    {id: '4', url: '/aboutUs', name: '服务中心', icon: '4', sunTitle: '24小时客服在线', sunTitle2: '急速答疑解惑'},
+                    {id: '1', url: '/loanList', name: '银行产品', icon: '1', sunTitle: '汇集热门银行产品', sunTitle2: ''},
+                    {id: '4', url: '/loanList', name: '企业融资', icon: '2', sunTitle: '当下企业融资产品', sunTitle2: ''},
+                    {id: '2', url: '/cardItem', name: '信用卡办理', icon: '3', sunTitle: '申请快人一步', sunTitle2: ''},
+                    {id: '6', url: '/loanList', name: '在线急融', icon: '4', sunTitle: '最快当天放款', sunTitle2: ''},
+                    {id: '6', url: '/aboutUs', name: '服务中心', icon: '5', sunTitle: '急速答疑解惑', sunTitle2: ''},
                 ],
             }
         },
         methods: {
             // 轮播 点击事件
             funSwiper(val){
-                console.log(val)
+                console.log(val);
+                this.$router.push({
+                    name: "match",//跳转到新界面，路由变化
+                });
             },
 
             /*获取屏幕宽度 然后传给swiper*/
@@ -101,11 +113,15 @@
 
             /*去贷款列表页*/
             goLoan(item){
-                console.log(item)
+                console.log(item.id);
+                localStorage.setItem('loanProdType',item.id);
+
                 this.$router.push({
                     name:'loanList',
                     params:{'indexLoan':item},
                 })
+
+
             },
 
             /*去贷款列表页*/

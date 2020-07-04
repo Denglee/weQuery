@@ -1,8 +1,8 @@
 <template>
     <div class="loan-main main">
 
-        <van-tabs  v-model="activeTab"  @click="changeTab" animated type="card" id="loanTabs">
-            <van-tab  v-for="(item,index) in navArr" :key="index" :title="item.name" class="loan-tab">
+        <van-tabs  v-model="activeTab" @click="changeTab(activeTab)"  animated type="card" id="loanTabs">
+            <van-tab  v-for="(item,index) in navArr" :key="index" :title="item.name" class="loan-tab"  >
 
                 <van-row  v-if="loanArr.length == 0">
                     <van-col>暂无数据</van-col>
@@ -45,7 +45,7 @@
                     // 1.银行信贷，2.机构信贷，3.小额贷款，4.企业贷款，5.抵押贷款，6.线上急融
                     {id:'1',name:'银行信贷'},
                     {id:'2',name:'机构信贷'},
-                    {id:'3',name:'小额贷款'},
+                    // {id:'3',name:'小额贷款'},
                     {id:'4',name:'企业贷款'},
                     {id:'5',name:'抵押贷款'},
                     {id:'6',name:'线上急融'},
@@ -85,6 +85,9 @@
 
             /*tab 切换*/
             changeTab(index){
+                console.log(index);
+
+                return false
                 this.prodArr.prodType = index + 1;
                 this.loanArr =[];
                 this.getByProdType();
@@ -121,14 +124,22 @@
 
         created() {
             // this.getClientWidth();
-            let indexLoan = this.$route.params.indexLoan;
-            console.log(indexLoan);
+            // let indexLoan = this.$route.params.indexLoan;
+            // console.log(indexLoan);
 
-            if(indexLoan){
-                this.activeTab = 5;
-                this.prodArr.prodType = 6;
-                console.log( this.prodArr.prodType)
+            // if(indexLoan){
+            //     this.activeTab = 5;
+            //     this.prodArr.prodType = 6;
+            //     console.log( this.prodArr.prodType)
+            // }
+
+            let loanProdType =parseFloat(localStorage.getItem('loanProdType')) ;
+            console.log(loanProdType);
+            if(loanProdType){
+                this.activeTab = loanProdType;
+                this.prodArr.prodType = loanProdType ;
             }
+
             this.getByProdType();  //获取分类
         },
 
