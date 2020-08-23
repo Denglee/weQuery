@@ -21,7 +21,7 @@
                 </div>
                 <div class="dHeader-good2">
                     <span v-for="(basic,basicIndex) in detailsArr.basicInfoList" :key="basicIndex">
-                        {{basic.name}}{{basic.nameValue}}
+                        {{basic.name}}
                     </span>
                 </div>
             </div>
@@ -66,11 +66,12 @@
             </div>
 
             <!--滑块-->
+            <!--{{detailsArr.quotaList[0]}}-->
             <div  class="detail-slider">
                 <van-slider v-model="chartsLoans.loansTotal"  @change="changeTotal($event)"
-                          :max="detailsArr.quotaList[0].maxQuota"
-                          :min="detailsArr.quotaList[0].minQuota"
-                          :step="detailsArr.quotaList[0].step"
+                            :max="detailsArr.quotaList[0].maxQuota"
+                            :min="detailsArr.quotaList[0].minQuota"
+                            :step="detailsArr.quotaList[0].step"
                           bar-height="6px"
                           active-color="#ffa300">
                 </van-slider>
@@ -85,7 +86,7 @@
         </div>
 
         <!--办理条件-->
-        <div class="detail-item" v-show="detailsArr.bltjList.length > 0">
+        <div class="detail-item">
             <h4 class="Ditem-title">办理条件</h4>
             <div class="Ditem-info" v-for="(item, index) in detailsArr.bltjList" :key="index">
                 <b>{{item.name}}:</b>
@@ -94,7 +95,7 @@
         </div>
 
         <!--所需资料-->
-        <div class="detail-item" v-show="detailsArr.sxzlList.length > 0">
+        <div class="detail-item">
             <h4 class="Ditem-title">所需资料</h4>
             <div class="Ditem-info"  v-for="(item, index) in detailsArr.sxzlList" :key="index">
                 {{item.name}}
@@ -102,7 +103,7 @@
         </div>
 
         <!--办理流程-->
-        <div class="detail-item" v-show="detailsArr.bllcList.length > 0">
+        <div class="detail-item">
             <h4 class="Ditem-title">办理流程</h4>
             <div class="Ditem-info"  v-for="(item, index) in detailsArr.bllcList" :key="index">
                 {{item.name}}
@@ -110,7 +111,7 @@
         </div>
 
         <!--其他信息-->
-        <!--<div class="detail-item" v-show="detailsArr.ohterInfoList.length > 0">
+        <!--<div class="detail-item">
             <h4 class="Ditem-title">其他信息</h4>
             <div class="Ditem-info"  v-for="(item, index) in detailsArr.ohterInfoList" :key="index">
                 <b>{{item.name}}:</b>
@@ -119,7 +120,7 @@
         </div>-->
 
         <!--征信要求-->
-        <!--<div class="detail-item" v-show="detailsArr.zxyqList.length > 0">
+        <!--<div class="detail-item" >
             <h4 class="Ditem-title">征信要求</h4>
             <div class="Ditem-info"  v-for="(item, index) in detailsArr.zxyqList" :key="index">
                 <b>{{item.name}}:</b>
@@ -128,7 +129,7 @@
         </div>-->
 
         <!--免责声明-->
-        <div class="detail-item" v-show="detailsArr.mzsmList.length > 0">
+        <div class="detail-item">
             <h4 class="Ditem-title">免责声明</h4>
             <div class="Ditem-info"  v-for="(item, index) in detailsArr.mzsmList" :key="index">
                 {{item.name}}
@@ -371,7 +372,6 @@
 
             let prodParms = this.$route.params.prodArr;
             console.log(prodParms);
-            return false
             if(prodParms){
                 let prodArrData = {
                     prodType:prodParms.prodType,   //分类

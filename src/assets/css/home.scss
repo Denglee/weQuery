@@ -102,6 +102,21 @@ $navHei:.14rem;
     color: $colorGray1;
   }
 }
+.index-navItemTel{
+  display: flex;
+  /* align-items: center; */
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0;
+  .van-icon{
+    font-size: .4rem;
+    display: block;
+    text-align: center;
+  }
+  .index-navTitle{
+    margin-bottom: 0;
+  }
+}
 .index-navItem2{
   overflow: hidden;
   position: relative;
@@ -116,6 +131,8 @@ $navHei:.14rem;
   .index-navTitle{
     font-size: .18rem;
     margin-bottom: .1rem;
+    width: 100%;
+    text-align: center;
   }
   .index-navSub{
     color: $colorGray1;

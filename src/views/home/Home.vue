@@ -44,11 +44,27 @@
                     </div>
                 </van-col>
                 <van-col span="12">
-                    <div class="index-navItem"  >
-                        <h4 class="index-navTitle">
-                            <a href="tel:17688829466">联系我们</a>
+                    <div class="index-navItem">
+                        <h4>
+                            <h4 class="index-navTitle">联系我们</h4>
+                            <div class="index-navSub"><van-icon name="phone-o" style="font-size: 20px;" /></div>
+<!--                            <div class="index-navSub"></div>-->
                         </h4>
                     </div>
+
+                    <!--<div class="index-navItem index-navItemTel" >
+                        <div class="index-navTitle">
+                            <h4 class="index-navTitle">联系我们</h4>
+                            &lt;!&ndash;<div class="index-navSub">联系我们</div>&ndash;&gt;
+                            <div class="index-navSub"><van-icon name="phone-o" /></div>
+
+                           &lt;!&ndash; <a href="tel:15915403745" class="flex-between">
+                                <div>联系我们</div>
+                                <van-icon name="phone-o" />
+
+                            </a>&ndash;&gt;
+                        </div>
+                    </div>-->
                 </van-col>
             </van-row>
 
@@ -80,7 +96,7 @@
                     {id: '4', url: '/loanList', name: '企业融资', icon: '2', sunTitle: '当下企业融资产品', sunTitle2: ''},
                     {id: '2', url: '/cardItem', name: '信用卡办理', icon: '3', sunTitle: '申请快人一步', sunTitle2: ''},
                     {id: '6', url: '/loanList', name: '在线急融', icon: '4', sunTitle: '最快当天放款', sunTitle2: ''},
-                    {id: '6', url: '/aboutUs', name: '服务中心', icon: '5', sunTitle: '急速答疑解惑', sunTitle2: ''},
+                    {id: '7', url: '/aboutUs', name: '服务中心', icon: '5', sunTitle: '急速答疑解惑', sunTitle2: ''},
                 ],
             }
         },

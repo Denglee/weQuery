@@ -1,8 +1,8 @@
 <template>
     <div class="loan-main main">
 
-        <van-tabs  v-model="activeTab" @click="changeTab(activeTab)"  animated type="card" id="loanTabs">
-            <van-tab  v-for="(item,index) in navArr" :key="index" :title="item.name" class="loan-tab"  >
+        <van-tabs  v-model="activeTab" @click="changeTab"  animated type="card" id="loanTabs">
+            <van-tab  v-for="(item,index) in navArr" :key="index" :title="item.name" class="loan-tab"  :name="item.id">
 
                 <van-row  v-if="loanArr.length == 0">
                     <van-col>暂无数据</van-col>
@@ -33,7 +33,7 @@
         name: "loanList",
         data() {
             return {
-                activeTab:0,
+                activeTab:'1',
 
                 /*swiper:{
                     swiperWid:'',
@@ -87,8 +87,7 @@
             changeTab(index){
                 console.log(index);
 
-                return false
-                this.prodArr.prodType = index + 1;
+                this.prodArr.prodType = index;
                 this.loanArr =[];
                 this.getByProdType();
             },
@@ -133,9 +132,10 @@
             //     console.log( this.prodArr.prodType)
             // }
 
-            let loanProdType =parseFloat(localStorage.getItem('loanProdType')) ;
-            console.log(loanProdType);
+            let loanProdType =localStorage.getItem('loanProdType') ;
+
             if(loanProdType){
+                console.log(loanProdType);
                 this.activeTab = loanProdType;
                 this.prodArr.prodType = loanProdType ;
             }
