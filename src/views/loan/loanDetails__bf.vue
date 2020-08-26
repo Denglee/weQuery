@@ -15,11 +15,13 @@
             <div class="dHeader-info">
                 <h4 class="dHeader">{{detailsArr.name}}</h4>
                 <div class="dHeader-good">
-                    <span v-for="(good2,index2) in detailsArr.labelList" :key="index2">{{good2.name}}</span>
+                    <span v-for="(good2,index2) in detailsArr.labelList" :key="index2">
+                        {{good2.name}}
+                    </span>
                 </div>
                 <div class="dHeader-good2">
                     <span v-for="(basic,basicIndex) in detailsArr.basicInfoList" :key="basicIndex">
-                        {{basic.name}}<b v-if="basicIndex == 0">{{basic.nameValue}}</b>
+                        {{basic.name}}
                     </span>
                 </div>
             </div>
@@ -70,8 +72,8 @@
                             :max="detailsArr.quotaList[0].maxQuota"
                             :min="detailsArr.quotaList[0].minQuota"
                             :step="detailsArr.quotaList[0].step"
-                            bar-height="6px"
-                            active-color="#ffa300">
+                          bar-height="6px"
+                          active-color="#ffa300">
                 </van-slider>
             </div>
 
@@ -149,7 +151,7 @@
                 </div>
 
                 <van-button type="primary" class="btnTel btnCode" @click="funCodePopup"
-                            v-if ="contactList[0].qrimg != '' " ><van-icon name="coupon-o" />二维码</van-button>
+                v-if ="contactList[0].qrimg != '' " ><van-icon name="coupon-o" />二维码</van-button>
 
                 <a :href="'tel:' + contactList[0].telephone"  class="btnTel">
                     <van-icon name="phone-o" />电话
@@ -167,7 +169,6 @@
         </van-popup>
 
     </div>
-
 </template>
 
 <script>
@@ -221,12 +222,9 @@
                 },
 
                 /*详情arr*/
-                detailsArr:{
-                    quotaList:[
-                        { maxQuota:'', minQuota:'', step:''},
-                    ]
-                },
+                detailsArr:[],
                 // detailsArr:this.GLOBAL.LoanBankInfo.data,
+
 
                 /*期数数组*/
                 qsArr:{
@@ -248,6 +246,7 @@
                     loansServiceTotal:0,  //手续费
                 },
 
+
             }
         },
         methods: {
@@ -266,6 +265,7 @@
                         this.qsArr.qsNum = this.detailsArr.qsList[0].nameValue;  //获取期数
                         this.chartsLoans.loansTotal = totalNum;
 
+
                         /*联系方式*/
                         let contactList = res.data.contactList;
                         if (!contactList && typeof(contactList)!="undefined" && contactList!=0){
@@ -274,9 +274,7 @@
                             this.contactList = contactList;
                         }
 
-
                         this.getChartVal();
-                        this.setChartData();
                     }else{
                         this.detailsArr= '';
                     }
@@ -288,99 +286,49 @@
 
             /*值 计算 并 渲染 图表*/
             getChartVal(){
-                let loansTotal     = Number(this.chartsLoans.loansTotal)*10000;     //++ 获取总金额
-	            let totalQs     = Number(this.qsArr.qsNum);                       //获取总期数 贷款期限
-	            let monthRate  = parseFloat(this.detailsArr.basicInfoList[0].nameValue)/100;  //获取利率 贷款利率
-	            let loansServiceTotal = this.toDecimal2 (Number(this.chartsLoans.loansServiceTotal));      //++ 获取 手续费
-                console.log(loansServiceTotal);
-                let type  = this.detailsArr.basicInfoList[2].nameValue;  //分类
 
-	            console.log(`type：  ${type}`);
-	            console.log(`loansTotal：  ${loansTotal}`);
+                let loansTotal     = Number(this.chartsLoans.loansTotal);     //++ 获取总金额
+                let totalQs     = Number(this.qsArr.qsNum);                       //获取总期数
 
-                /*1是等额本息还款：*/
-                let monthPreLoan = '';     //每月还款金额 月供
-                let totalMoney = '';  //还款总额
-                let TotalInterest = '';    //还款总利息
-                let monthPreLoanEnd = '';   // 除以 10000 以后 返回给图标的 每月还款
-                let TotalInterestEnd = '';   // 除以 10000 以后 返回给图标的  总利息
-                if(type == 1){
-                    //每月还款 = (总金额   *  贷款利率  *  Math.pow((1 + 贷款利率), 贷款总期数)) / (Math.pow((1 + 贷款利率), 贷款总期数) - 1);
-                    monthPreLoan = (loansTotal * monthRate * Math.pow((1 + monthRate), totalQs))
-                        / (Math.pow((1 + monthRate), totalQs) - 1); //每月还款金额
-                    totalMoney = monthPreLoan * totalQs;//还款总额
-                    TotalInterest = (totalMoney - loansTotal );//还款总利息
+                if(totalQs == NaN){
+                    totalQs = 0;
+                    console.log(totalQs())
+                }
+                let interestRate  = parseFloat(this.detailsArr.basicInfoList[0].nameValue);  //获取利率
 
-                    monthPreLoanEnd =this.toDecimal2( this.FnkeepTwoNo(monthPreLoan /10000) );
-                    TotalInterestEnd =this.toDecimal2( this.FnkeepTwoNo(TotalInterest /10000));
+                let loansMonthTotal = 0;
+                if(loansTotal == 0 && totalQs == 0){
+                    loansMonthTotal = 0;
+                } else if(totalQs == 0){
+                    loansMonthTotal = 0;
+                }else{
+                    loansMonthTotal   = this.toDecimal2(Number( loansTotal / totalQs ));     //++ 获取月供 = 总金额/期数
                 }
 
-	            /*2是等额本金还款*/
-	            if(type == 2){
-                    monthPreLoan = (loansTotal * monthRate * Math.pow((1 + monthRate), totalQs)) / (Math.pow((1 + monthRate), totalQs) - 1);//每月还款金额
-                    totalMoney = monthPreLoan * totalQs;//还款总额
-                    TotalInterest = totalMoney - loansTotal;//还款总利息
-
-		            monthPreLoanEnd =this.toDecimal2( this.FnkeepTwoNo(monthPreLoan /10000) );
-		            TotalInterestEnd =this.toDecimal2( this.FnkeepTwoNo(TotalInterest /10000));
-	            }
-
-	            /*3是等额等息还款：月供=总金额/期数+总金额*利率   ；总利息=总金额*利率*期数*/
-	            if(type == 3){
-		            monthPreLoan = totalMoney / totalQs  + totalMoney * monthRate;
-		            TotalInterest = totalMoney * monthRate * totalQs;
-
-		            monthPreLoanEnd =this.toDecimal2( this.FnkeepTwoNo(monthPreLoan /10000) );
-		            TotalInterestEnd =this.toDecimal2( this.FnkeepTwoNo(TotalInterest /10000));
-	            }
-
-	            /*4是先息后本还款：月供=总金额*利率  ;总利息=总金额*利率*期数*/
-	            if(type == 4){
-		            monthPreLoan = totalMoney * monthRate;
-		            TotalInterest = totalMoney * monthRate * totalQs;
-
-		            monthPreLoanEnd =this.toDecimal2( this.FnkeepTwoNo(monthPreLoan /10000) );
-		            TotalInterestEnd =this.toDecimal2( this.FnkeepTwoNo(TotalInterest /10000));
-	            }
-
-	            /*5是到期还本还款：月供和总利息显示为0*/
-	            if(type == 5){
-		            monthPreLoan = 0;
-		            TotalInterest = 0
-	            }
-
-	            /*6是气球贷还款 */
-	            if(type == 6){
-                    monthPreLoan = (principal * monthRate * Math.pow((1 + monthRate), totalQs)) / (Math.pow((1 + monthRate), totalQs) - 1);//每月还款金额
-		            totalMoney = monthPreLoan * totalQs;//还款总额
-		            TotalInterest = totalMoney - principal;//还款总利息
-	            }
-
-	            console.log(`monthPreLoan 每月还款金额：  ${monthPreLoan}`);
-	            console.log(`totalMoney 还款总额： ${totalMoney}`);
-	            console.log(`TotalInterest还款总利息： ${TotalInterest}`);
-	            console.log('monthPreLoanEnd' + monthPreLoanEnd);
-	            console.log('TotalInterestEnd'+ TotalInterestEnd);
-
+                let loansRatesTotal   = this.toDecimal2(Number(loansTotal * (interestRate /100) * totalQs));  //++ 获取总利息 = 金额*利率*期数
+                let loansServiceTotal = this.toDecimal2(Number(this.chartsLoans.loansServiceTotal));      //++ 获取 手续费
+                console.log('loansTotal 获取总金额:'+ loansTotal);
+                console.log('totalQs：获取总期数:'+totalQs);
+                console.log('interestRate 获取利率:'+interestRate);
+                console.log('loansMonthTotal 获取月供:'+loansMonthTotal);
+                console.log('loansRatesTotal 获取总利息:'+loansRatesTotal);
                 this.chartsLoans = {
-                    loansTotal:loansTotal/10000,  //总金额
-                    loansMonthTotal:monthPreLoanEnd,  //月供  总金额/期数
-                    loansRatesTotal:TotalInterestEnd,  //总利息  金额*利率*期数
+                    loansTotal:loansTotal,  //总金额
+                    loansMonthTotal:loansMonthTotal,  //月供  总金额/期数
+                    loansRatesTotal:loansRatesTotal,  //总利息  金额*利率*期数
                     loansServiceTotal:loansServiceTotal,  //手续费
                 };
-
             },
 
             /*图表 渲染*/
             setChartData(){
-                let monthPreLoanEnd =  this.chartsLoans.loansMonthTotal;  // 月供
-                let TotalInterestEnd =  this.chartsLoans.loansRatesTotal;  //总利息
-                let loansServiceTotal =  this.chartsLoans.loansServiceTotal;  //手续费
-	            let loansTotal =  this.chartsLoans.loansTotal;  //贷款总额
-
-                 this.chartData.rows = [
-                    { name:"月供",value:monthPreLoanEnd },
-                    { name:"总利息",value:TotalInterestEnd },
+                let loansTotal =  this.chartsLoans.loansTotal;
+                let loansMonthTotal =  this.chartsLoans.loansMonthTotal;
+                let loansRatesTotal =  this.chartsLoans.loansRatesTotal;
+                let loansServiceTotal =  this.chartsLoans.loansServiceTotal;
+                this.chartData.rows = [
+                    { name:"月供",value:loansMonthTotal },
+                    { name:"总利息",value:loansRatesTotal },
                     { name:"手续费",value:loansServiceTotal },
                     { name:"贷款总额",value:loansTotal },
                 ]
@@ -391,8 +339,8 @@
                 this.qsArr.qsListCurren = index;
                 this.qsArr.qsNum = val.nameValue;
 
+                this.setChartData();
                 this.getChartVal();
-	            this.setChartData();
             },
 
             /*修改总金额 步进器*/
@@ -400,41 +348,28 @@
                 console.log('changeTotal: '+val);
                 this.chartsLoans.loansTotal = val;
 
-	            this.setChartData();
-	            this.getChartVal();
+                this.setChartData();
+                this.getChartVal();
             },
 
-
-            /*四舍五入保留2位小数（若第二位小数为0，则保留一位小数）*/
-            FnkeepTwoNo(num){
-                let res =parseFloat(num);
-                if(isNaN(res)){
-                	console.log('传递参数错误，请检查');
-                	return false
+            /*转小数点后两位*/
+            toDecimal2(x) {
+                var f = parseFloat(x);
+                if (isNaN(f)) {
+                    return false;
                 }
-                res = Math.round(num*100) / 100;
-                return  res;
+                var f = Math.round(x*100)/100;
+                var s = f.toString();
+                var rs = s.indexOf('.');
+                if (rs < 0) {
+                    rs = s.length;
+                    s += '.';
+                }
+                while (s.length <= rs + 2) {
+                    s += '0';
+                }
+                return s;
             },
-
-	        /*保留 小数点后两位*/
-	        toDecimal2(x) {
-		        var f = parseFloat(x);
-		        if (isNaN(f)) {
-			        return false;
-		        }
-		        var f = Math.round(x*100)/100;
-		        var s = f.toString();
-		        var rs = s.indexOf('.');
-		        if (rs < 0) {
-			        rs = s.length;
-			        s += '.';
-		        }
-		        while (s.length <= rs + 2) {
-			        s += '0';
-		        }
-		        return s;
-	        },
-
         },
         created() {
 
@@ -452,8 +387,9 @@
                 this.prodArr = sessionDetail;
             }
 
-
             this.getProdDetail();
+
+            this.setChartData();
         },
     }
 </script>

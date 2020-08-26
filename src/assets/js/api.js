@@ -51,4 +51,3 @@ export const getAllCard   = params => get('creditCard/getAll', params);         
 
 // 记录点击客服中心次数
 export const customerVisit   = params => get('customerService/visit', params);
-
