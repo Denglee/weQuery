@@ -291,7 +291,7 @@
                 let loansTotal     = Number(this.chartsLoans.loansTotal)*10000;     //++ 获取总金额
 	            let totalQs     = Number(this.qsArr.qsNum);                       //获取总期数 贷款期限
 	            let monthRate  = parseFloat(this.detailsArr.basicInfoList[0].nameValue)/100;  //获取利率 贷款利率
-	            let loansServiceTotal = this.toDecimal2 (Number(this.chartsLoans.loansServiceTotal));      //++ 获取 手续费
+	            let loansServiceTotal = this.fomatFloat (Number(this.chartsLoans.loansServiceTotal),2);      //++ 获取 手续费
                 console.log(loansServiceTotal);
                 let type  = this.detailsArr.basicInfoList[2].nameValue;  //分类
 
@@ -311,8 +311,8 @@
                     totalMoney = monthPreLoan * totalQs;//还款总额
                     TotalInterest = (totalMoney - loansTotal );//还款总利息
 
-                    monthPreLoanEnd =this.toDecimal2( this.FnkeepTwoNo(monthPreLoan /10000) );
-                    TotalInterestEnd =this.toDecimal2( this.FnkeepTwoNo(TotalInterest /10000));
+                    monthPreLoanEnd =this.fomatFloat( (monthPreLoan /10000),2 );
+                    TotalInterestEnd =this.fomatFloat( (TotalInterest /10000),2);
                 }
 
 	            /*2是等额本金还款*/
@@ -321,8 +321,8 @@
                     totalMoney = monthPreLoan * totalQs;//还款总额
                     TotalInterest = totalMoney - loansTotal;//还款总利息
 
-		            monthPreLoanEnd =this.toDecimal2( this.FnkeepTwoNo(monthPreLoan /10000) );
-		            TotalInterestEnd =this.toDecimal2( this.FnkeepTwoNo(TotalInterest /10000));
+		            monthPreLoanEnd =this.fomatFloat( (monthPreLoan /10000),2 );
+		            TotalInterestEnd =this.fomatFloat( (TotalInterest /10000),2);
 	            }
 
 	            /*3是等额等息还款：月供=总金额/期数+总金额*利率   ；总利息=总金额*利率*期数*/
@@ -330,8 +330,8 @@
 		            monthPreLoan = totalMoney / totalQs  + totalMoney * monthRate;
 		            TotalInterest = totalMoney * monthRate * totalQs;
 
-		            monthPreLoanEnd =this.toDecimal2( this.FnkeepTwoNo(monthPreLoan /10000) );
-		            TotalInterestEnd =this.toDecimal2( this.FnkeepTwoNo(TotalInterest /10000));
+		            monthPreLoanEnd =this.fomatFloat( (monthPreLoan /10000),2 );
+		            TotalInterestEnd =this.fomatFloat( (TotalInterest /10000),2);
 	            }
 
 	            /*4是先息后本还款：月供=总金额*利率  ;总利息=总金额*利率*期数*/
@@ -339,8 +339,8 @@
 		            monthPreLoan = totalMoney * monthRate;
 		            TotalInterest = totalMoney * monthRate * totalQs;
 
-		            monthPreLoanEnd =this.toDecimal2( this.FnkeepTwoNo(monthPreLoan /10000) );
-		            TotalInterestEnd =this.toDecimal2( this.FnkeepTwoNo(TotalInterest /10000));
+		            monthPreLoanEnd =this.fomatFloat( (monthPreLoan /10000),2 );
+		            TotalInterestEnd =this.fomatFloat( (TotalInterest /10000),2);
 	            }
 
 	            /*5是到期还本还款：月供和总利息显示为0*/
@@ -404,9 +404,28 @@
 	            this.getChartVal();
             },
 
+	        /*四舍五入保留两位小数*/
+	        fomatFloat(x,pos){
+		        var f = parseFloat(x);
+		        if(isNaN(f)){
+			        return false;
+		        }
+		        f = Math.round(x*Math.pow(10, pos))/Math.pow(10, pos); // pow 幂
+		        var s = f.toString();
+		        var rs = s.indexOf('.');
+		        if(rs < 0){
+			        rs = s.length;
+			        s += '.';
+		        }
+		        while(s.length <= rs + pos){
+			        s += '0';
+		        }
+		        return s;
+	        },
 
-            /*四舍五入保留2位小数（若第二位小数为0，则保留一位小数）*/
-            FnkeepTwoNo(num){
+
+	        /*四舍五入保留2位小数（若第二位小数为0，则保留一位小数）*/
+            /*FnkeepTwoNo(num){
                 let res =parseFloat(num);
                 if(isNaN(res)){
                 	console.log('传递参数错误，请检查');
@@ -414,10 +433,10 @@
                 }
                 res = Math.round(num*100) / 100;
                 return  res;
-            },
+            },*/
 
 	        /*保留 小数点后两位*/
-	        toDecimal2(x) {
+	        /*toDecimal2(x) {
 		        var f = parseFloat(x);
 		        if (isNaN(f)) {
 			        return false;
@@ -433,7 +452,7 @@
 			        s += '0';
 		        }
 		        return s;
-	        },
+	        },*/
 
         },
         created() {
