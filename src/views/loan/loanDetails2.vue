@@ -340,7 +340,7 @@
                 this.getChartVal();
             },
 
-            /*修改总金额 步进器*/
+            /*修改总金额 步进器 */
             changeTotal(val){
                 console.log('changeTotal: '+val);
                 this.chartsLoans.loansTotal = val;
