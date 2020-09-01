@@ -25,7 +25,7 @@
             </div>
         </div>
 
-        <!--图表+计算-->
+        <!--图表+计算 -->
         <div class="detail-item">
             <ve-ring :data="chartData"
                      :colors="totalColor"
@@ -129,8 +129,8 @@
         <!--免责声明-->
         <div class="detail-item">
             <h4 class="Ditem-title">免责声明</h4>
-            <div class="Ditem-info"  v-for="(item, index) in detailsArr.mzsmList" :key="index">
-                {{item.name}}
+            <div class="Ditem-info" >
+                {{detailsArr.mzsmDo.name}}
             </div>
         </div>
 
@@ -138,7 +138,7 @@
         <div style="padding-top: 30px">
             <div class="btnFixed-tel" v-if="prodArr.prodType == 5">
                 <a :href="'tel:' + detailsArr.contactDo.telephone"  class="btnTel">电话咨询</a>
-                <van-button type="primary" class="btnCode">立即申请</van-button>
+                <van-button type="primary" class="btnCode" @click="funApplyCodePopup()">立即申请</van-button>
             </div>
 
             <div v-else class="btn-manager">
@@ -148,7 +148,7 @@
                     客户经理
                 </div>
 
-                <van-button type="primary" class="btnTel btnCode" @click="funCodePopup"
+                <van-button type="primary" class="btnTel btnCode" @click="funCodePopup()"
                             v-if ="detailsArr.contactDo.qrimg != '' " ><van-icon name="coupon-o" />二维码</van-button>
 
                 <a :href="'tel:' + detailsArr.contactDo.telephone"  class="btnTel">
@@ -158,8 +158,16 @@
             </div>
         </div>
 
+        <!--立即申请 二维码弹出-->
+        <van-popup v-model="ShowCode.ShowCodeApplyPopup"
+                   position="bottom"
+                   round
+                   style="height: 40%;display: flex; align-items: center;justify-content: center;">
+            <van-image :src="applyCode" class="detaile-code"></van-image>
+        </van-popup>
+
         <!--二维码弹出-->
-        <van-popup v-model="ShowCodePopup"
+        <van-popup v-model="ShowCode.ShowCodePopup"
                    position="bottom"
                    round
                    style="height: 40%;display: flex; align-items: center;justify-content: center;">
@@ -197,9 +205,11 @@
             };
 
             return {
-                ShowCodePopup:false,
-                // 联系方式
-
+                applyCode:require('@/assets/img/code_apply.jpg'),
+                ShowCode:{
+                    ShowCodeApplyPopup:false,
+                    ShowCodePopup:false,
+                },
 
                 /*分类*/
                 prodArr:{
@@ -225,7 +235,10 @@
                         productId:'',
                         qrimg:'',
                         telephone:'',
-                    }
+                    },
+	                mzsmDo:{
+                    	name:'',
+	                },
 
                 },
                 // detailsArr:this.GLOBAL.LoanBankInfo.data,
@@ -255,7 +268,11 @@
         methods: {
 
             funCodePopup(){
-                this.ShowCodePopup = true;
+                this.ShowCode.ShowCodePopup = true;
+            },
+
+            funApplyCodePopup(){
+                this.ShowCode.ShowCodeApplyPopup = true;
             },
 
             /*获取 数据 接口*/
@@ -293,6 +310,8 @@
             },
 
 
+
+
             /*值 计算 并 渲染 图表*/
             getChartVal(){
                 let loansTotal     = Number(this.chartsLoans.loansTotal)*10000;     //++ 获取总金额
@@ -313,15 +332,20 @@
                 let TotalInterest = '';    //还款总利息
                 let monthPreLoanEnd = '';   // 除以 10000 以后 返回给图标的 每月还款
                 let TotalInterestEnd = '';   // 除以 10000 以后 返回给图标的  总利息
+
+                let that =this;
+
+	            function endNum(monthPreLoan, TotalInterest){
+		            monthPreLoanEnd = that.fomatFloat( (monthPreLoan /10000),2 );
+		            TotalInterestEnd = that.fomatFloat( (TotalInterest /10000),2);
+	            }
+
                 if(type == 1){
                     //每月还款 = (总金额   *  贷款利率  *  Math.pow((1 + 贷款利率), 贷款总期数)) / (Math.pow((1 + 贷款利率), 贷款总期数) - 1);
                     monthPreLoan = (loansTotal * monthRate * Math.pow((1 + monthRate), totalQs))
                         / (Math.pow((1 + monthRate), totalQs) - 1); //每月还款金额
                     totalMoney = monthPreLoan * totalQs;//还款总额
                     TotalInterest = (totalMoney - loansTotal );//还款总利息
-
-                    monthPreLoanEnd =this.fomatFloat( (monthPreLoan /10000),2 );
-                    TotalInterestEnd =this.fomatFloat( (TotalInterest /10000),2);
                 }
 
 	            /*2是等额本金还款*/
@@ -329,9 +353,6 @@
                     monthPreLoan = (loansTotal * monthRate * Math.pow((1 + monthRate), totalQs)) / (Math.pow((1 + monthRate), totalQs) - 1);//每月还款金额
                     totalMoney = monthPreLoan * totalQs;//还款总额
                     TotalInterest = totalMoney - loansTotal;//还款总利息
-
-		            monthPreLoanEnd =this.fomatFloat( (monthPreLoan /10000),2 );
-		            TotalInterestEnd =this.fomatFloat( (TotalInterest /10000),2);
 	            }
 
 	            /*3是等额等息还款：月供=总金额/期数+总金额*利率   ；总利息=总金额*利率*期数*/
@@ -346,8 +367,7 @@
 		            console.log(monthPreLoan);
 		            console.log(TotalInterest);
 
-		            monthPreLoanEnd =this.fomatFloat( (monthPreLoan /10000),2 );
-		            TotalInterestEnd =this.fomatFloat( (TotalInterest /10000),2);
+		            /*endNum(monthPreLoan, TotalInterest);*/
 	            }
 
 	            /*4是先息后本还款：月供=总金额*利率  ;总利息=总金额*利率*期数*/
@@ -355,22 +375,27 @@
 		            monthPreLoan = loansTotal * monthRate;
 		            TotalInterest = loansTotal * monthRate * totalQs;
 
-		            monthPreLoanEnd =this.fomatFloat( (monthPreLoan /10000),2 );
-		            TotalInterestEnd =this.fomatFloat( (TotalInterest /10000),2);
+		            /*endNum(monthPreLoan, TotalInterest);*/
 	            }
 
 	            /*5是到期还本还款：月供和总利息显示为0*/
 	            if(type == 5){
 		            monthPreLoan = 0;
-		            TotalInterest = 0
+		            TotalInterest = 0;
+
+		            /*endNum(monthPreLoan, TotalInterest);*/
 	            }
+
 
 	            /*6是气球贷还款 */
 	            if(type == 6){
+
                     monthPreLoan = (loansTotal * monthRate * Math.pow((1 + monthRate), totalQs)) / (Math.pow((1 + monthRate), totalQs) - 1);//每月还款金额
 		            totalMoney = monthPreLoan * totalQs;//还款总额
 		            TotalInterest = totalMoney - loansTotal;//还款总利息
 	            }
+
+	            endNum(monthPreLoan, TotalInterest);
 
 	            console.log(`monthPreLoan 每月还款金额：  ${monthPreLoan}`);
 	            console.log(`totalMoney 还款总额： ${totalMoney}`);
