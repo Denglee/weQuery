@@ -64,12 +64,12 @@
             </div>
 
             <!--滑块-->
-            <!--{{detailsArr.quotaList[0]}}-->
+            <!--{{detailsArr.quotaDo}}-->
             <div  class="detail-slider">
                 <van-slider v-model="chartsLoans.loansTotal"  @change="changeTotal($event)"
-                            :max="detailsArr.quotaList[0].maxQuota"
-                            :min="detailsArr.quotaList[0].minQuota"
-                            :step="detailsArr.quotaList[0].step"
+                            :max="detailsArr.quotaDo.maxQuota"
+                            :min="detailsArr.quotaDo.minQuota"
+                            :step="detailsArr.quotaDo.step"
                             bar-height="6px"
                             active-color="#ffa300">
                 </van-slider>
@@ -137,7 +137,7 @@
         <!--联系我们-->
         <div style="padding-top: 30px">
             <div class="btnFixed-tel" v-if="prodArr.prodType == 5">
-                <a :href="'tel:' + contactList[0].telephone"  class="btnTel">电话咨询</a>
+                <a :href="'tel:' + detailsArr.contactDo.telephone"  class="btnTel">电话咨询</a>
                 <van-button type="primary" class="btnCode">立即申请</van-button>
             </div>
 
@@ -149,9 +149,9 @@
                 </div>
 
                 <van-button type="primary" class="btnTel btnCode" @click="funCodePopup"
-                            v-if ="contactList[0].qrimg != '' " ><van-icon name="coupon-o" />二维码</van-button>
+                            v-if ="detailsArr.contactDo.qrimg != '' " ><van-icon name="coupon-o" />二维码</van-button>
 
-                <a :href="'tel:' + contactList[0].telephone"  class="btnTel">
+                <a :href="'tel:' + detailsArr.contactDo.telephone"  class="btnTel">
                     <van-icon name="phone-o" />电话
                 </a>
 
@@ -163,7 +163,7 @@
                    position="bottom"
                    round
                    style="height: 40%;display: flex; align-items: center;justify-content: center;">
-            <van-image :src="contactList[0].qrimg" class="detaile-code"></van-image>
+            <van-image :src="detailsArr.contactDo.qrimg" class="detaile-code"></van-image>
         </van-popup>
 
     </div>
@@ -199,14 +199,7 @@
             return {
                 ShowCodePopup:false,
                 // 联系方式
-                contactList:[
-                    {
-                        id:'',
-                        productId:'',
-                        qrimg:'',
-                        telephone:'1768882946xx',
-                    }
-                ],
+
 
                 /*分类*/
                 prodArr:{
@@ -222,9 +215,18 @@
 
                 /*详情arr*/
                 detailsArr:{
-                    quotaList:[
-                        { maxQuota:'', minQuota:'', step:''},
-                    ]
+                    quotaDo: {
+                        maxQuota:'',
+                        minQuota:'',
+                        step:'',
+                    },
+                    contactDo:{
+                        id:'1',
+                        productId:'',
+                        qrimg:'',
+                        telephone:'',
+                    }
+
                 },
                 // detailsArr:this.GLOBAL.LoanBankInfo.data,
 
@@ -262,16 +264,21 @@
                     console.log(res.data);
                     if(res.status == 'success'){
                         this.detailsArr = res.data;
-                        let totalNum = res.data.quotaList[0].defaultQuota;
+                        let totalNum = res.data.quotaDo.defaultQuota;
+                        console.log(totalNum);
+                        console.log(this.detailsArr.qsList[0].nameValue);
+
                         this.qsArr.qsNum = this.detailsArr.qsList[0].nameValue;  //获取期数
+
                         this.chartsLoans.loansTotal = totalNum;
 
+
                         /*联系方式*/
-                        let contactList = res.data.contactList;
-                        if (!contactList && typeof(contactList)!="undefined" && contactList!=0){
+                        let contactDo = res.data.contactDo;
+                        if (!contactDo && typeof(contactDo)!="undefined" && contactDo!=0){
                             /*alert("null");*/
                         }else{
-                            this.contactList = contactList;
+                            this.contactDo = contactDo;
                         }
 
 
@@ -295,8 +302,10 @@
                 console.log(loansServiceTotal);
                 let type  = this.detailsArr.basicInfoList[2].nameValue;  //分类
 
+
 	            console.log(`type：  ${type}`);
 	            console.log(`loansTotal：  ${loansTotal}`);
+	            console.log(`totalQs：  ${totalQs}`);
 
                 /*1是等额本息还款：*/
                 let monthPreLoan = '';     //每月还款金额 月供
@@ -327,8 +336,15 @@
 
 	            /*3是等额等息还款：月供=总金额/期数+总金额*利率   ；总利息=总金额*利率*期数*/
 	            if(type == 3){
-		            monthPreLoan = totalMoney / totalQs  + totalMoney * monthRate;
-		            TotalInterest = totalMoney * monthRate * totalQs;
+	                console.log(loansTotal);
+	                console.log(totalQs);
+	                console.log(monthRate);
+		            monthPreLoan = loansTotal / totalQs  + loansTotal * monthRate;
+		            TotalInterest = loansTotal * monthRate * totalQs;
+
+		            console.log(loansTotal);
+		            console.log(monthPreLoan);
+		            console.log(TotalInterest);
 
 		            monthPreLoanEnd =this.fomatFloat( (monthPreLoan /10000),2 );
 		            TotalInterestEnd =this.fomatFloat( (TotalInterest /10000),2);
@@ -336,8 +352,8 @@
 
 	            /*4是先息后本还款：月供=总金额*利率  ;总利息=总金额*利率*期数*/
 	            if(type == 4){
-		            monthPreLoan = totalMoney * monthRate;
-		            TotalInterest = totalMoney * monthRate * totalQs;
+		            monthPreLoan = loansTotal * monthRate;
+		            TotalInterest = loansTotal * monthRate * totalQs;
 
 		            monthPreLoanEnd =this.fomatFloat( (monthPreLoan /10000),2 );
 		            TotalInterestEnd =this.fomatFloat( (TotalInterest /10000),2);
@@ -351,9 +367,9 @@
 
 	            /*6是气球贷还款 */
 	            if(type == 6){
-                    monthPreLoan = (principal * monthRate * Math.pow((1 + monthRate), totalQs)) / (Math.pow((1 + monthRate), totalQs) - 1);//每月还款金额
+                    monthPreLoan = (loansTotal * monthRate * Math.pow((1 + monthRate), totalQs)) / (Math.pow((1 + monthRate), totalQs) - 1);//每月还款金额
 		            totalMoney = monthPreLoan * totalQs;//还款总额
-		            TotalInterest = totalMoney - principal;//还款总利息
+		            TotalInterest = totalMoney - loansTotal;//还款总利息
 	            }
 
 	            console.log(`monthPreLoan 每月还款金额：  ${monthPreLoan}`);
@@ -362,8 +378,10 @@
 	            console.log('monthPreLoanEnd' + monthPreLoanEnd);
 	            console.log('TotalInterestEnd'+ TotalInterestEnd);
 
+	            let endTotal = loansTotal/10000;
+
                 this.chartsLoans = {
-                    loansTotal:loansTotal/10000,  //总金额
+                    loansTotal:endTotal,  //总金额
                     loansMonthTotal:monthPreLoanEnd,  //月供  总金额/期数
                     loansRatesTotal:TotalInterestEnd,  //总利息  金额*利率*期数
                     loansServiceTotal:loansServiceTotal,  //手续费

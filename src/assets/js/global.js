@@ -648,7 +648,7 @@ let LoanBankInfo = {
             "name": "48期",
             "nameValue": "48"
         }, {"id": 6, "productId": 5, "name": "60期", "nameValue": "60"}],
-        "quotaList": [{"id": 3, "productId": 5, "minQuota": 5, "maxQuota": 30, "step": 1, "defaultQuota": 5}],
+        "quotaDo": [{"id": 3, "productId": 5, "minQuota": 5, "maxQuota": 30, "step": 1, "defaultQuota": 5}],
         "label2List": [{"id": 1, "productId": 5, "name": "征信宽松"}, {"id": 2, "productId": 5, "name": "征信宽松"}],
         "bltjList": [{
             "id": 1,

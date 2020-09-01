@@ -29,7 +29,7 @@
                     </van-button>
                 </li>
                 <li class="picker-item picker-item2">
-                    <van-button @click="toggleSort('isQuotaUp','quotaList', '0','maxQuota')"
+                    <van-button @click="toggleSort('isQuotaUp','quotaDo', '0','maxQuota')"
                                 type="default" size="small">
                         额 度
                         <van-icon name="ascending" v-if="sortWay.isQuotaUp == true"/>
@@ -102,7 +102,7 @@
             <div class="dHeader-info" @click="goLoanD(itemFa)">
                 <h4 class="dHeader">{{itemFa.name}}</h4>
                 <div class="dHeader-good">
-                    <!--{{itemFa.quotaList[0].maxQuota}}-->
+                    <!--{{itemFa.quotaDo.maxQuota}}-->
                     <span v-for="(good2,index2) in itemFa.labelList" :key="index2">{{good2.name}}</span>
                 </div>
                 <div class="dHeader-good2">

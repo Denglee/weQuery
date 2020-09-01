@@ -245,8 +245,6 @@
                     loansRatesTotal:0,  //总利息  金额*利率*期数
                     loansServiceTotal:0,  //手续费
                 },
-
-
             }
         },
         methods: {
@@ -262,7 +260,7 @@
                     if(res.status == 'success'){
                         this.detailsArr = res.data;
                         let totalNum = res.data.quotaDo.defaultQuota;
-                        this.qsArr.qsNum = this.detailsArr.qsList[0].nameValue;  //获取期数
+                        this.qsArr.qsNum = this.detailsArr.quotaDo.nameValue;  //获取期数
                         this.chartsLoans.loansTotal = totalNum;
 
 
@@ -286,7 +284,6 @@
 
             /*值 计算 并 渲染 图表*/
             getChartVal(){
-
                 let loansTotal     = Number(this.chartsLoans.loansTotal);     //++ 获取总金额
                 let totalQs     = Number(this.qsArr.qsNum);                       //获取总期数
 

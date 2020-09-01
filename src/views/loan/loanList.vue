@@ -7,14 +7,15 @@
                 <van-row  v-if="loanArr.length == 0">
                     <van-col>暂无数据</van-col>
                 </van-row>
-                <van-row gutter="12" v-else>
+<!--                <van-row gutter="12" v-else>-->
+                <van-row gutter="12">
                     <van-col span="8" v-for="(item,index) in loanArr" :ket="index">
                         <div  class="fire-list" @click="goLoanDetails(item)">
                             <van-image :src="item.ioc" alt="" class="fire-img"></van-image>
                             <div class="fire-title">{{item.name | cutOutStr}}</div>
                             <div class="fire-month fire-subtitle">{{item.label2List[0].name || ''}}</div>
                             <div class="fire-month">月利息{{item.basicInfoList[0].nameValue || ''}}</div>
-                            <div class="fire-month fire-quoto">额度最高{{item.quotaList[0].maxQuota || ''}}万</div>
+                            <div class="fire-month fire-quoto">额度最高{{item.quotaDo.maxQuota || ''}}万</div>
                             <van-button type="default" size="mini" class="btnLook-fire">查看</van-button>
                         </div>
                     </van-col>

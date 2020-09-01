@@ -224,7 +224,7 @@
                                 "nameValue":"0.99%"
                             }
                         ],
-                        "quotaList":[
+                        "quotaDo":[
                             {
                                 "id":1,
                                 "productId":1,
@@ -276,7 +276,7 @@
                                 "nameValue":"0.99%"
                             }
                         ],
-                        "quotaList":[
+                        "quotaDo":[
                             {
                                 "id":1,
                                 "productId":1,
