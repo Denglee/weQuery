@@ -51,3 +51,6 @@ export const getAllCard   = params => get('creditCard/getAll', params);         
 
 // 记录点击客服中心次数
 export const customerVisit   = params => get('customerService/visit', params);
+
+//www.jierong123.com/wx/getWxUserInfo 登陆
+export const getWxUserInfoApi   = params => get('wx/getWxUserInfo', params);

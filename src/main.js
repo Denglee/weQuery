@@ -84,6 +84,28 @@ Vue.component(VeRing.name, VeRing);
 // Vue.component(VeLine.name, VeLine);
 Vue.use(VCharts);
 
+router.beforeEach((to, from, next) => {
+    const token = localStorage.getItem('token');
+    const openid = localStorage.getItem('openid');
+
+    console.log(token);
+    console.log(openid);
+
+    if (!openid && !token) {
+        if (to.path === '/login') {
+            console.log('/login');
+            next()
+        } else {
+            console.log('now_url');
+            localStorage.setItem('now_url',to.fullPath) //当前页url与参数放入缓存
+            next('/login')
+        }
+    } else {
+        next()
+    }
+})
+
+
 new Vue({
     router,
     store,

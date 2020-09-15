@@ -6,7 +6,7 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: '/',
-    redirect: '/index',
+    redirect: '/login',
   },
   {
     path: "/index",
@@ -52,6 +52,11 @@ const routes = [
     path: "/aboutUs",
     name: "aboutUs", /*关于我们*/
     component: () => import(/* webpackChunkName: "aboutUs" */ "../views/other/aboutUs.vue")
+  },
+  {
+    path: "/login",
+    name: "login", /*登陆*/
+    component: () => import(/* webpackChunkName: "login" */ "../views/other/login.vue")
   },
   {
     path: "/demo",
