@@ -85,8 +85,8 @@ module.exports = {
     // 它支持webPack-dev-server的所有选项
     devServer: {
         // host: "localhost",
-        host: "192.168.0.26",
-        // host: "192.168.0.106",
+        // host: "192.168.0.26",
+        host: "192.168.0.106",
         port: 8050, // 端口号
         https: false, // https:{type:Boolean}
         open: false, //配置自动启动浏览器
@@ -97,7 +97,7 @@ module.exports = {
             "/api": {
                 // target: "http://8.129.189.135:8090/cc",// 测试答咔访问的接口域名
                 target: "http://www.jierong123.com",// 测试答咔访问的接口域名
-                // target: "http://uqew5z.natappfree.cc",// 测试答咔访问的接口域名
+                // target: "http://ay5e96.natappfree.cc",// 测试答咔访问的接口域名
                 ws: true,// 是否启用websockets
                 changeOrigin: true, //开启代理：在本地会创建一个虚拟服务端，然后发送请求的数据，并同时接收请求的数据，这样服务端和服务端进行数据的交互就不会有跨域问题
                 pathRewrite: {

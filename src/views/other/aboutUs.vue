@@ -28,8 +28,8 @@
 
         <div class="mycode">
             <img :src="imgCode" alt="">
-            <a href="tel:15915403745" class="btn-tel">
-                <van-icon name="phone-o" class="icon-tel"/>：15915403745
+            <a href="tel:15014031191" class="btn-tel">
+                <van-icon name="phone-o" class="icon-tel"/>：15014031191
             </a>
 
         </div>

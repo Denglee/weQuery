@@ -47,7 +47,11 @@
                     <div class="index-navItem">
                         <h4>
                             <h4 class="index-navTitle">联系我们</h4>
-                            <div class="index-navSub"><van-icon name="phone-o" style="font-size: 20px;" /></div>
+                            <div class="index-navSub">
+                                <a href="tel:15014031191" style="display: block;width: 100%;height: 46px;">
+                                    <van-icon name="phone-o" style="font-size: 20px;" />
+                                </a>
+                            </div>
 <!--                            <div class="index-navSub"></div>-->
                         </h4>
                     </div>

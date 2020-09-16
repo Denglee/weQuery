@@ -15,12 +15,16 @@
 
         <div class="main-width">
             <div class="guide-lately">近期前三条历史匹配结果</div>
+<!--            <div class="matchRes-ul" v-if="matchResArr.length == 0">-->
+<!--                <li style="font-size: 12px;color: gray;text-align: center;">暂无数据</li>-->
+<!--            </div>-->
             <ul class="matchRes-ul">
                <li v-for="(item,index) in matchResArr" :key="index" @click="goMatchRes(item)">
                    {{item.queryTime | minuteFormat}}  |  信用贷款 | 匹配{{item.num}}个产品
                    <van-icon name="arrow" />
                </li>
             </ul>
+            <div style="font-size: 12px;color: gray;text-align: center;margin-top: 10px;">该服务由微信公众平台·节融·提供</div>
         </div>
     </div>
 </template>
@@ -31,7 +35,10 @@
         name: "matchGuide",
         data() {
             return {
-                matchResArr:{},
+                matchResArr:[],
+
+                /*nickname:'木子',
+                openid:'oLbgO1Qu4uJHnyqDj245KanmDre4',*/
 
                 nickname:'',
                 openid:'',
@@ -45,7 +52,9 @@
                     staffName:this.nickname,
                 }).then(res => {
                     console.log(res);
-                    this.matchResArr  = res.data;
+                    if(res.status == 'success'){
+                        this.matchResArr  = res.data;
+                    }
                 }).catch(res => {
                     console.log(res);
                 })
