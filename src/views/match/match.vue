@@ -68,7 +68,7 @@
 <script>
 
     import {userInfo} from '@/assets/js/userInfo' /*引用 用户信息 */
-    import {getCondiProductList,getHistoryList} from '@/assets/js/api' /*引用 接口*/
+    import {getCondiProductList} from '@/assets/js/api' /*引用 接口*/
     import {getAllType } from '@/assets/js/api' /*引用 接口*/
 
 
@@ -215,6 +215,9 @@
                     lnn_yqsigycs: -1, // 61、近两年内逾期四个月次数
                     sfsygwld: -1,     // 62、是否使用过微粒贷
                     loan_type: 1,      //63、信用三大分类
+
+	                openid:'',
+	                nickname:'',
                 },
             }
         },
@@ -371,6 +374,11 @@
             /*console.log(this.userInfo);*/
             //1、选中后又取消 怎么清空
             //2、没选与选 怎么下一步按钮
+
+	        let nickname = localStorage.getItem('nickname');
+	        let openid = localStorage.getItem('openid');
+	        this.userChecked.openid = openid;
+	        this.userChecked.nickname = nickname;
 
         },
 

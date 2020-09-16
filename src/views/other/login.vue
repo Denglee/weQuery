@@ -1,150 +1,117 @@
 <template>
-    
+    <div>
+        <van-overlay :show="matchShowRes.matchRightShow" >
+            <div class="wrapper-match" @click.stop>
+                <div class="wrapper-Content">
+                    <div class="wrapper-name">正在登录，请稍后……</div>
+                    <van-loading type="spinner" color="#ffa300" size = '60px'/>
+                </div>
+            </div>
+        </van-overlay>
+    </div>
 </template>
 
 <script>
-    import {getWxUserInfoApi} from "../../assets/js/api";
-    const murl = 'http://www.jierong123.com';
-    const url = localStorage.getItem("now_url");
+	import {getWxUserInfoApi} from "../../assets/js/api";
+	// const murl = 'http://www.jierong123.com';
+	// const url = localStorage.getItem("now_url");
 
 
-    export default {
-        name: "login",
-        data() {
-            return {};
-        },
+	export default {
+		name: "login",
+		data() {
+			return {
+				matchShowRes:{
+					matchRightShow:true,  //成功
+				},
+            };
+		},
 
-        //生命周期函数
-        created() {
-
-            this.getCode()
-
-
-            // window.location.href  = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxdcf6df398c3ce766&redirect_uri=http%3a%2f%2fwww.jierong123.com%2fwx%2fgetWxUserInfo&response_type=code&scope=snsapi_userinfo&state=jierong#wechat_redirect';
-            // window.location.href('https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxdcf6df398c3ce766&redirect_uri=http%3a%2f%2fwww.jierong123.com%2fwx%2fgetWxUserInfo&response_type=code&scope=snsapi_userinfo&state=jierong#wechat_redirect');
-
-            return false
-
-            let url = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxdcf6df398c3ce766&redirect_uri=http%3a%2f%2fwww.jierong123.com%2fdist%2findex.html%23%2flogin&response_type=code&scope=snsapi_userinfo&state=jierong#wechat_redirect`;
-            window.location.href = url;
-
-            setTimeout(function(){
-                console.log(url);
-            },1000)
-
-
-
-            const code = this.getUrlCode().code() // 截取code
-            console.log(code);
-            if (!code) {
-                let domine = window.location.href.split("#")[0]; // 微信会自动识别#    并且清除#后面的内容
-                console.log(domine);
-                //这里的axios是已封装过的
-
+		//生命周期函数
+		mounted() {
+			const openid = localStorage.getItem('openid');
+			console.log(openid);
+			if (!openid) {
+                // let nowUrl = 'http://www.jierong123.com/dist/index.html?code=031MhRFa1FFKCz0x6NGa1xXkn64MhRFK&state=jierong#/login'
+                let nowUrl = window.location.href;
+                const codeArr = this.GetRequest(nowUrl); // 截取code
+                console.log(codeArr.code);
+                console.log(codeArr.state);
                 getWxUserInfoApi({
-                    url: domine,
+                    code: codeArr.code,
+                    state: codeArr.state,
                 }).then(res => {
                     console.log(res);
+                    if(res.status = 'success'){
+                        let openid = res.data.openid;
+                        let nickname = res.data.nickname;
+                        console.log(openid);
+                        window.localStorage.setItem('openid',openid);
+                        window.localStorage.setItem('nickname',nickname);
+                        this.$router.push({
+                            path:'/index',
+                        })
+                    }
                 }).catch(res => {
                     console.log(res);
-                })
-
-                /*     this.http
-                    .get("/set_wxcode_url?url=" + domine) // 如果没有code，说明用户还没授权   将当前地址传递给后台
-                    .then(res => {
-                        window.location.href = res.data;
-                    });*/
-            } else {
-                console.log(code);
-                getWxUserInfoApi({code: code}).then(res => {
-                    console.log(res);
-                }).catch(res => {
-                    console.log(res);
-                    console.log(res.data);
-                    if (res.data.token) {
-                        localStorage.setItem("token", res.data.token);
-                    }
-                    if (res.data.openid) {
-                        localStorage.setItem("openid", res.data.openid);
-                    }
-                    window.location.replace(murl + '/#' + url);
-                })
-                /*
-                this.http.get("/gzh_token?code=",{code:code}) //如果有code，说明用户点击了授权  将获取到的code传递给后台
-                    .then(res => {
-                        // 返回状态和UId
-                        console.log(res.data);
-                        if (res.data.token) {
-                            localStorage.setItem("token", res.data.token);
-                        }
-                        if (res.data.openid) {
-                            localStorage.setItem("openid", res.data.openid);
-                        }
-                        window.location.replace(murl+'/#' + url);
-                    });*/
+                });
+			} else {
+				this.$router.push({
+					path:'/index',
+				});
             }
-        },
-        methods: {
+		},
+		methods: {
 
-            getCode () { // 非静默授权，第一次有弹框
-                console.log('sd');
-                const code = this.GetUrlParame('code') // 截取路径中的code，如果没有就去微信授权，如果已经获取到了就直接传code给后台获取openId
-                const local = window.location.href;
-                if (code == null || code === '') {
-                    window.location.href = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxdcf6df398c3ce766&redirect_uri=http%3a%2f%2fwww.jierong123.com%2fdist%2findex.html%23%2flogin&response_type=code&scope=snsapi_userinfo&state=jierong#wechat_redirect'
+			/**
+			 * [获取URL中的参数名及参数值的集合]
+			 * 示例URL:http://htmlJsTest/getrequest.html?uid=admin&rid=1&fid=2&name=小明
+			 * @param {[string]} urlStr [当该参数不为空的时候，则解析该url中的参数集合]
+			 * @return {[string]}       [参数集合]
+			 */
+			 GetRequest(urlStr) {
+                if (typeof urlStr == "undefined") {
+                    var url = decodeURI(location.search); //获取url中"?"符后的字符串
                 } else {
-                    this.getOpenId(code) //把code传给后台获取用户信息
+                    var url = "?" + urlStr.split("?")[1];
                 }
-            },
-
-            getOpenId (code) { // 通过code获取 openId等用户信息，/api/user/wechat/login 为后台接口
-                let _this = this
-                this.$http.post('/api/user/wechat/login', {code: code}).then((res) => {
-                    let datas = res.data
-                    if (datas.code === 0 ) {
-                        console.log('成功')
+                var theRequest = new Object();
+                if (url.indexOf("?") != -1) {
+                    var str = url.substr(1);
+                    var strs = str.split("&");
+                    for (var i = 0; i < strs.length; i++) {
+                        theRequest[strs[i].split("=")[0]] = decodeURI(strs[i].split("=")[1]);
                     }
-                }).catch((error) => {
-                    console.log(error)
-                })
+                }
+                return theRequest;
             },
 
 
-            // 截取code
-            GetUrlParame(parameName) {
+		},
+	}
 
-                /// 获取地址栏指定参数的值
-                /// <param name="parameName">参数名</param>
-                // 获取url中跟在问号后面的部分
-                var parames = window.location.search;
-                console.log(parameValue);
-                // 检测参数是否存在
-                if (parames.indexOf(parameName) > -1) {
-                    var parameValue = ''
-                    parameValue = parames.substring(parames.indexOf(parameName), parames.length)
-                    // 检测后面是否还有参数
-                    if (parameValue.indexOf('&') > -1) {
-                        // 去除后面多余的参数, 得到最终 parameName=parameValue 形式的值
-                        parameValue = parameValue.substring(0, parameValue.indexOf('&'))
-                        // 去掉参数名, 得到最终纯值字符串
-                        parameValue = parameValue.replace(parameName + '=', '');
-                        console.log(parameValue);
-                        return parameValue
-                    }
-                    return ''
-                }
-            }
-        },
-    }
-        // toGetWXCode() {
-        //     let redirectUrl = encodeURIComponent('你的域名')
-        //     let oAuthUrl = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=${WX_APPID}&redirect_uri=${redirectUrl}&response_type=code&scope=snsapi_userinfo&state=bc17befd6d5060f16de95e38f6eaf69c&connect_redirect=1#wechat_redirect`
-        //     window.location.href = oAuthUrl
-        // },
-        //
-        // },
 </script>
 
-<style scoped>
-
+<style lang="scss">
+    //生成匹配结果
+    .wrapper-match{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        .wrapper-Content{
+            height: 170px;
+            background-color: #fff;
+            width: 70%;
+            text-align: center;
+            padding: 24px 40px;
+            border-radius: 13px;
+        }
+        .wrapper-name{
+            color: #ffa300;
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 30px;
+        }
+    }
 </style>

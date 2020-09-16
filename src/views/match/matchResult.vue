@@ -157,6 +157,8 @@
 
                 matchResFoam: {
                     history_id: '',
+	                openid: '',
+                    nickname: '',
                 },
 
                 prodArr: {
@@ -262,6 +264,9 @@
             getHistoryList() {
                 getHistoryProductList({
                     historyId: this.matchResFoam.history_id,
+	                nickname: this.matchResFoam.nickname,
+	                openid: this.matchResFoam.openid,
+
                 }).then(res => {
                     // console.log(res);
                     if(res.status == 'success'){
@@ -299,8 +304,12 @@
         created() {
             let that = this;
             let resHistory = localStorage.getItem('historyId');
+            let nickname = localStorage.getItem('nickname');
+            let openid = localStorage.getItem('openid');
             console.log(resHistory);
             this.matchResFoam.history_id = resHistory;
+            this.matchResFoam.openid = openid;
+            this.matchResFoam.nickname = nickname;
 
             this.getHistoryList();
 

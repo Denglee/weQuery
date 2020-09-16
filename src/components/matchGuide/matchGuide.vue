@@ -32,14 +32,17 @@
         data() {
             return {
                 matchResArr:{},
+
+                nickname:'',
+                openid:'',
             }
         },
         methods: {
             getHisList() {
                 console.log(this.matchResArr);
                 getHistoryList({
-                    staffNo:11,
-                    staffName:'姚明',
+                    staffNo:this.openid,
+                    staffName:this.nickname,
                 }).then(res => {
                     console.log(res);
                     this.matchResArr  = res.data;
@@ -59,7 +62,15 @@
 
         },
         created() {
+
+	        let openid = localStorage.getItem('openid');
+	        let nickname = localStorage.getItem('nickname');
+	        this.nickname = nickname;
+	        this.openid = openid;
+
             this.getHisList();
+
+
         },
     }
 </script>
