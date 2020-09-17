@@ -29,7 +29,9 @@
         <div class="mycode">
             <img :src="imgCode" alt="">
             <a href="tel:15014031191" class="btn-tel">
-                <van-icon name="phone-o" class="icon-tel"/>：15014031191
+                <span style="font-size: 18px;">联系我们<van-icon name="phone-o" class="icon-tel"/>：</span>
+
+                <span style="margin-left: 1px;font-size: 17px;">15014031191</span>
             </a>
 
         </div>
@@ -62,8 +64,9 @@
 </script>
 <style lang="scss">
     .icon-tel{
-        font-size: 20px!important;
+        font-size: 19px !important;
         vertical-align: middle;
+        margin: -3px 2px 0 3px;
     }
     .mycode {
         padding-top: .4rem;
@@ -94,10 +97,10 @@
         width: 100%;
         position: fixed;
         background: #ffa300;
-        padding: 7px 0;
+        padding: 12px 0;
         color: #fff;
         /* left: 4%; */
         bottom: 0;
-        font-size: 20px;
+        /*font-size: 20px;*/
     }
 </style>
