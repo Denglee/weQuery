@@ -365,6 +365,26 @@ $navHei:.14rem;
 }
 .detail-slider{
   margin: .3rem 0 .2rem;
+  position: relative;
+  width: 100%;
+  //.title{
+  //  width: 80px;
+  //  display: inline-block;
+  //}
+  .van-slider{
+    /*width: calc(100% - 80px);*/
+    width: 100%;
+    display: inline-block;
+    top: -3px;
+  }
+  .tip{
+    position: absolute;
+    width: 100%;
+    right: 0;
+    text-align: right;
+    top: 20px;
+    font-size: 10px;
+  }
 }
 
 /*图表样式*/

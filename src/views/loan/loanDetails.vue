@@ -66,6 +66,7 @@
             <!--滑块-->
             <!--{{detailsArr.quotaDo}}-->
             <div  class="detail-slider">
+                <!--<span class="title">调节额度：</span>-->
                 <van-slider v-model="chartsLoans.loansTotal"  @change="changeTotal($event)"
                             :max="detailsArr.quotaDo.maxQuota"
                             :min="detailsArr.quotaDo.minQuota"
@@ -73,6 +74,7 @@
                             bar-height="6px"
                             active-color="#ffa300">
                 </van-slider>
+                <span class="tip">左右滑动调节额度</span>
             </div>
 
             <div class="dHeader-good">
