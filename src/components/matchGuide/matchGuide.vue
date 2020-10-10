@@ -3,7 +3,7 @@
         <div class="guide-topBg"></div>
 
         <div class="guide-content">
-            <img src="@/assets/img/guangfa.png" alt="" class="guide-logo">
+            <img src="@/assets/img/myCode2.png" alt="" class="guide-logo">
             <div class="guide-nav">
                 <span>银行产品</span>
                 <span>机构产品</span>

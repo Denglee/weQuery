@@ -84,30 +84,38 @@ Vue.component(VeRing.name, VeRing);
 // Vue.component(VeLine.name, VeLine);
 Vue.use(VCharts);
 
+/*// 路由跳转前验证
 router.beforeEach((to, from, next) => {
-    // const token = localStorage.getItem('token');
-    const openid = localStorage.getItem('openid');
-
-    // console.log(token);
+    /!*console.log(to);
+    console.log(from);*!/
+    
+    const ls = new global.FnStorage();
+    const openid = ls.getItem('openid2');
     console.log(openid);
-
-    if (!openid) {
+    console.log(typeof (openid));
+    const oauth_token = ls.getItem('oauth_token');
+    console.log(oauth_token);
+    let url = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxdcf6df398c3ce766&redirect_uri=http%3a%2f%2fwww.jierong123.com%2fdist%2findex.html%23%2flogin&response_type=code&scope=snsapi_userinfo&state=jierong#wechat_redirect`;
+  
+    if (!openid) {  //openid 为空
+       
+        // window.location.replace(url);
         if (to.path === '/login') {
             console.log('/login');
             next();
         } else {
-            let url = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxdcf6df398c3ce766&redirect_uri=http%3a%2f%2fwww.jierong123.com%2fdist%2findex.html%23%2flogin&response_type=code&scope=snsapi_userinfo&state=jierong#wechat_redirect`;
             window.location.replace(url);
-
-            // console.log('now_url');
-            // localStorage.setItem('now_url',to.fullPath) //当前页url与参数放入缓存
-            // next('/login');
         }
-    } else {
-        next()
+    } else { //openid 不为空
+        if(!oauth_token){ //如果oauth_token为空
+            console.log('no oauth_token');
+            window.location.replace(url);
+        }else{
+            console.log('go  next');
+            next()
+        }
     }
-})
-
+})*/
 
 new Vue({
     router,

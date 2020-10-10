@@ -1,13 +1,13 @@
 <template>
     <div>
-        <van-overlay :show="matchShowRes.matchRightShow" >
-            <div class="wrapper-match" @click.stop>
-                <div class="wrapper-Content">
-                    <div class="wrapper-name">正在登录，请稍后……</div>
-                    <van-loading type="spinner" color="#ffa300" size = '60px'/>
-                </div>
-            </div>
-        </van-overlay>
+<!--        <van-overlay :show="matchShowRes.matchRightShow" >-->
+<!--            <div class="wrapper-match" @click.stop>-->
+<!--                <div class="wrapper-Content">-->
+<!--                    <div class="wrapper-name">正在登录，请稍后……</div>-->
+<!--                    <van-loading type="spinner" color="#ffa300" size = '60px'/>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </van-overlay>-->
     </div>
 </template>
 
@@ -29,9 +29,12 @@
 
 		//生命周期函数
 		mounted() {
-			const openid = localStorage.getItem('openid');
+
+			const ls = new this.GLOBAL.FnStorage();
+			const openid = ls.getItem('openid2');
 			console.log(openid);
 			if (!openid) {
+				console.log('ls  openid');
                 // let nowUrl = 'http://www.jierong123.com/dist/index.html?code=031MhRFa1FFKCz0x6NGa1xXkn64MhRFK&state=jierong#/login'
                 let nowUrl = window.location.href;
                 const codeArr = this.GetRequest(nowUrl); // 截取code
@@ -45,9 +48,21 @@
                     if(res.status = 'success'){
                         let openid = res.data.openid;
                         let nickname = res.data.nickname;
+                        let expires_in = Number(res.data.expires_in)*1000;
+                        // let expires_in = 5000;
+                        let oauth_token = res.data.oauth_token;
                         console.log(openid);
-                        window.localStorage.setItem('openid',openid);
-                        window.localStorage.setItem('nickname',nickname);
+                        ls.setItem({
+	                        name:'openid2',
+                            value:openid,
+	                        expires:expires_in,
+                        });
+	                    ls.setItem({
+		                    name:'oauth_token',
+		                    value:oauth_token,
+		                    expires:expires_in,
+	                    });
+	                    console.log(oauth_token);
                         this.$router.push({
                             path:'/index',
                         })
@@ -56,12 +71,14 @@
                     console.log(res);
                 });
 			} else {
+				console.log('go index');
 				this.$router.push({
 					path:'/index',
 				});
             }
 		},
 		methods: {
+
 
 			/**
 			 * [获取URL中的参数名及参数值的集合]

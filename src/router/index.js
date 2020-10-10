@@ -59,6 +59,11 @@ const routes = [
     component: () => import(/* webpackChunkName: "login" */ "../views/other/login.vue")
   },
   {
+    path: "/address",
+    name: "address", /*address*/
+    component: () => import(/* webpackChunkName: "logiaddressn" */ "../views/other/address.vue")
+  },
+  {
     path: "/demo",
     name: "demo", /*例子*/
     component: () => import(/* webpackChunkName: "demo" */ "../views/demo/demo.vue")
@@ -70,5 +75,31 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes
 });
+
+// 路由跳转前验证
+/*router.beforeEach((to, from, next) => {
+  // const token = localStorage.getItem('token');
+  const openid = sessionStorage.getItem('openid');
+  
+  // console.log(token);
+  alert(openid);
+  
+  if (!openid || openid != 'null') {
+    if (to.path == '/login') {
+      // console.log('/login');
+      next();
+    } else {
+      let url = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxdcf6df398c3ce766&redirect_uri=http%3a%2f%2fwww.jierong123.com%2fdist%2findex.html%23%2flogin&response_type=code&scope=snsapi_userinfo&state=jierong#wechat_redirect`;
+      window.location.replace(url);
+      
+      // console.log('now_url');
+      
+      // localStorage.setItem('now_url',to.fullPath) //当前页url与参数放入缓存
+      // next('/login');
+    }
+  } else {
+    // next()
+  }
+})*/
 
 export default router;

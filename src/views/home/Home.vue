@@ -79,7 +79,10 @@
 <script>
     // import Swiper from 'swiper';
     // import TweenMax from '@/assets/js/TweenMax.min.js';
-    import {IndexTotal_membership,getLunbo} from '@/assets/js/api'   /*引用 首页 接口*/
+
+
+    // import wx from 'weixin-js-sdk'
+    import {IndexTotal_membership,getLunbo,getSignature} from '@/assets/js/api'   /*引用 首页 接口*/
 
     export default {
         name: "Home",
@@ -105,6 +108,81 @@
             }
         },
         methods: {
+	        wxConfig(){
+		        getSignature({
+			        // url:location.href.split('#')[0],
+			        url:'http://www.jierong123.com/dist/#/index',
+                }).then(res=>{
+			        wx.config({
+				        debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+				        appId: 'wxdcf6df398c3ce766', // 必填，公众号的唯一标识
+				        timestamp: res.data.timestamp, // 必填，生成签名的时间戳
+				        nonceStr:res.data.noncestr, // 必填，生成签名的随机串
+				        signature: res.data.signature,
+				        jsApiList: ['openLocation', 'onMenuShareTimeline', 'onMenuShareAppMessage'] // 必填，需要使用的JS接口列表
+			        });
+			        wx.error(function (res) {
+				        // 注册失败
+				        console.log('注册失败');
+				        console.log(res);
+			        });
+			        /*wx.ready(function () {
+				        //朋友圈
+				        wx.onMenuShareTimeline({
+					        title: '节融：打造顶级融资算法，助力企业解决融资难题!!', // 分享标题
+					        link: 'http://www.jierong123.com/dist/other/creditAddress.html', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+					        imgUrl: 'http://www.jierong123.com/dist/other/myCode2.png', // 分享图标
+					        success: function () {
+						        // 设置成功
+					        }
+				        });
+				        //朋友
+				        wx.onMenuShareAppMessage({
+					        title: '节融：打造顶级融资算法，助力企业解决融资难题!!', // 分享标题
+					        desc: '节融：打造顶级融资算法，助力企业解决融资难题!!', // 分享描述
+					        link: 'http://www.jierong123.com/dist/other/creditAddress.html', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+					        imgUrl: 'http://www.jierong123.com/dist/other/myCode2.png', // 分享图标
+					        type: 'link', // 分享类型,music、video或link，不填默认为link
+					        dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+					        success: function () {
+						        // 用户点击了分享后执行的回调函数
+					        }
+				        });
+			        });*/
+                }).catch(res=>{
+
+                });
+	        },
+
+            share(){
+	            window.addEventListener("pageshow", function (e) {
+		            wx.ready(function () {
+			            //朋友圈
+			            wx.onMenuShareTimeline({
+				            title: '节融：打造顶级融资算法，助力企业解决融资难题!!', // 分享标题
+				            link: 'http://www.jierong123.com/dist/#/index', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+				            imgUrl: 'http://www.jierong123.com/dist/other/myCode2.png', // 分享图标
+				            success: function () {
+					            // 设置成功
+				            }
+			            });
+			            //朋友
+			            wx.onMenuShareAppMessage({
+				            title: '节融：打造顶级融资算法，助力企业解决融资难题!!', // 分享标题
+				            desc: '节融：打造顶级融资算法，助力企业解决融资难题!!', // 分享描述
+				            link: 'http://www.jierong123.com/dist/#/index', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+				            imgUrl: 'http://www.jierong123.com/dist/other/myCode2.png', // 分享图标
+				            type: 'link', // 分享类型,music、video或link，不填默认为link
+				            dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+				            success: function () {
+					            // 用户点击了分享后执行的回调函数
+				            }
+			            });
+		            });
+	            }, false);
+            },
+
+
             // 轮播 点击事件
             funSwiper(val){
                 console.log(val);
@@ -160,11 +238,14 @@
 
         },
         created() {
-            this.getLunboImg()
+            this.getLunboImg();
+
+
+
         },
         mounted(){
-
-
+	        // this.wxConfig();
+	        // this.share();
         }
     }
 </script>

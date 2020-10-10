@@ -54,3 +54,7 @@ export const customerVisit   = params => get('customerService/visit', params);
 
 //www.jierong123.com/wx/getWxUserInfo 登陆
 export const getWxUserInfoApi   = params => get('wx/getWxUserInfo', params);
+
+
+/*微信 api 分享*/
+export const getSignature   = params => get('cc/wx/getSignature', params);
