@@ -35,7 +35,6 @@
 			console.log(openid);
 			if (!openid) {
 				console.log('ls  openid');
-                // let nowUrl = 'http://www.jierong123.com/dist/index.html?code=031MhRFa1FFKCz0x6NGa1xXkn64MhRFK&state=jierong#/login'
                 let nowUrl = window.location.href;
                 const codeArr = this.GetRequest(nowUrl); // 截取code
                 console.log(codeArr.code);
@@ -47,7 +46,7 @@
                     console.log(res);
                     if(res.status = 'success'){
                         let openid = res.data.openid;
-                        let nickname = res.data.nickname;
+                        // let nickname = res.data.nickname;
                         let expires_in = Number(res.data.expires_in)*1000;
                         // let expires_in = 5000;
                         let oauth_token = res.data.oauth_token;
@@ -63,9 +62,10 @@
 		                    expires:expires_in,
 	                    });
 	                    console.log(oauth_token);
-                        this.$router.push({
-                            path:'/index',
-                        })
+                        window.location.replace('http://www.jierong123.com/dist/#/index');
+                        // this.$router.push({
+                        //     path:'/index',
+                        // })
                     }
                 }).catch(res => {
                     console.log(res);

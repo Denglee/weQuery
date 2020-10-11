@@ -47,7 +47,7 @@
             timestamp: res.data.timestamp, // 必填，生成签名的时间戳
             nonceStr:res.data.noncestr, // 必填，生成签名的随机串
             signature: res.data.signature,
-            jsApiList: ['openLocation', 'onMenuShareTimeline', 'onMenuShareAppMessage'] // 必填，需要使用的JS接口列表
+            jsApiList: ['updateAppMessageShareData','onMenuShareTimeline' ] // 必填，需要使用的JS接口列表
           });
           wx.error(function (res) {
             // 注册失败
@@ -84,28 +84,42 @@
 
       share(){
         window.addEventListener("pageshow", function (e) {
+
           wx.ready(function () {
-            //朋友圈
-            wx.onMenuShareTimeline({
+            //朋友
+            wx.updateAppMessageShareData({
               title: '节融：打造顶级融资算法，助力企业解决融资难题!!', // 分享标题
               link: 'http://www.jierong123.com/dist/#/index', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+              desc: '节融：打造顶级融资算法，助力企业解决融资难题!!', // 分享描述
               imgUrl: 'http://www.jierong123.com/dist/other/myCode2.png', // 分享图标
               success: function () {
                 // 设置成功
               }
             });
-            //朋友
-            wx.onMenuShareAppMessage({
+
+            // 朋友圈
+            wx.onMenuShareTimeline({
               title: '节融：打造顶级融资算法，助力企业解决融资难题!!', // 分享标题
-              desc: '节融：打造顶级融资算法，助力企业解决融资难题!!', // 分享描述
               link: 'http://www.jierong123.com/dist/#/index', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+              // desc: '节融：打造顶级融资算法，助力企业解决融资难题!!', // 分享描述
               imgUrl: 'http://www.jierong123.com/dist/other/myCode2.png', // 分享图标
-              type: 'link', // 分享类型,music、video或link，不填默认为link
-              dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
               success: function () {
-                // 用户点击了分享后执行的回调函数
+                // 设置成功
               }
-            });
+            })
+
+            //朋友
+            // wx.onMenuShareAppMessage({
+            //   title: '节融：打造顶级融资算法，助力企业解决融资难题!!', // 分享标题
+            //   desc: '节融：打造顶级融资算法，助力企业解决融资难题!!', // 分享描述
+            //   link: 'http://www.jierong123.com/dist/#/index', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+            //   imgUrl: 'http://www.jierong123.com/dist/other/myCode2.png', // 分享图标
+            //   type: 'link', // 分享类型,music、video或link，不填默认为link
+            //   dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+            //   success: function () {
+            //     // 用户点击了分享后执行的回调函数
+            //   }
+            // });
           });
         }, false);
       },
@@ -167,8 +181,6 @@
     },
     created() {
       // this.getLunboImg();
-
-
 
     },
     mounted(){

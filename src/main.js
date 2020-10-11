@@ -84,10 +84,10 @@ Vue.component(VeRing.name, VeRing);
 // Vue.component(VeLine.name, VeLine);
 Vue.use(VCharts);
 
-/*// 路由跳转前验证
+// 路由跳转前验证
 router.beforeEach((to, from, next) => {
-    /!*console.log(to);
-    console.log(from);*!/
+    /*console.log(to);
+    console.log(from);*/
     
     const ls = new global.FnStorage();
     const openid = ls.getItem('openid2');
@@ -95,8 +95,9 @@ router.beforeEach((to, from, next) => {
     console.log(typeof (openid));
     const oauth_token = ls.getItem('oauth_token');
     console.log(oauth_token);
-    let url = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxdcf6df398c3ce766&redirect_uri=http%3a%2f%2fwww.jierong123.com%2fdist%2findex.html%23%2flogin&response_type=code&scope=snsapi_userinfo&state=jierong#wechat_redirect`;
-  
+    // let url = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxdcf6df398c3ce766&redirect_uri=http%3a%2f%2fwww.jierong123.com%2fdist%2findex.html%23%2flogin&response_type=code&scope=snsapi_userinfo&state=jierong#wechat_redirect`;
+    let url = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxdcf6df398c3ce766&redirect_uri=http%3a%2f%2fwww.jierong123.com%2fdist%2f%23%2flogin&response_type=code&scope=snsapi_userinfo&state=jierong#wechat_redirect`;
+
     if (!openid) {  //openid 为空
        
         // window.location.replace(url);
@@ -115,7 +116,7 @@ router.beforeEach((to, from, next) => {
             next()
         }
     }
-})*/
+})
 
 new Vue({
     router,
