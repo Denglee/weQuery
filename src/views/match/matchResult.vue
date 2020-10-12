@@ -262,10 +262,11 @@
             },
 
             getHistoryList() {
+                console.log('265'+this.matchResFoam.nickname);
                 getHistoryProductList({
                     historyId: this.matchResFoam.history_id,
-	                nickname: this.matchResFoam.nickname,
-	                openid: this.matchResFoam.openid,
+	                staffId: this.matchResFoam.nickname,
+                    staffName: this.matchResFoam.openid,
 
                 }).then(res => {
                     // console.log(res);
@@ -313,8 +314,8 @@
             // let openid = localStorage.getItem('openid');
             console.log(resHistory);
             this.matchResFoam.history_id = resHistory;
-            this.matchResFoam.openid = openid;
-            this.matchResFoam.nickname = nickname;
+            this.matchResFoam.openid = openid ;
+            this.matchResFoam.nickname = nickname ;
 
             this.getHistoryList();
 

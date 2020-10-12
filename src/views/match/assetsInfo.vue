@@ -177,7 +177,7 @@
                 <div class="flex-between info-age">
                     <div class="match-age">{{userChecked.fl}}</div>
                     <div class="match-ageSlider" >
-                        <van-slider  v-model="userChecked.fl" @change="changeFl" min="1" max="70"/>
+                        <van-slider  v-model="userChecked.fl" @change="changeFl" min="0" max="70"/>
                     </div>
                 </div>
             </li>

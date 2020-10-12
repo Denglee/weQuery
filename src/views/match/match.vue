@@ -216,8 +216,8 @@
                     sfsygwld: -1,     // 62、是否使用过微粒贷
                     loan_type: 1,      //63、信用三大分类
 
-	                openid:'',
-	                nickname:'',
+	                staffNo:'',
+                    staffName:'',
                 },
             }
         },
@@ -255,7 +255,11 @@
 
             /*获取 数据 接口 匹配结果  提交 */
             getCondiProductList2() {
-
+                console.log(this.userChecked.fl);
+                if(this.userChecked.fl == 0){
+                    this.userChecked.fl = -1;
+                }
+                console.log(this.userChecked.fl);
                 this.matchShowRes.matchRightShow = true;
                 getCondiProductList(this.userChecked).then(res => {
                     this.matchShowRes.matchRightShow = false;
@@ -380,8 +384,9 @@
 
 	        // let nickname = localStorage.getItem('nickname');
 	        // let openid = localStorage.getItem('openid');
-	        this.userChecked.openid = openid;
-	        this.userChecked.nickname = nickname;
+
+	        this.userChecked.staffNo = openid || '11';
+	        this.userChecked.staffName = nickname || '姚明';
 
         },
 
