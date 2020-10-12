@@ -46,7 +46,7 @@
                     console.log(res);
                     if(res.status = 'success'){
                         let openid = res.data.openid;
-                        // let nickname = res.data.nickname;
+                        let nickname = res.data.nickname;
                         let expires_in = Number(res.data.expires_in)*1000;
                         // let expires_in = 5000;
                         let oauth_token = res.data.oauth_token;
@@ -56,6 +56,11 @@
                             value:openid,
 	                        expires:expires_in,
                         });
+	                    ls.setItem({
+		                    name:'nickname',
+		                    value:nickname,
+		                    expires:expires_in,
+	                    });
 	                    ls.setItem({
 		                    name:'oauth_token',
 		                    value:oauth_token,

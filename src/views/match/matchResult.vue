@@ -304,8 +304,13 @@
         created() {
             let that = this;
             let resHistory = localStorage.getItem('historyId');
-            let nickname = localStorage.getItem('nickname');
-            let openid = localStorage.getItem('openid');
+
+	        const ls = new this.GLOBAL.FnStorage();
+	        const nickname = ls.getItem('nickname');
+	        const openid = ls.getItem('openid2');
+
+            // let nickname = localStorage.getItem('nickname');
+            // let openid = localStorage.getItem('openid');
             console.log(resHistory);
             this.matchResFoam.history_id = resHistory;
             this.matchResFoam.openid = openid;

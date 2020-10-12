@@ -374,9 +374,12 @@
             /*console.log(this.userInfo);*/
             //1、选中后又取消 怎么清空
             //2、没选与选 怎么下一步按钮
+	        const ls = new this.GLOBAL.FnStorage();
+	        const nickname = ls.getItem('nickname');
+	        const openid = ls.getItem('openid2');
 
-	        let nickname = localStorage.getItem('nickname');
-	        let openid = localStorage.getItem('openid');
+	        // let nickname = localStorage.getItem('nickname');
+	        // let openid = localStorage.getItem('openid');
 	        this.userChecked.openid = openid;
 	        this.userChecked.nickname = nickname;
 

@@ -72,8 +72,12 @@
         },
         created() {
 
-	        let openid = localStorage.getItem('openid');
-	        let nickname = localStorage.getItem('nickname');
+	        const ls = new this.GLOBAL.FnStorage();
+	        const nickname = ls.getItem('nickname');
+	        const openid = ls.getItem('openid2');
+
+	        // let openid = localStorage.getItem('openid');
+	        // let nickname = localStorage.getItem('nickname');
 	        this.nickname = nickname;
 	        this.openid = openid;
 
