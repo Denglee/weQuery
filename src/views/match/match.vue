@@ -81,6 +81,7 @@
     // import matchSon from '@/views/match/matchSon'
 
     export default {
+        inject:['reLoad'],
         name: "match",
         data() {
             return {
@@ -224,18 +225,19 @@
         methods: {
             // 失败后去重新匹配
             resStartMatch(){
+                this.reLoad();
                 // window.location.reload();
-                this.showStatePage = {
-                    basicShow: true,
-                    assetsShow: false,
-                    creditShow: false,
-                };
-                
-                this.matchShowRes.matchErrShow = false;
-                this.showState = {    //显影状态
-                    guideShow: true,   //匹配进入 引导页
-                    matchShow: false,  //匹配筛选页
-                };
+                // this.showStatePage = {
+                //     basicShow: true,
+                //     assetsShow: false,
+                //     creditShow: false,
+                // };
+                //
+                // this.matchShowRes.matchErrShow = false;
+                // this.showState = {    //显影状态
+                //     guideShow: true,   //匹配进入 引导页
+                //     matchShow: false,  //匹配筛选页
+                // };
             },
 
             faMethods(val) {

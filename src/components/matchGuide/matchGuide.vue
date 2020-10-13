@@ -20,6 +20,7 @@
 <!--            </div>-->
             <ul class="matchRes-ul">
                <li v-for="(item,index) in matchResArr" :key="index" @click="goMatchRes(item)">
+<!--                   {{item.queryTime | minuteFormat}}  |  信用贷款 | 匹配{{matchResArr.length}}个产品-->
                    {{item.queryTime | minuteFormat}}  |  信用贷款 | 匹配{{item.num}}个产品
                    <van-icon name="arrow" />
                </li>
@@ -78,8 +79,8 @@
 
 	        /*// let openid = localStorage.getItem('openid');
 	        // let nickname = localStorage.getItem('nickname');*/
-	        this.nickname = nickname || '姚明';
-	        this.openid = openid || '11';
+	        this.nickname = nickname || '木子';
+	        this.openid = openid || 'oLbgO1Qu4uJHnyqDj245KanmDre4';
 
             this.getHisList();
 

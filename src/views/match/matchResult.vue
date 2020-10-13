@@ -262,16 +262,44 @@
             },
 
             getHistoryList() {
+                let that = this;
                 console.log('265'+this.matchResFoam.nickname);
                 getHistoryProductList({
                     historyId: this.matchResFoam.history_id,
-	                staffId: this.matchResFoam.nickname,
-                    staffName: this.matchResFoam.openid,
+	                staffId: this.matchResFoam.openid,
+                    staffName: this.matchResFoam.nickname,
 
                 }).then(res => {
                     // console.log(res);
                     if(res.status == 'success'){
                         this.detailsArr  = res.data;
+
+                        let resCheckedMatch = this.$route.params.resCheckedMatch;
+
+                        console.log(resCheckedMatch);
+
+                        if (resCheckedMatch == undefined) {
+                            console.log(that.detailsArr);
+                            // setTimeout(function(){
+                                console.log(that.detailsArr);
+                                that.loanTypeHis = that.detailsArr[0].loanTypeHis;
+                                that.sbjsHis = that.detailsArr[0].zylxHis;
+                                console.log(that.loanTypeHis);
+                                console.log(that.sbjsHis);
+                            // },500)
+                        } else {
+                            console.log(resCheckedMatch);
+                            this.loanTypeHis = resCheckedMatch.loan_type;
+                            let sbjsHis2 = resCheckedMatch.zylx;
+                            // if(sbjsHis2 == 2 ){
+                            //     sbjsHis2 = -1
+                            // }
+                            this.sbjsHis=sbjsHis2;
+                            console.log(that.loanTypeHis);
+                            console.log(that.sbjsHis);
+                        }
+
+
                     }else{
                         this.loanArr= [];
                     }
@@ -314,34 +342,10 @@
             // let openid = localStorage.getItem('openid');
             console.log(resHistory);
             this.matchResFoam.history_id = resHistory;
-            this.matchResFoam.openid = openid ;
-            this.matchResFoam.nickname = nickname ;
+            this.matchResFoam.openid = openid || 'oLbgO1Qu4uJHnyqDj245KanmDre4';
+            this.matchResFoam.nickname = nickname || '木子';
 
             this.getHistoryList();
-
-            let resCheckedMatch = this.$route.params.resCheckedMatch;
-
-            console.log(resCheckedMatch);
-            if (resCheckedMatch == undefined) {
-                console.log(that.detailsArr);
-                setTimeout(function(){
-                    console.log(that.detailsArr);
-                    that.loanTypeHis = that.detailsArr[0].loanTypeHis;
-                    that.sbjsHis = that.detailsArr[0].zylxHis;
-                    console.log(that.loanTypeHis);
-                    console.log(that.sbjsHis);
-                },500)
-            } else {
-                console.log(resCheckedMatch);
-                this.loanTypeHis = resCheckedMatch.loan_type;
-                let sbjsHis2 = resCheckedMatch.zylx;
-                // if(sbjsHis2 == 2 ){
-                //     sbjsHis2 = -1
-                // }
-                this.sbjsHis=sbjsHis2;
-                console.log(that.loanTypeHis);
-                console.log(that.sbjsHis);
-            }
 
         },
 
