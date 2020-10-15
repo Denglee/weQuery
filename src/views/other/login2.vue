@@ -19,7 +19,6 @@
 
             this.getCode()
 
-
             // window.location.href  = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxdcf6df398c3ce766&redirect_uri=http%3a%2f%2fwww.jierong123.com%2fwx%2fgetWxUserInfo&response_type=code&scope=snsapi_userinfo&state=jierong#wechat_redirect';
             // window.location.href('https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxdcf6df398c3ce766&redirect_uri=http%3a%2f%2fwww.jierong123.com%2fwx%2fgetWxUserInfo&response_type=code&scope=snsapi_userinfo&state=jierong#wechat_redirect');
 
