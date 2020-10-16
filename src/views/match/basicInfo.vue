@@ -53,7 +53,7 @@
             </li>
 
             <!-- 单位性质 选择上班族 只有在信用和房抵 显示 -->
-            <li class="info-item" v-show="userChecked.zylx ==1 && this.tabBasicIndex != 3">
+            <li class="info-item" v-show="userChecked.zylx == 0 && this.tabBasicIndex != 3">
                 <h4 class="info-title">单位性质</h4>
                 <van-radio-group v-model="userChecked.dwxz" class="info-box">
                     <van-radio :name="item.name" v-for="(item,index) in userInfo.dwxz" :key="item.id">
@@ -65,7 +65,7 @@
             </li>
 
             <!-- 工资发放形式 选择上班族 只有在信用 显示 -->
-            <li class="info-item" v-show="userChecked.zylx ==1 && this.tabBasicIndex == 1">
+            <li class="info-item" v-show="userChecked.zylx == 0 && this.tabBasicIndex == 1">
                 <h4 class="info-title">工资发放形式</h4>
                 <van-radio-group v-model="userChecked.gzffxs" class="info-box">
                     <van-radio :name="item.name" v-for="(item,index) in userInfo.gzffxs" :key="item.id">
@@ -77,7 +77,7 @@
             </li>
 
             <!-- 平均工资 选择上班族 只有在信用和房抵 显示 -->
-            <li class="info-item" v-show="userChecked.zylx ==1 && this.tabBasicIndex != 3">
+            <li class="info-item" v-show="userChecked.zylx == 0 && this.tabBasicIndex != 3">
                 <h4 class="info-title">平均工资</h4>
                 <van-radio-group v-model="userChecked.pjgz" class="info-box">
                     <van-radio :name="item.name" v-for="(item,index) in userInfo.pjgz" :key="item.id">
@@ -89,7 +89,7 @@
             </li>
 
             <!-- 本单位工作时长 选择上班族 只有在信用  显示 -->
-            <li class="info-item" v-show="userChecked.zylx ==1 && this.tabBasicIndex == 1">
+            <li class="info-item" v-show="userChecked.zylx == 0 && this.tabBasicIndex == 1">
                 <h4 class="info-title">本单位工作时长</h4>
                 <van-radio-group v-model="userChecked.bdwgzsc" class="info-box">
                     <van-radio :name="item.name" v-for="(item,index) in userInfo.bdwgzsc" :key="item.id">
@@ -101,7 +101,7 @@
             </li>
 
             <!-- 营业执照年限 选择 自雇(股东/其它) 后  只有在信用 和 房抵  显示 -->
-            <li class="info-item" v-show="userChecked.zylx == 2  &&  this.tabBasicIndex != 3">
+            <li class="info-item" v-show="userChecked.zylx == 1  &&  this.tabBasicIndex != 3">
                 <h4 class="info-title">营业执照年限</h4>
                 <van-radio-group v-model="userChecked.yyzznx" class="info-box">
                     <van-radio :name="item.name" v-for="(item,index) in userInfo.yyzznx" :key="item.id">
@@ -136,7 +136,7 @@
             </div>
 
             <!-- 单位/公司是否可考察 除了车贷 -->
-            <li class="info-item" v-show="this.tabBasicIndex !=3 && userChecked.zylx == 2 && userChecked.yyzznx != 1  && userChecked.yyzznx != -1">
+            <li class="info-item" v-show="this.tabBasicIndex !=3 && userChecked.zylx == 1 && userChecked.yyzznx != 1  && userChecked.yyzznx != -1">
                 <h4 class="info-title">单位/公司是否可考察</h4>
                 <van-radio-group v-model="userChecked.dwsfkc" class="info-box">
                     <van-radio :name="item.name" v-for="(item,index) in userInfo.dwsfkc" :key="item.id">
@@ -148,7 +148,7 @@
             </li>
 
             <!-- 对公流水 -->
-            <li class="info-item" v-show="this.tabBasicIndex !=3 && userChecked.zylx == 2 && userChecked.yyzznx != 1 && userChecked.yyzznx != -1">
+            <li class="info-item" v-show="this.tabBasicIndex !=3 && userChecked.zylx == 1 && userChecked.yyzznx != 1 && userChecked.yyzznx != -1">
                 <h4 class="info-title">对公流水</h4>
                 <van-radio-group v-model="userChecked.dgls" class="info-box">
                     <van-radio :name="item.name" v-for="(item,index) in userInfo.dgls" :key="item.id">
@@ -362,14 +362,14 @@
             userChecked: {
                 handler(newVal, oldVal) {
                     console.log(newVal);
-                    if(newVal.zylx ==1){   //职业类型 上班族
+                    if(newVal.zylx == 0){   //职业类型 上班族
                         this.userChecked.yyzznx = -1;
                         this.userChecked.dwsfkc = -1;
                         this.userChecked.dgls = -1;
                         this.userChecked.gskpje = -1;
                         this.userChecked.gsnsje = -1;
                     }
-                    if(newVal.zylx == 2){   //职业类型  自选股东
+                    if(newVal.zylx == 1){   //职业类型  自选股东
                         this.userChecked.dwxz = -1;
                         this.userChecked.gzffxs = -1;
                         this.userChecked.pjgz = -1;
