@@ -84,7 +84,7 @@ Vue.component(VeRing.name, VeRing);
 // Vue.component(VeLine.name, VeLine);
 Vue.use(VCharts);
 
-// 路由跳转前验证
+/*路由跳转前验证*/
 router.beforeEach((to, from, next) => {
     /*console.log(to);
     console.log(from);*/

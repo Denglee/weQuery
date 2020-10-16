@@ -42,7 +42,7 @@
                 </van-radio-group>
             </li>
             <li class="info-item">
-                <h4 class="info-title">职业类型</h4>
+                <h4 class="info-title"><span style="color:red;">*</span>职业类型</h4>
                 <van-radio-group v-model="userChecked.zylx" class="info-box">
                     <van-radio :name="item.name" v-for="(item,index) in userInfo.zylx" :key="item.id">
                         <template #icon="props">
@@ -51,7 +51,6 @@
                     </van-radio>
                 </van-radio-group>
             </li>
-
 
             <!-- 单位性质 选择上班族 只有在信用和房抵 显示 -->
             <li class="info-item" v-show="userChecked.zylx ==1 && this.tabBasicIndex != 3">

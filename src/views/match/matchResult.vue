@@ -1,6 +1,5 @@
 <template>
     <div class="reslist-box">
-
         <div class="resSearch-box">
 
             <!--1. loan_type_detail: 1、个人信用贷款；2、企业信用贷款；3、个人抵押贷款；4、企业抵押贷款-->
@@ -9,7 +8,6 @@
                 <!--（比对loanTypeDetail 1） + （比对loanTypeDetail 2） -->
                 <van-button @click="LTDtails(1)" size="small">个人信用</van-button>
                 <van-button @click="LTDtails(2)" size="small">企业信用</van-button>
-
             </div>
 
             <!--<div v-if="resChecked.loan_type == 2 && resChecked.zylx == 2 "> 个人抵押(1) + 企业抵押(2)</div>-->
@@ -23,7 +21,7 @@
                 <li class="picker-item picker-item2">
                     <van-button @click="toggleSort('isRateUp','basicInfoList', '0','nameValue')"
                                 type="default" size="small">
-                        利息
+                        <span>利息</span>
                         <van-icon name="ascending" v-if="sortWay.isRateUp == true"/>
                         <van-icon name="descending" v-else/>
                     </van-button>
@@ -31,7 +29,7 @@
                 <li class="picker-item picker-item2">
                     <van-button @click="toggleSort('isQuotaUp','quotaDo', '0','maxQuota')"
                                 type="default" size="small">
-                        额 度
+                        <span>额度</span>
                         <van-icon name="ascending" v-if="sortWay.isQuotaUp == true"/>
                         <van-icon name="descending" v-else/>
                     </van-button>
@@ -55,9 +53,9 @@
                     </van-popup>
                 </li>
             </ul>
-            <!--            <div class="btnResSerach">-->
-            <!--                <van-button type="default" size="small" class="btn" @click="btnSearch" :loading = 'btnLoad' loading-text="确定...">确定</van-button>-->
-            <!--            </div>-->
+        <!--<div class="btnResSerach">-->
+        <!--    <van-button type="default" size="small" class="btn" @click="btnSearch" :loading = 'btnLoad' loading-text="确定...">确定</van-button>-->
+        <!--</div>-->
 
         </div>
 
@@ -70,7 +68,7 @@
                     <span class="dHeader-tip" v-else-if="itemFa.prodType == 3">小额贷款</span>
                     <span class="dHeader-tip" v-else-if="itemFa.prodType == 4">企业贷款</span>
                     <span class="dHeader-tip" v-else-if="itemFa.prodType == 5">抵押贷款</span>
-                    <span class="dHeader-tip" v-else>线上急融</span>
+                    <span class="dHeader-tip" v-else>线上急融 </span>
                     <van-image :src="itemFa.ioc"  fit="cover"/>
                 </div>
                 <div class="dHeader-info" @click="goLoanD(itemFa)">
@@ -240,27 +238,7 @@
                 }
             },
 
-            // 匹配
-            getMatchList() {
-                // let postRes = {};
-                // postRes.history_id = this.matchResFoam.history_id;
-                //
-                // console.log(postRes);
-                //
-                // getMatchProductList(
-                //     postRes
-                // ).then(res => {
-                //     console.log(res);
-                //     if(res.status == 'success'){
-                //         this.detailsArr  = res.data;
-                //     }else{
-                //         this.detailsArr= [];
-                //     }
-                // }).catch(res => {
-                //     console.log(res);
-                // })
-            },
-
+            /*接口获取历史信息*/
             getHistoryList() {
                 let that = this;
                 console.log('265'+this.matchResFoam.nickname);
@@ -273,12 +251,10 @@
                     // console.log(res);
                     if(res.status == 'success'){
                         this.detailsArr  = res.data;
-
                         let resCheckedMatch = this.$route.params.resCheckedMatch;
-
                         console.log(resCheckedMatch);
 
-                        if (resCheckedMatch == undefined) {
+                        if (resCheckedMatch == undefined) { //匹配结果跳转到这
                             console.log(that.detailsArr);
                             // setTimeout(function(){
                                 console.log(that.detailsArr);
@@ -287,19 +263,17 @@
                                 console.log(that.loanTypeHis);
                                 console.log(that.sbjsHis);
                             // },500)
-                        } else {
+                        } else {   //当前页面刷新
                             console.log(resCheckedMatch);
                             this.loanTypeHis = resCheckedMatch.loan_type;
                             let sbjsHis2 = resCheckedMatch.zylx;
-                            // if(sbjsHis2 == 2 ){
+                            // if(sbjsHis2 == 2 ){ 行
                             //     sbjsHis2 = -1
                             // }
-                            this.sbjsHis=sbjsHis2;
+                            this.sbjsHis = sbjsHis2;
                             console.log(that.loanTypeHis);
                             console.log(that.sbjsHis);
                         }
-
-
                     }else{
                         this.loanArr= [];
                     }
@@ -307,16 +281,6 @@
                     console.log(res);
                 })
             },
-
-            /*btnSearch() {
-                console.log(this.matchResFoam);
-                this.btnLoad = true;
-                setTimeout(() => {
-                    this.btnLoad = false;
-                }, 1100);
-
-                this.getMatchList();
-            },*/
 
             // 去详情页
             goLoanD(item) {
@@ -331,15 +295,13 @@
 
         },
         created() {
-            let that = this;
             let resHistory = localStorage.getItem('historyId');
-
-	        const ls = new this.GLOBAL.FnStorage();
-	        const nickname = ls.getItem('nickname');
-	        const openid = ls.getItem('openid2');
+	         const ls = new this.GLOBAL.FnStorage();
+	         const nickname = ls.getItem('nickname');
+	         const openid = ls.getItem('openid2');
 
             // let nickname = localStorage.getItem('nickname');
-            // let openid = localStorage.getItem('openid');
+            // let openid = localStorage.getItem('openid');  
             console.log(resHistory);
             this.matchResFoam.history_id = resHistory;
             this.matchResFoam.openid = openid || 'oLbgO1Qu4uJHnyqDj245KanmDre4';

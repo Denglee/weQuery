@@ -96,7 +96,6 @@
                     matchResult: false,  //匹配结果筛选页
                 },
 
-
                 minNum: "1",
                 loadingShow: false,
                 headerInfoIndex: 1,  //头部 当前
@@ -136,7 +135,6 @@
                 userInfo: userInfo,
 
                 userChecked2: {
-
                     sb: -1,  //有无社保
                     gjj: -1,  //有无公积金
                     clgsdq: -1,  //车辆归属地区
@@ -215,7 +213,7 @@
                     lnn_yqsgycs: -1,  // 60、近两年内逾期三个月次数
                     lnn_yqsigycs: -1, // 61、近两年内逾期四个月次数
                     sfsygwld: -1,     // 62、是否使用过微粒贷
-                    loan_type: 1,      //63、信用三大分类
+                    loan_type: 1,     //63、信用三大分类
 
 	                staffNo:'',
                     staffName:'',
@@ -271,6 +269,7 @@
                         loan_type :this.userChecked.loan_type,
                         zylx:this.userChecked.zylx,
                     }
+                    console.log(resCheckedMatch);
                     if(res.status == 'success'){
                         this.matchShowRes.matchErrShow = true;
                         console.log(res.data[0]);
@@ -366,8 +365,7 @@
                 }
 
                 if (type == 'submit') {
-                    console.log(this.userChecked);
-
+                    // console.log(this.userChecked);
                     this.getCondiProductList2();
                 }
 
@@ -387,8 +385,8 @@
 	        // let nickname = localStorage.getItem('nickname');
 	        // let openid = localStorage.getItem('openid');
 
-	        this.userChecked.staffNo = openid || '11';
-	        this.userChecked.staffName = nickname || '姚明';
+	        this.userChecked.staffNo = openid || 'oLbgO1Qu4uJHnyqDj245KanmDre4';
+	        this.userChecked.staffName = nickname || '木子';
 
         },
 
