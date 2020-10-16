@@ -13,12 +13,14 @@
                 <van-col>暂无数据</van-col>
             </van-row>
             <van-row gutter="12" v-else>
-                <van-col span="8" v-for="(item,index) in loanArr" :ket="index">
-                    <div  class="fire-list" @click="goLoanDetails(item)">
-                        <van-image :src="item.ioc" alt="" class="fire-img"></van-image>
-                        <div class="fire-title">{{item.name}}</div>
-                        <div class="fire-month">{{item.label}}</div>
-                        <van-button type="default" size="mini" class="btnLook-fire">申请</van-button>
+                <van-col span="8" >
+                    <div v-for="(item,index) in loanArr" :ket="index">
+                        <div  class="fire-list" @click="goLoanDetails(item)">
+                            <van-image :src="item.ioc" alt="" class="fire-img"></van-image>
+                            <div class="fire-title">{{item.name}}</div>
+                            <div class="fire-month">{{item.label}}</div>
+                            <van-button type="default" size="mini" class="btnLook-fire">申请</van-button>
+                        </div>
                     </div>
                 </van-col>
         </van-row>

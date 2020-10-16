@@ -27,7 +27,7 @@
                     </van-button>
                 </li>
                 <li class="picker-item picker-item2">
-                    <van-button @click="toggleSort('isQuotaUp','quotaDo', '0','maxQuota')"
+                    <van-button @click="toggleSort('isQuotaUp','quotaDo', 'No','maxQuota')"
                                 type="default" size="small">
                         <span>额度</span>
                         <van-icon name="ascending" v-if="sortWay.isQuotaUp == true"/>
@@ -59,9 +59,14 @@
 
         </div>
 
-        <div class="detail-item detail-header" v-if="detailsArr.length == 0">暂无数据</div>
+        <div class="detail-item detail-header" v-if="detailsArr.length == 0">
+            暂无数据
+        </div>
+
         <div v-else-if="sortListAfter.length == 0">
-            <div class="detail-item detail-header" v-for="(itemFa,index) in detailsArr" >
+            <div v-if="isSelect == true" class="detail-item detail-header">暂无数据</div>
+            <div v-else>
+                <div class="detail-item detail-header" v-for="(itemFa,index) in detailsArr" >
                 <div class="dHeader-img">
                     <span class="dHeader-tip" v-if="itemFa.prodType == 1">银行信贷</span>
                     <span class="dHeader-tip" v-else-if="itemFa.prodType == 2">机构信贷</span>
@@ -84,6 +89,7 @@
                     </div>
                 </div>
             </div>
+            </div>
         </div>
 
         <div v-else>
@@ -100,7 +106,6 @@
             <div class="dHeader-info" @click="goLoanD(itemFa)">
                 <h4 class="dHeader">{{itemFa.name}}</h4>
                 <div class="dHeader-good">
-                    <!--{{itemFa.quotaDo.maxQuota}}-->
                     <span v-for="(good2,index2) in itemFa.labelList" :key="index2">{{good2.name}}</span>
                 </div>
                 <div class="dHeader-good2">
@@ -126,6 +131,8 @@
 
                 resChecked: {},
 
+                isSelect:false,
+
                 sortWay: {
                     isRateUp: true,   //利息 默认排序 从大到小
                     isQuotaUp: true,  //额度 默认排序 从大到小
@@ -145,6 +152,7 @@
                 },
 
                 ModeData: [
+                    {id: 0, name: '所有还款方式'},
                     {id: 1, name: '等额本息还款'},
                     {id: 2, name: '等额本金还款'},
                     {id: 3, name: '等额等息还款'},
@@ -169,25 +177,36 @@
 
             // 还款方式
             ModeConfirm(value, index) {
-                console.log(value);
-                this.ModeArr = {
-                    ModeShow: false,
-                    ModeName: value.name,
-                };
-                let hkId = value.id;
-                this.matchResFoam.loan_mode = hkId;
+                if( value.name == "所有还款方式"){
+                    this.isSelect = false;
+                    this.ModeArr.ModeShow = false;
+                }else{
+                    this.isSelect = true;
+                    console.log(value);
 
-                let sortList = this.detailsArr;
-                let arr2 = [];
-                sortList.forEach(function (item, index) {
-                    console.log(item.basicInfoList[2].nameValue);
-                    if(hkId == item.basicInfoList[2].nameValue){
-                        arr2.push(item);
+                    this.ModeArr = {
+                        ModeShow: false,
+                        ModeName: value.name,
+                    };
+                    let hkId = value.id;
+                    // console.log(hkId);
+                    this.matchResFoam.loan_mode = hkId;
+                    // console.log(this.matchResFoam.loan_mode);
+
+                    let sortList = this.detailsArr;
+                    let arr2 = [];
+                    sortList.forEach(function (item, index) {
+                        console.log(item.basicInfoList[2].nameValue);
+                        if(hkId == item.basicInfoList[2].nameValue){
+                            arr2.push(item);
+                        }
+                    });
+                    console.log(arr2.length);
+                    if(arr2.length > 0){
+                        this.sortListAfter = arr2;
+                    }else{
+                        this.sortListAfter =[];
                     }
-                });
-                console.log(arr2);
-                if(arr2.length > 0){
-                    this.sortListAfter = arr2;
                 }
             },
 
@@ -202,7 +221,6 @@
             // 排序方法
             funSort(nowSortWay, name, numSize, valName) {
                 let that = this;
-
                 let listArr = [];
                 if(that.sortListAfter.length == 0){
                     listArr = this.detailsArr;
@@ -211,11 +229,18 @@
                 }
 
                 listArr.sort(function (a, b) {
-                    console.log(a[name][numSize][valName]);
-                    if (!nowSortWay) {
-                        return parseFloat(a[name][numSize][valName]) - parseFloat(b[name][numSize][valName]);
+                    if(numSize == 'No'){  /*额度没有[0]*/
+                        if (!nowSortWay) {
+                            return parseFloat(a[name][valName]) - parseFloat(b[name][valName]);
+                        } else {
+                            return parseFloat(b[name][valName]) - parseFloat(a[name][valName]);
+                        }
                     } else {
-                        return parseFloat(b[name][numSize][valName]) - parseFloat(a[name][numSize][valName]);
+                        if (!nowSortWay) {
+                            return parseFloat(a[name][numSize][valName]) - parseFloat(b[name][numSize][valName]);
+                        } else {
+                            return parseFloat(b[name][numSize][valName]) - parseFloat(a[name][numSize][valName]);
+                        }
                     }
                 });
             },
@@ -301,7 +326,7 @@
 	         const openid = ls.getItem('openid2');
 
             // let nickname = localStorage.getItem('nickname');
-            // let openid = localStorage.getItem('openid');  
+            // let openid = localStorage.getItem('openid');
             console.log(resHistory);
             this.matchResFoam.history_id = resHistory;
             this.matchResFoam.openid = openid || 'oLbgO1Qu4uJHnyqDj245KanmDre4';
