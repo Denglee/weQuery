@@ -9,6 +9,8 @@
             <div><van-icon name="location-o"/>深圳</div>
         </div>
 
+        <van-empty description="描述文字" />
+
         <!--轮播图-->
         <van-swipe :autoplay="3000" :width="swiper.swiperWid" :height="swiper.swiperHei"
         class="index-swiper" :show-indicators="false">

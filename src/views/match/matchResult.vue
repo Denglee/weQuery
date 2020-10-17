@@ -2,16 +2,17 @@
     <div class="reslist-box">
         <div class="resSearch-box">
 
-            <!--1. loan_type_detail: 1、个人信用贷款；2、企业信用贷款；3、个人抵押贷款；4、企业抵押贷款-->
+            <!--loanTypeHis 对应 信用三大分类      sbjsHis 对应 职业类型 zylx-->
+            <!--1. loan_type_detail: 1、个人信用贷款；2、企业信用贷款；3、个人抵押贷款；4、企业抵押贷款  -->
             <!--<div v-if="resChecked.loan_type == 1 && resChecked.zylx == 2 ">个人信用(1)+  企业信用(2)</div>-->
-            <div v-if="loanTypeHis == 1 && sbjsHis == 2 " class="btnResTop">
+            <div v-if="loanTypeHis == 1 && sbjsHis == 1 " class="btnResTop">
                 <!--（比对loanTypeDetail 1） + （比对loanTypeDetail 2） -->
                 <van-button @click="LTDtails(1)" size="small">个人信用</van-button>
                 <van-button @click="LTDtails(2)" size="small">企业信用</van-button>
             </div>
 
             <!--<div v-if="resChecked.loan_type == 2 && resChecked.zylx == 2 "> 个人抵押(1) + 企业抵押(2)</div>-->
-            <div v-if="loanTypeHis == 2 && sbjsHis == 2 " class="btnResTop">
+            <div v-if="loanTypeHis == 2 && sbjsHis == 1 " class="btnResTop">
                 <!--（比对loanTypeDetail 3） + （比对loanTypeDetail 4）-->
                 <van-button @click="LTDtails(3)" size="small">个人抵押</van-button>
                 <van-button @click="LTDtails(4)" size="small">企业抵押</van-button>
@@ -163,7 +164,7 @@
 
                 matchResFoam: {
                     history_id: '',
-	                openid: '',
+	                 openid: '',
                     nickname: '',
                 },
 
@@ -204,7 +205,7 @@
                     console.log(arr2.length);
                     if(arr2.length > 0){
                         this.sortListAfter = arr2;
-                    }else{
+                    } else{
                         this.sortListAfter =[];
                     }
                 }
@@ -258,6 +259,13 @@
                     }
                 });
                 console.log(arr2);
+
+                // if(arr2.length > 0){
+                //     this.sortListAfter = arr2;
+                // } else {
+                //     this.sortListAfter =[];
+                // }
+
                 if(arr2.length > 0){
                     this.sortListAfter = arr2;
                 }
@@ -333,7 +341,6 @@
             this.matchResFoam.nickname = nickname || '木子';
 
             this.getHistoryList();
-
         },
 
     }

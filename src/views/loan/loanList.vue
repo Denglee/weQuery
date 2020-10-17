@@ -9,7 +9,7 @@
                 </van-row>
 <!--                <van-row gutter="12" v-else>-->
                 <van-row gutter="12">
-                    <van-col span="8" v-for="(item,index) in loanArr" :ket="index">
+                    <van-col span="8" v-for="(item,index) in loanArr" :key="index">
                         <div  class="fire-list" @click="goLoanDetails(item)">
                             <van-image :src="item.ioc" alt="" class="fire-img"></van-image>
                             <div class="fire-title">{{item.name | cutOutStr}}</div>
