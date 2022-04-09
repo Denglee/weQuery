@@ -1,0 +1,303 @@
+@import "theme";
+
+.info-box {
+  display: inline-flex;
+  flex-wrap: wrap;
+  width: 100%;
+
+  .van-radio {
+    margin-bottom: .1rem;
+    min-width: 22%;
+
+    &:not(:last-of-type) {
+      margin-right: 4%;
+    }
+  }
+
+  .van-radio__icon {
+    width: 100%;
+    -webkit-box-flex: 0;
+    -webkit-flex: none;
+    flex: none;
+    height: auto;
+    font-size: 14px;
+    line-height: initial;
+    cursor: pointer;
+    text-align: center;
+  }
+}
+
+.infoRadio {
+  padding: 6px 10px;
+  background-color: rgba(216, 217, 219, 0.45);
+  margin-right: 10px;
+  border-radius: 4px;
+  width: 100%;
+}
+
+.match-box {
+  //background-color: #ddd;
+  min-height: 100vh;
+
+  .headerInfo-nav .van-button {
+    width: 100%;
+    background-color: $themeColor;
+    border: none;
+    border-radius: 0;
+    color: #fff;
+    opacity: 1;
+  }
+
+  .activeRadio {
+    background-color: #ffa300;
+    color: #fff;
+  }
+
+  .activeInfoNav {
+    color: #ffa300 !important;
+    background-color: #fff !important;
+  }
+
+  .activeTabBasic {
+    background-color: #ffa300;
+    color: #fff;
+  }
+
+  .btn-next {
+    width: 100%;
+    margin-top: .1rem;
+    height: 50px;
+    line-height: 50px;
+    border: solid 1px $themeColor;
+    background-color: $themeColor;
+    color: #fff;
+  }
+}
+
+.guide-box {
+  padding-top: 1rem;
+  position: relative;
+
+  .guide-topBg {
+    width: 100%;
+    //margin-top: -100px;
+    height: 2.8rem;
+    background: #8705f0;
+    //background: linear-gradient(to bottom right, #4dbef2, #4dbef2);
+    background: $themeColor;
+    border-radius: 100% / 50%;
+    position: absolute;
+    top: -1rem;
+  }
+
+  .guide-content {
+    width: 92%;
+    height: 2.6rem;
+    background-color: #fff;
+    border-radius: 20px;
+    margin: -1rem auto 0;
+    position: relative;
+    box-shadow: -1px 2px 8px 0 rgba(12, 22, 36, .1);
+  }
+
+  .guide-logo {
+    width: .8rem;
+    height: .8rem;
+    border-radius: 50%;
+    margin: 0 auto;
+    display: block;
+    //border: solid 1px red;
+    position: absolute;
+    top: -.4rem;
+    left: calc(50% - .4rem);
+  }
+
+  .guide-nav {
+    /*display: flex;*/
+    /*justify-content: space-between;*/
+    width: 60%;
+    margin: .6rem auto .3rem;
+    padding-top: 0.6rem;
+    /*border: solid;*/
+    span {
+      text-align: center;
+      width: 50%;
+      margin-top: .1rem;
+      display: inline-block;
+    }
+  }
+
+  .btnGoMatch {
+    width: .8rem;
+    height: .8rem;
+    border-radius: 50%;
+    margin: 0 auto;
+    display: block;
+    background-color: $themeColor;
+    color: #fff;
+  }
+
+  .guide-lately {
+    //width: 92%;
+    margin: .1rem auto;
+    background-color: #fff;
+    border-right: 6px;
+    text-align: center;
+    padding: 6px 0;
+    border-radius: 4px;
+  }
+
+  .item-guide {
+    padding: 6px;
+    border-radius: 4px;
+  }
+
+  .matchRes-ul {
+    li {
+      background-color: #fff;
+      padding: 6px;
+      border-radius: 4px;
+      margin-bottom: .1rem;
+    }
+  }
+}
+
+.basic-nav {
+  display: flex;
+  justify-content: center;
+
+  .van-button {
+    height: .8rem;
+    width: .8rem;
+    border: solid 2px #ddd;
+    border-radius: 50%;
+    padding: 0;
+    margin-bottom: 10px;
+
+    &:not(:last-child) {
+      margin-right: .2rem;
+    }
+  }
+}
+
+.info-item {
+  width: 94%;
+  margin: 10px auto 0;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 10px 10px 0;
+  &:last-child {
+    margin-bottom: 10px;
+  }
+
+  .info-title {
+    margin-bottom: .1rem;
+  }
+}
+
+.info-item:last-child {
+  //margin-bottom: 10px;
+  padding-bottom: 10px;
+}
+
+.info-item .flex-between {
+  margin-top: 8px;
+  align-items: center;
+
+  &:last-of-type {
+    padding-bottom: 10px;
+  }
+}
+
+.info-item h4 {
+  //background-color: #f2f3f5;
+  width: 52%;
+  padding: 4px;
+  border-radius: 6px;
+}
+
+.info-item .info-subTitle {
+  background-color: #f2f3f5;
+}
+
+.info-stepper button {
+  /*background: none;*/
+  /*border:solid 1px red;*/
+}
+
+.info-stepper input {
+  /*background: none;*/
+}
+
+.inp-info {
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: solid 1px rgba(216, 217, 219, 0.45);
+  margin-bottom: 6px;
+
+  .van-cell {
+    padding: 0;
+  }
+}
+
+.info-age {
+  align-items: center;
+  padding-bottom: 10px;
+}
+
+.match-age {
+  width: .6rem;
+  color: #ffa300;
+  background-color: rgba(216, 217, 219, 0.45);
+  margin-right: .4rem;
+  text-align: center;
+  padding: 4px 0;
+  border-radius: 4px;
+}
+
+.match-ageSlider {
+  width: calc(100% - 1rem);
+}
+
+
+//生成匹配结果
+.wrapper-match {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+
+  .wrapper-Content {
+    height: 170px;
+    background-color: #fff;
+    width: 70%;
+    text-align: center;
+    padding: 24px 40px;
+    border-radius: 13px;
+  }
+
+  .wrapper-name {
+    color: $themeColor;
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 30px;
+  }
+}
+
+.match-errBox {
+  text-align: center;
+  font-size: 16px;
+
+  .match-errTip {
+    color: $colorGray1;
+    margin: 20px auto 30px;
+  }
+
+  .btn-matchErr {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background-color: $themeColor;
+    color: #fff;
+  }
+}

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+  <title>Document</title>
+  <!-- 引入样式 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vant@2.1/lib/index.css">
+  <!-- 引入组件 -->
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vant@2.1/lib/vant.min.js"></script>
+
+</head>
+<body>
+
+<div id="app">
+  <van-button type="default">默认按钮</van-button>
+  <van-stepper v-model="loansTotal"></van-stepper>
+</div>
+</body>
+<script>
+  var app = new Vue({
+    el: "#app",
+    data() {
+      return {
+        loansTotal: 1
+      };
+    },
+    methods: {},
+    created() {
+    }
+  });
+</script>
+</html>
